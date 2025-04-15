@@ -711,7 +711,7 @@ tests = ["black (>=24.0.0)", "numpydantic (>=1.6.1)", "pyshacl (>=0.25.0,<0.26.0
 
 [[package]]
 name = "linkml-asciidoc-generator"
-version = "0.3.2"
+version = "0.4.0"
 description = "LinkML generator for generating AsciiDoc documentation from a LinkML schema."
 optional = false
 python-versions = ">=3.12"
@@ -727,8 +727,8 @@ pyyaml = ">=6.0.2"
 [package.source]
 type = "git"
 url = "https://github.com/Netbeheer-Nederland/linkml-asciidoc-generator.git"
-reference = "v0.3.2"
-resolved_reference = "8c98cab0cb9dc8feb50ff6f0bcbba814ebb09198"
+reference = "v0.4.0"
+resolved_reference = "3c25bf407d8c68150943e738d343dbd5506abda4"
 
 [[package]]
 name = "linkml-dataops"
@@ -2145,4 +2145,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "999242611a422e09d1724cdc25ffdf8405dc6f98e293bbb90b1a7b61bd355854"
+content-hash = "c19cf1ad22a9e2bf462efd362b88505ed9af20a876acd6f4e92ca5655c4baf36"
