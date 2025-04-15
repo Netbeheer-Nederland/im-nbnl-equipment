@@ -109,3 +109,62 @@
 | `cim:UnitMultiplier.Z`
 | n/a
 |===
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/ActivePower.adoc[`ActivePower`] | xref::class/ActivePower.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/ApparentPower.adoc[`ApparentPower`] | xref::class/ApparentPower.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Conductance.adoc[`Conductance`] | xref::class/Conductance.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/CurrentFlow.adoc[`CurrentFlow`] | xref::class/CurrentFlow.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Length.adoc[`Length`] | xref::class/Length.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/PerCent.adoc[`PerCent`] | xref::class/PerCent.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Reactance.adoc[`Reactance`] | xref::class/Reactance.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/ReactivePower.adoc[`ReactivePower`] | xref::class/ReactivePower.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Resistance.adoc[`Resistance`] | xref::class/Resistance.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Seconds.adoc[`Seconds`] | xref::class/Seconds.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Susceptance.adoc[`Susceptance`] | xref::class/Susceptance.adoc#multiplier[`multiplier`]
+
+
+
+| xref::class/Voltage.adoc[`Voltage`] | xref::class/Voltage.adoc#multiplier[`multiplier`]
+
+
+|===
+

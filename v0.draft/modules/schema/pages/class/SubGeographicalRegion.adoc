@@ -133,50 +133,65 @@ legend: "" {
 ----
 
 
-[cols="3,1,3,6",width=100%]
+[cols="1,1,2,1",width=100%]
 |===
-| Name | Cardinality | Type | Description
-
-| <<Region,`Region`>>
-| 1
-| xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
-| +++The geographical region which this sub-geographical region is within.+++
-
-| <<mRID,`mRID`>>
-| 1
-| https://w3id.org/linkml/String[`string`]
-| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
-For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
-
-| <<name,`name`>>
-| 1
-| https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
+| Name | Type | Description | Inherited from
 
 | <<Lines,`Lines`>>
-| 0..*
-| xref::class/Line.adoc[`Line`]
+//| [[slots_table.Lines]]<<Lines,`Lines`>>
+| 0..* +
+xref::class/Line.adoc[`Line`]
 | +++The lines within the sub-geographical region.+++
+| _n/a_
+
+| <<Region,`Region`>>
+//| [[slots_table.Region]]<<Region,`Region`>>
+| 1 +
+xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
+| +++The geographical region which this sub-geographical region is within.+++
+| _n/a_
 
 | <<Substations,`Substations`>>
-| 0..*
-| xref::class/Substation.adoc[`Substation`]
+//| [[slots_table.Substations]]<<Substations,`Substations`>>
+| 0..* +
+xref::class/Substation.adoc[`Substation`]
 | +++The substations in this sub-geographical region.+++
+| _n/a_
 
 | <<description,`description`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
-| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+//| [[slots_table.description]]<<description,`description`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<mRID,`mRID`>>
+//| [[slots_table.mRID]]<<mRID,`mRID`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<name,`name`>>
+//| [[slots_table.name]]<<name,`name`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++The name is any free human readable and possibly non unique text naming the object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<shortName,`shortName`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
+//| [[slots_table.shortName]]<<shortName,`shortName`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
@@ -186,6 +201,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -202,10 +218,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.description,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#energyIdentCodeEic]
 === `energyIdentCodeEic`
 +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -222,10 +247,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.energyIdentCodeEic,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#Lines]
 === `Lines`
 +++The lines within the sub-geographical region.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -239,11 +273,20 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.Lines,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#mRID]
 === `mRID`
 +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -260,10 +303,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.mRID,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#name]
 === `name`
 +++The name is any free human readable and possibly non unique text naming the object.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -280,10 +332,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.name,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#Region]
 === `Region`
 +++The geographical region which this sub-geographical region is within.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -297,10 +358,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.Region,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#shortName]
 === `shortName`
 +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -317,10 +387,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.shortName,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#Substations]
 === `Substations`
 +++The substations in this sub-geographical region.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -334,4 +413,36 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.Substations,&#10548;>>
+--
+////
+
+
+
+
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/GeographicalRegion.adoc[`GeographicalRegion`] | xref::class/GeographicalRegion.adoc#Regions[`Regions`]
+
+
+
+| xref::class/Line.adoc[`Line`] | xref::class/Line.adoc#Region[`Region`]
+
+
+
+| xref::class/Substation.adoc[`Substation`] | xref::class/Substation.adoc#Region[`Region`]
+
+
+|===
 

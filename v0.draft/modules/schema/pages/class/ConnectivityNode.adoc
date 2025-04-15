@@ -121,45 +121,58 @@ legend: "" {
 ----
 
 
-[cols="3,1,3,6",width=100%]
+[cols="1,1,2,1",width=100%]
 |===
-| Name | Cardinality | Type | Description
+| Name | Type | Description | Inherited from
 
 | <<ConnectivityNodeContainer,`ConnectivityNodeContainer`>>
-| 1
-| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+//| [[slots_table.ConnectivityNodeContainer]]<<ConnectivityNodeContainer,`ConnectivityNodeContainer`>>
+| 1 +
+xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 | +++Container of this connectivity node.+++
-
-| <<mRID,`mRID`>>
-| 1
-| https://w3id.org/linkml/String[`string`]
-| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
-For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
-
-| <<name,`name`>>
-| 1
-| https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
+| _n/a_
 
 | <<Terminals,`Terminals`>>
-| 0..*
-| xref::class/Terminal.adoc[`Terminal`]
+//| [[slots_table.Terminals]]<<Terminals,`Terminals`>>
+| 0..* +
+xref::class/Terminal.adoc[`Terminal`]
 | +++Terminals interconnected with zero impedance at a this connectivity node.+++
+| _n/a_
 
 | <<description,`description`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
-| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+//| [[slots_table.description]]<<description,`description`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<mRID,`mRID`>>
+//| [[slots_table.mRID]]<<mRID,`mRID`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<name,`name`>>
+//| [[slots_table.name]]<<name,`name`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++The name is any free human readable and possibly non unique text naming the object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<shortName,`shortName`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
+//| [[slots_table.shortName]]<<shortName,`shortName`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
@@ -169,6 +182,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [#ConnectivityNodeContainer]
 === `ConnectivityNodeContainer`
 +++Container of this connectivity node.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -182,10 +196,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.ConnectivityNodeContainer,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -202,10 +225,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.description,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#energyIdentCodeEic]
 === `energyIdentCodeEic`
 +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -222,11 +254,20 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.energyIdentCodeEic,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#mRID]
 === `mRID`
 +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -243,10 +284,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.mRID,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#name]
 === `name`
 +++The name is any free human readable and possibly non unique text naming the object.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -263,10 +313,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.name,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#shortName]
 === `shortName`
 +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -283,10 +342,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.shortName,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#Terminals]
 === `Terminals`
 +++Terminals interconnected with zero impedance at a this connectivity node.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -300,4 +368,32 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.Terminals,&#10548;>>
+--
+////
+
+
+
+
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`] | xref::class/ConnectivityNodeContainer.adoc#ConnectivityNodes[`ConnectivityNodes`]
+
+
+
+| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#ConnectivityNode[`ConnectivityNode`]
+
+
+|===
 

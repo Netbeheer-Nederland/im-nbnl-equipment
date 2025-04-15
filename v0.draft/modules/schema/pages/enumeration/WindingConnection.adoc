@@ -53,3 +53,18 @@
 | `cim:WindingConnection.Zn`
 | n/a
 |===
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/PowerTransformerEnd.adoc[`PowerTransformerEnd`] | xref::class/PowerTransformerEnd.adoc#connectionKind[`connectionKind`]
+
+
+|===
+

@@ -129,3 +129,18 @@
 | `cim:PhaseCode.XYN`
 | n/a
 |===
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#phases[`phases`]
+
+
+|===
+

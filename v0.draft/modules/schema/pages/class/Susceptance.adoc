@@ -18,29 +18,30 @@
 | CIM standard (perspective)
 | IEC61970 (Grid)
 
+
 |===
 
 == Slots
 
-[cols="3,1,3,6",width=100%]
+[cols="1,1,2",width=100%]
 |===
-| Name | Cardinality | Type | Description
+| Name | Type | Description
 
 | `value`
-| 0..1
-| https://w3id.org/linkml/Float[`float`]
+| 0..1 +
+https://w3id.org/linkml/Float[`float`]
 //| +++None+++
 | n/a
 
 | `multiplier`
-| 0..1
-| xref::enumeration/UnitMultiplier.adoc[`UnitMultiplier`]
+| 0..1 +
+xref::enumeration/UnitMultiplier.adoc[`UnitMultiplier`]
 //| +++None+++
 | n/a
 
 | `unit`
-| 0..1
-| xref::enumeration/UnitSymbol.adoc[`UnitSymbol`]
+| 0..1 +
+xref::enumeration/UnitSymbol.adoc[`UnitSymbol`]
 //| +++None+++
 | n/a
 |===
@@ -96,3 +97,22 @@
 |===
 
 ////
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/ACLineSegment.adoc[`ACLineSegment`] | xref::class/ACLineSegment.adoc#bch[`bch`]
+
+
+
+| xref::class/PowerTransformerEnd.adoc[`PowerTransformerEnd`] | xref::class/PowerTransformerEnd.adoc#b[`b`]
+
+
+|===
+

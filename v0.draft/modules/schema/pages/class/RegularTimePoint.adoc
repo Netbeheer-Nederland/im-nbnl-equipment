@@ -108,29 +108,37 @@ legend: "" {
 ----
 
 
-[cols="3,1,3,6",width=100%]
+[cols="1,1,2,1",width=100%]
 |===
-| Name | Cardinality | Type | Description
+| Name | Type | Description | Inherited from
 
 | <<IntervalSchedule,`IntervalSchedule`>>
-| 1
-| xref::class/RegularIntervalSchedule.adoc[`RegularIntervalSchedule`]
+//| [[slots_table.IntervalSchedule]]<<IntervalSchedule,`IntervalSchedule`>>
+| 1 +
+xref::class/RegularIntervalSchedule.adoc[`RegularIntervalSchedule`]
 | +++Regular interval schedule containing this time point.+++
+| _n/a_
 
 | <<sequenceNumber,`sequenceNumber`>>
-| 1
-| https://w3id.org/linkml/Integer[`integer`]
-| +++The position of the regular time point in the sequence. Note that time points don't have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule's time step with the regular time point sequence number and adding the associated schedules start time. To specify values for the start time, use sequence number 0.  The sequence number cannot be negative.+++
+//| [[slots_table.sequenceNumber]]<<sequenceNumber,`sequenceNumber`>>
+| 1 +
+https://w3id.org/linkml/Integer[`integer`]
+| +++The position of the regular time point in the sequence. Note that time points don't have to be sequential, i.e. time points...+++
+| _n/a_
 
 | <<value1,`value1`>>
-| 1
-| https://w3id.org/linkml/Float[`float`]
+//| [[slots_table.value1]]<<value1,`value1`>>
+| 1 +
+https://w3id.org/linkml/Float[`float`]
 | +++The first value at the time. The meaning of the value is defined by the derived type of the associated schedule.+++
+| _n/a_
 
 | <<value2,`value2`>>
-| 0..1
-| https://w3id.org/linkml/Float[`float`]
+//| [[slots_table.value2]]<<value2,`value2`>>
+| 0..1 +
+https://w3id.org/linkml/Float[`float`]
 | +++The second value at the time. The meaning of the value is defined by the derived type of the associated schedule.+++
+| _n/a_
 |===
 
 '''
@@ -140,6 +148,7 @@ legend: "" {
 [#IntervalSchedule]
 === `IntervalSchedule`
 +++Regular interval schedule containing this time point.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -153,10 +162,19 @@ legend: "" {
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.IntervalSchedule,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#sequenceNumber]
 === `sequenceNumber`
 +++The position of the regular time point in the sequence. Note that time points don't have to be sequential, i.e. time points may be omitted. The actual time for a RegularTimePoint is computed by multiplying the associated regular interval schedule's time step with the regular time point sequence number and adding the associated schedules start time. To specify values for the start time, use sequence number 0.  The sequence number cannot be negative.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -170,10 +188,19 @@ legend: "" {
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.sequenceNumber,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#value1]
 === `value1`
 +++The first value at the time. The meaning of the value is defined by the derived type of the associated schedule.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -187,10 +214,19 @@ legend: "" {
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.value1,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#value2]
 === `value2`
 +++The second value at the time. The meaning of the value is defined by the derived type of the associated schedule.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -204,4 +240,28 @@ legend: "" {
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.value2,&#10548;>>
+--
+////
+
+
+
+
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/RegularIntervalSchedule.adoc[`RegularIntervalSchedule`] | xref::class/RegularIntervalSchedule.adoc#TimePoints[`TimePoints`]
+
+
+|===
 

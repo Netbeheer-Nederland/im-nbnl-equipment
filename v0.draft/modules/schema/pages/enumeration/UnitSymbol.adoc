@@ -589,3 +589,66 @@
 | `cim:UnitSymbol.WPerW`
 | n/a
 |===
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/ActivePower.adoc[`ActivePower`] | xref::class/ActivePower.adoc#unit[`unit`]
+
+
+
+| xref::class/ApparentPower.adoc[`ApparentPower`] | xref::class/ApparentPower.adoc#unit[`unit`]
+
+
+
+| xref::class/BasicIntervalSchedule.adoc[`BasicIntervalSchedule`] | xref::class/BasicIntervalSchedule.adoc#value2Unit[`value2Unit`]
+
+
+
+| xref::class/Conductance.adoc[`Conductance`] | xref::class/Conductance.adoc#unit[`unit`]
+
+
+
+| xref::class/CurrentFlow.adoc[`CurrentFlow`] | xref::class/CurrentFlow.adoc#unit[`unit`]
+
+
+
+| xref::class/Length.adoc[`Length`] | xref::class/Length.adoc#unit[`unit`]
+
+
+
+| xref::class/PerCent.adoc[`PerCent`] | xref::class/PerCent.adoc#unit[`unit`]
+
+
+
+| xref::class/Reactance.adoc[`Reactance`] | xref::class/Reactance.adoc#unit[`unit`]
+
+
+
+| xref::class/ReactivePower.adoc[`ReactivePower`] | xref::class/ReactivePower.adoc#unit[`unit`]
+
+
+
+| xref::class/Resistance.adoc[`Resistance`] | xref::class/Resistance.adoc#unit[`unit`]
+
+
+
+| xref::class/Seconds.adoc[`Seconds`] | xref::class/Seconds.adoc#unit[`unit`]
+
+
+
+| xref::class/Susceptance.adoc[`Susceptance`] | xref::class/Susceptance.adoc#unit[`unit`]
+
+
+
+| xref::class/Voltage.adoc[`Voltage`] | xref::class/Voltage.adoc#unit[`unit`]
+
+
+|===
+

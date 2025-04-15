@@ -102,70 +102,88 @@ legend: "" {
 ----
 
 
-[cols="3,1,3,6",width=100%]
+[cols="1,1,2,1",width=100%]
 |===
-| Name | Cardinality | Type | Description
+| Name | Type | Description | Inherited from
 
 | <<highStep,`highStep`>>
-| 1
-| https://w3id.org/linkml/Integer[`integer`]
+//| [[slots_table.highStep]]<<highStep,`highStep`>>
+| 1 +
+https://w3id.org/linkml/Integer[`integer`]
 | +++Highest possible tap step position, advance from neutral.
 The attribute shall be greater than lowStep.+++
+| _n/a_
 
 | <<lowStep,`lowStep`>>
-| 1
-| https://w3id.org/linkml/Integer[`integer`]
+//| [[slots_table.lowStep]]<<lowStep,`lowStep`>>
+| 1 +
+https://w3id.org/linkml/Integer[`integer`]
 | +++Lowest possible tap step position, retard from neutral.+++
+| _n/a_
 
 | <<ltcFlag,`ltcFlag`>>
-| 1
-| https://w3id.org/linkml/Boolean[`boolean`]
+//| [[slots_table.ltcFlag]]<<ltcFlag,`ltcFlag`>>
+| 1 +
+https://w3id.org/linkml/Boolean[`boolean`]
 | +++Specifies whether or not a TapChanger has load tap changing capabilities.+++
+| _n/a_
 
 | <<neutralStep,`neutralStep`>>
-| 1
-| https://w3id.org/linkml/Integer[`integer`]
+//| [[slots_table.neutralStep]]<<neutralStep,`neutralStep`>>
+| 1 +
+https://w3id.org/linkml/Integer[`integer`]
 | +++The neutral tap step position for this winding.
-The attribute shall be equal to or greater than lowStep and equal or less than highStep.
-It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.+++
+The attribute shall be equal to or greater than lowStep and equal or less...+++
+| _n/a_
 
 | <<neutralU,`neutralU`>>
-| 1
-| xref::class/Voltage.adoc[`Voltage`]
-| +++Voltage at which the winding operates at the neutral tap setting. It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
-This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.+++
+//| [[slots_table.neutralU]]<<neutralU,`neutralU`>>
+| 1 +
+xref::class/Voltage.adoc[`Voltage`]
+| +++Voltage at which the winding operates at the neutral tap setting. It is the voltage at the terminal of the...+++
+| _n/a_
 
 | <<normalStep,`normalStep`>>
-| 1
-| https://w3id.org/linkml/Integer[`integer`]
-| +++The tap step position used in "normal" network operation for this winding. For a "Fixed" tap changer indicates the current physical tap setting.
-The attribute shall be equal to or greater than lowStep and equal to or less than highStep.+++
-
-| <<mRID,`mRID`>>
-| 1
-| https://w3id.org/linkml/String[`string`]
-| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
-For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
-
-| <<name,`name`>>
-| 1
-| https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
+//| [[slots_table.normalStep]]<<normalStep,`normalStep`>>
+| 1 +
+https://w3id.org/linkml/Integer[`integer`]
+| +++The tap step position used in "normal" network operation for this winding. For a "Fixed" tap changer indicates the current...+++
+| _n/a_
 
 | <<description,`description`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
-| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+//| [[slots_table.description]]<<description,`description`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<mRID,`mRID`>>
+//| [[slots_table.mRID]]<<mRID,`mRID`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<name,`name`>>
+//| [[slots_table.name]]<<name,`name`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++The name is any free human readable and possibly non unique text naming the object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<shortName,`shortName`>>
-| 0..1
-| https://w3id.org/linkml/String[`string`]
+//| [[slots_table.shortName]]<<shortName,`shortName`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
@@ -175,6 +193,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -191,10 +210,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.description,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#energyIdentCodeEic]
 === `energyIdentCodeEic`
 +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -211,11 +239,20 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.energyIdentCodeEic,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#highStep]
 === `highStep`
 +++Highest possible tap step position, advance from neutral.
 The attribute shall be greater than lowStep.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -229,10 +266,19 @@ The attribute shall be greater than lowStep.+++
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.highStep,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#lowStep]
 === `lowStep`
 +++Lowest possible tap step position, retard from neutral.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -246,10 +292,19 @@ The attribute shall be greater than lowStep.+++
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.lowStep,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#ltcFlag]
 === `ltcFlag`
 +++Specifies whether or not a TapChanger has load tap changing capabilities.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -263,11 +318,20 @@ The attribute shall be greater than lowStep.+++
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.ltcFlag,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#mRID]
 === `mRID`
 +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
 For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -284,10 +348,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.mRID,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#name]
 === `name`
 +++The name is any free human readable and possibly non unique text naming the object.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -304,12 +377,21 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.name,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#neutralStep]
 === `neutralStep`
 +++The neutral tap step position for this winding.
 The attribute shall be equal to or greater than lowStep and equal or less than highStep.
 It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -323,11 +405,20 @@ It is the step position where the voltage is neutralU when the other terminals o
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.neutralStep,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#neutralU]
 === `neutralU`
 +++Voltage at which the winding operates at the neutral tap setting. It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
 This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -341,11 +432,20 @@ This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerS
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.neutralU,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#normalStep]
 === `normalStep`
 +++The tap step position used in "normal" network operation for this winding. For a "Fixed" tap changer indicates the current physical tap setting.
 The attribute shall be equal to or greater than lowStep and equal to or less than highStep.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -359,10 +459,19 @@ The attribute shall be equal to or greater than lowStep and equal to or less tha
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.normalStep,&#10548;>>
+--
+////
+
+
 //[discrete]
 [#shortName]
 === `shortName`
 +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+
 
 [cols="h,4",width=65%]
 |===
@@ -379,4 +488,18 @@ The attribute shall be equal to or greater than lowStep and equal to or less tha
 
 |===
 
+////
+[.text-left]
+--
+<<slots_table.shortName,&#10548;>>
+--
+////
 
+
+
+
+
+== Used by
+
+
+This class is not used by any other classes as the range of a slot.
