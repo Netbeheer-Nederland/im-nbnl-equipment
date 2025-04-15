@@ -14,13 +14,14 @@ prefixes:
   github: https://github.com/
   nbnl: https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/
   nl: http://iec.ch/TC57/CIM100-Netherlands#
+  eu: http://iec.ch/TC57/CIM100-European#
   owl: http://www.w3.org/2002/07/owl#
   skos: http://www.w3.org/2004/02/skos/core#
   this: http://data.netbeheernederland.nl/information-model/im-nbnl-equipment/def#
 enums:
   UnitSymbol:
     from_schema: http://iec.ch/TC57/ns/CIM/CoreEquipment-EU#Package_CoreEquipmentProfile
-    enum_uri: http://iec.ch/TC57/CIM100#UnitSymbol
+    enum_uri: cim:UnitSymbol
     permissible_values:
       none:
         meaning: cim:UnitSymbol.none
@@ -306,7 +307,7 @@ enums:
         meaning: cim:UnitSymbol.JPers
   UnitMultiplier:
     from_schema: http://iec.ch/TC57/ns/CIM/CoreEquipment-EU#Package_CoreEquipmentProfile
-    enum_uri: http://iec.ch/TC57/CIM100#UnitMultiplier
+    enum_uri: cim:UnitMultiplier
     permissible_values:
       y:
         meaning: cim:UnitMultiplier.y
@@ -352,7 +353,7 @@ enums:
         meaning: cim:UnitMultiplier.Y
   PhaseCode:
     from_schema: http://iec.ch/TC57/ns/CIM/CoreEquipment-EU#Package_CoreEquipmentProfile
-    enum_uri: http://iec.ch/TC57/CIM100#PhaseCode
+    enum_uri: cim:PhaseCode
     permissible_values:
       ABCN:
         meaning: cim:PhaseCode.ABCN
@@ -408,7 +409,7 @@ enums:
         meaning: cim:PhaseCode.XYN
   WindingConnection:
     from_schema: http://iec.ch/TC57/ns/CIM/CoreEquipment-EU#Package_CoreEquipmentProfile
-    enum_uri: http://iec.ch/TC57/CIM100#WindingConnection
+    enum_uri: cim:WindingConnection
     permissible_values:
       D:
         meaning: cim:WindingConnection.D
