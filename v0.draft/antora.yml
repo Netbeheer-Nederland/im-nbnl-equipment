@@ -1,0 +1,6 @@
+name: im-nbnl-equipment
+version: v0.draft
+title: NBNL Equipment Profile
+nav:
+- modules/ROOT/nav.adoc
+- modules/schema/nav.adoc

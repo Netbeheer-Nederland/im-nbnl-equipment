@@ -1,0 +1,111 @@
+= `UnitMultiplier`
+:toclevels: 4
+
+
+
+[cols="h,3",width=65%]
+|===
+| Type
+| Enumeration
+
+| URI
+| `cim:UnitMultiplier`
+
+
+| CIM standard (perspective)
+| IEC61970 (Grid)
+
+
+
+|===
+
+== Values
+
+[cols="1,1,5",width=100%]
+|===
+| Value | URI | Description
+
+| `a`
+| `cim:UnitMultiplier.a`
+| n/a
+
+| `c`
+| `cim:UnitMultiplier.c`
+| n/a
+
+| `d`
+| `cim:UnitMultiplier.d`
+| n/a
+
+| `da`
+| `cim:UnitMultiplier.da`
+| n/a
+
+| `E`
+| `cim:UnitMultiplier.E`
+| n/a
+
+| `f`
+| `cim:UnitMultiplier.f`
+| n/a
+
+| `G`
+| `cim:UnitMultiplier.G`
+| n/a
+
+| `h`
+| `cim:UnitMultiplier.h`
+| n/a
+
+| `k`
+| `cim:UnitMultiplier.k`
+| n/a
+
+| `m`
+| `cim:UnitMultiplier.m`
+| n/a
+
+| `M`
+| `cim:UnitMultiplier.M`
+| n/a
+
+| `micro`
+| `cim:UnitMultiplier.micro`
+| n/a
+
+| `n`
+| `cim:UnitMultiplier.n`
+| n/a
+
+| `none`
+| `cim:UnitMultiplier.none`
+| n/a
+
+| `p`
+| `cim:UnitMultiplier.p`
+| n/a
+
+| `P`
+| `cim:UnitMultiplier.P`
+| n/a
+
+| `T`
+| `cim:UnitMultiplier.T`
+| n/a
+
+| `y`
+| `cim:UnitMultiplier.y`
+| n/a
+
+| `Y`
+| `cim:UnitMultiplier.Y`
+| n/a
+
+| `z`
+| `cim:UnitMultiplier.z`
+| n/a
+
+| `Z`
+| `cim:UnitMultiplier.Z`
+| n/a
+|===
