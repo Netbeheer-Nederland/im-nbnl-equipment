@@ -1,0 +1,20 @@
+name: im-nbnl-equipment
+description: |-
+  Information models for the NBNL Equipment Profile.
+title: NBNL Equipment Profile
+id: http://data.netbeheernederland.nl/data-product/im-nbnl-equipment
+license: https://www.apache.org/licenses/LICENSE-2.0.txt
+imports:
+  - linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  cim: https://cim.ucaiug.io/ns#
+  dcat: http://www.w3.org/ns/dcat#
+  dct: http://purl.org/dc/terms/
+  github: https://github.com/
+  nbnl: https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/
+  nl: http://iec.ch/TC57/CIM100-Netherlands#
+  owl: http://www.w3.org/2002/07/owl#
+  skos: http://www.w3.org/2004/02/skos/core#
+  this: http://data.netbeheernederland.nl/information-model/im-nbnl-equipment/def#
+classes: {}

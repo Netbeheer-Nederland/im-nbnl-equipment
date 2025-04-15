@@ -1,0 +1,7 @@
+_commit: v0.7.9
+_src_path: gh:Netbeheer-Nederland/tmpl-dp
+description: Information models for the NBNL Equipment Profile.
+name: im-nbnl-equipment
+org: Netbeheer-Nederland
+schema_base_uri: http://data.netbeheernederland.nl/data-product
+title: NBNL Equipment Profile
