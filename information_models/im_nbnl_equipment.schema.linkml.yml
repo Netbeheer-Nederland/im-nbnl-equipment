@@ -1035,6 +1035,7 @@ classes:
         range: string
         required: false
         multivalued: false
+    tree_root: true
     class_uri: cim:IdentifiedObject
   Breaker:
     description: A mechanical switching device capable of making, carrying, and breaking
