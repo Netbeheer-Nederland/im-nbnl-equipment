@@ -4042,7 +4042,43 @@
     "$id": "http://data.netbeheernederland.nl/data-product/im-nbnl-equipment",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
+    "description": "This is a root class to provide common identification for all classes needing identification and naming attributes.",
     "metamodel_version": "1.7.0",
+    "properties": {
+        "description": {
+            "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "energyIdentCodeEic": {
+            "description": "The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "mRID": {
+            "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+            "type": "string"
+        },
+        "name": {
+            "description": "The name is any free human readable and possibly non unique text naming the object.",
+            "type": "string"
+        },
+        "shortName": {
+            "description": "The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.",
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "mRID",
+        "name"
+    ],
     "title": "im-nbnl-equipment",
     "type": "object",
     "version": "v0.draft"
