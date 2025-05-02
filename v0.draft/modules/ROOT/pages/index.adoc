@@ -1,22 +1,41 @@
 = NBNL Equipment Profile
 
-
+This vocabulary is describing the equipment profile based on IEC 61970-600-2.
 
 .Data Product
 [d2,svg,theme=4]
 ----
-grid-rows: 5
-grid-columns: 5
-
-horizontal-gap: 160
-vertical-gap: 80
-
 vars: {
   d2-config: {
+    layout-engine: elk
     pad: 20
   }
 }
 
+BusbarSection -> BusbarSectionInfo: "BusbarSection.AssetDataSheet"
+PowerTransformerEnd -> PowerTransformer: "PowerTransformerEnd.PowerTransformer"
+NonConformLoadSchedule -> NonConformLoadGroup: "NonConformLoadSchedule.NonConformLoadGroup"
+Disconnector -> Bay: "Equipment.EquipmentContainer"
+Fuse -> Bay: "Equipment.EquipmentContainer"
+BusbarSection -> VoltageLevel: "Equipment.EquipmentContainer"
+EnergyConsumer -> UsagePoint: "EnergyConsumer.UsagePoint"
+RatioTapChanger -> PowerTransformerEnd: "RatioTapChanger.TransformerEnd"
+VoltageRelay -> Breaker: "ProtectionEquipment.ProtectedSwitch"
+LoadBreakSwitch -> Bay: "Equipment.EquipmentContainer"
+Line -> Feeder: "Line.Feeder"
+Fuse -> FuseInfo: "Fuse.AssetDataSheet"
+Breaker -> Bay: "Equipment.EquipmentContainer"
+RegularTimePoint -> NonConformLoadSchedule: "RegularTimePoint.IntervalSchedule"
+CurrentRelay -> Breaker: "ProtectionEquipment.ProtectedSwitch"
+ACLineSegment -> WireInfo: "ACLineSegment.AssetDataSheet"
+PowerTransformerEnd -> BaseVoltage: "TransformerEnd.BaseVoltage"
+CurrentRelay -> Disconnector: "ProtectionEquipment.ProtectedSwitch"
+NonConformLoad -> NonConformLoadGroup: "NonConformLoad.LoadGroup"
+ACLineSegment -> Line: "Equipment.EquipmentContainer"
+Bay -> VoltageLevel: "Bay.VoltageLevel"
+Bay -> Feeder: "Bay.Feeder"
+VoltageLevel -> Substation: "VoltageLevel.Substation"
+VoltageLevel -> BaseVoltage: "VoltageLevel.BaseVoltage"
 
 legend: "" {
   style: {
