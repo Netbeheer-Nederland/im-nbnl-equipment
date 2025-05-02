@@ -31,6 +31,8 @@ ACLineSegment -> Line: "Equipment.EquipmentContainer"
 Bay -> VoltageLevel: "Bay.VoltageLevel"
 VoltageLevel -> Substation: "VoltageLevel.Substation"
 VoltageLevel -> BaseVoltage: "VoltageLevel.BaseVoltage"
+Substation -> SubGeographicalRegion: "Substation.Region"
+Line -> SubGeographicalRegion: "Line.Region"
 
 legend: "" {
   style: {
