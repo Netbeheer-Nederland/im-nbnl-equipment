@@ -12,7 +12,6 @@ vars: {
   }
 }
 
-BusbarSection -> BusbarSectionInfo: "BusbarSection.AssetDataSheet"
 PowerTransformerEnd -> PowerTransformer: "PowerTransformerEnd.PowerTransformer"
 NonConformLoadSchedule -> NonConformLoadGroup: "NonConformLoadSchedule.NonConformLoadGroup"
 Disconnector -> Bay: "Equipment.EquipmentContainer"
@@ -23,11 +22,9 @@ RatioTapChanger -> PowerTransformerEnd: "RatioTapChanger.TransformerEnd"
 VoltageRelay -> Breaker: "ProtectionEquipment.ProtectedSwitch"
 LoadBreakSwitch -> Bay: "Equipment.EquipmentContainer"
 Line -> Feeder: "Line.Feeder"
-Fuse -> FuseInfo: "Fuse.AssetDataSheet"
 Breaker -> Bay: "Equipment.EquipmentContainer"
 RegularTimePoint -> NonConformLoadSchedule: "RegularTimePoint.IntervalSchedule"
 CurrentRelay -> Breaker: "ProtectionEquipment.ProtectedSwitch"
-ACLineSegment -> WireInfo: "ACLineSegment.AssetDataSheet"
 PowerTransformerEnd -> BaseVoltage: "TransformerEnd.BaseVoltage"
 CurrentRelay -> Disconnector: "ProtectionEquipment.ProtectedSwitch"
 NonConformLoad -> NonConformLoadGroup: "NonConformLoad.LoadGroup"
