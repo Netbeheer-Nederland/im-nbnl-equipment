@@ -191,8 +191,8 @@ https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
-| <<european_article_number_ean,`european_article_number_ean`>>
-//| [[slots_table.european_article_number_ean]]<<european_article_number_ean,`european_article_number_ean`>>
+| <<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
+//| [[slots_table.europeanArticleNumberEAN]]<<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
@@ -298,8 +298,8 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#european_article_number_ean]
-=== `european_article_number_ean`
+[#europeanArticleNumberEAN]
+=== `europeanArticleNumberEAN`
 +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.+++
 
 
@@ -321,7 +321,7 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.european_article_number_ean,&#10548;>>
+<<slots_table.europeanArticleNumberEAN,&#10548;>>
 --
 ////
 
