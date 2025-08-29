@@ -52,21 +52,6 @@ xref::enumeration/UnitSymbol.adoc[`UnitSymbol`]
 
 
 //[discrete]
-[#value]
-=== `value`
-
-
-[cols="h,1",width=60%]
-|===
-| URI
-| `cim:Voltage.value`
-| Cardinality
-| 0..1
-| Type
-| https://w3id.org/linkml/Float[`float`]
-|===
-
-//[discrete]
 [#multiplier]
 === `multiplier`
 
@@ -96,6 +81,21 @@ xref::enumeration/UnitSymbol.adoc[`UnitSymbol`]
 | xref::enumeration/UnitSymbol.adoc[`UnitSymbol`]
 |===
 
+//[discrete]
+[#value]
+=== `value`
+
+
+[cols="h,1",width=60%]
+|===
+| URI
+| `cim:Voltage.value`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Float[`float`]
+|===
+
 ////
 
 == Used by
@@ -108,18 +108,6 @@ xref::enumeration/UnitSymbol.adoc[`UnitSymbol`]
 
 
 | xref::class/BaseVoltage.adoc[`BaseVoltage`] | xref::class/BaseVoltage.adoc#nominalVoltage[`nominalVoltage`]
-
-
-
-| xref::class/PowerTransformerEnd.adoc[`PowerTransformerEnd`] | xref::class/PowerTransformerEnd.adoc#ratedU[`ratedU`]
-
-
-
-| xref::class/TapChanger.adoc[`TapChanger`] | xref::class/TapChanger.adoc#neutralU[`neutralU`]
-
-
-
-| xref::class/VoltageLevel.adoc[`VoltageLevel`] | xref::class/VoltageLevel.adoc#lowVoltageLimit[`lowVoltageLimit`]
 
 
 |===

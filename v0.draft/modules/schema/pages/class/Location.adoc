@@ -1,8 +1,8 @@
-= `BaseVoltage`
+= `Location`
 :toclevels: 4
 
 
-+++Defines a system base voltage which is referenced.+++
++++The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more position points (coordinates) in a given coordinate system.+++
 
 
 [cols="h,3",width=65%]
@@ -11,11 +11,11 @@
 | Class
 
 | URI
-| `cim:BaseVoltage`
+| `cim:Location`
 
 
 | CIM standard (perspective)
-| IEC61970 (Grid)
+| IEC61968 (Enterprise)
 
 
 
@@ -23,7 +23,7 @@
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** *`BaseVoltage`*
+** *`Location`*
 
 
 == Slots
@@ -38,7 +38,16 @@ vars: {
     pad: 20
   }
 }
-BaseVoltage {
+Location {
+  style {
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+PowerSystemResource {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -47,11 +56,18 @@ BaseVoltage {
 
 
 
-
-
-VoltageLevel {
+CoordinateSystem {
   style {
-    fill: "#eccfcb"
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+PositionPoint {
+  style {
+    fill: "#d1e7c2"
     shadow: true
   }
 }
@@ -68,11 +84,16 @@ Name {
 
 
 
+Location -> PowerSystemResource: PowerSystemResources
 
-BaseVoltage -> VoltageLevel: VoltageLevel
+
+Location -> CoordinateSystem: CoordinateSystem
 
 
-BaseVoltage -> Name: Names
+Location -> PositionPoint: PositionPoints
+
+
+Location -> Name: Names
 
 
 legend: "" {
@@ -128,18 +149,32 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
-| <<VoltageLevel,`VoltageLevel`>>
-//| [[slots_table.VoltageLevel]]<<VoltageLevel,`VoltageLevel`>>
-| 0..* +
-xref::class/VoltageLevel.adoc[`VoltageLevel`]
-| +++The voltage levels having this base voltage.+++
+| <<CoordinateSystem,`CoordinateSystem`>>
+//| [[slots_table.CoordinateSystem]]<<CoordinateSystem,`CoordinateSystem`>>
+| 0..1 +
+xref::class/CoordinateSystem.adoc[`CoordinateSystem`]
+| +++Coordinate system used to describe position points of this location.+++
 | _n/a_
 
-| <<nominalVoltage,`nominalVoltage`>>
-//| [[slots_table.nominalVoltage]]<<nominalVoltage,`nominalVoltage`>>
+| <<PositionPoints,`PositionPoints`>>
+//| [[slots_table.PositionPoints]]<<PositionPoints,`PositionPoints`>>
+| 0..* +
+xref::class/PositionPoint.adoc[`PositionPoint`]
+| +++Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.+++
+| _n/a_
+
+| <<PowerSystemResources,`PowerSystemResources`>>
+//| [[slots_table.PowerSystemResources]]<<PowerSystemResources,`PowerSystemResources`>>
+| 0..* +
+xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+| +++All power system resources at this location.+++
+| _n/a_
+
+| <<direction,`direction`>>
+//| [[slots_table.direction]]<<direction,`direction`>>
 | 0..1 +
-xref::class/Voltage.adoc[`Voltage`]
-| +++The power system resource's base voltage.  Shall be a positive value and not zero.+++
+https://w3id.org/linkml/String[`string`]
+| +++(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street...+++
 | _n/a_
 
 | <<Names,`Names`>>
@@ -175,6 +210,32 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
+[#CoordinateSystem]
+=== `CoordinateSystem`
++++Coordinate system used to describe position points of this location.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Location.CoordinateSystem`
+| Cardinality
+| 0..1
+| Type
+| xref::class/CoordinateSystem.adoc[`CoordinateSystem`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.CoordinateSystem,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
@@ -199,6 +260,32 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#direction]
+=== `direction`
++++(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Location.direction`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.direction,&#10548;>>
 --
 ////
 
@@ -292,19 +379,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#nominalVoltage]
-=== `nominalVoltage`
-+++The power system resource's base voltage.  Shall be a positive value and not zero.+++
+[#PositionPoints]
+=== `PositionPoints`
++++Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:BaseVoltage.nominalVoltage`
+| `cim:Location.PositionPoints`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| xref::class/Voltage.adoc[`Voltage`]
+| xref::class/PositionPoint.adoc[`PositionPoint`]
 
 
 |===
@@ -312,25 +399,25 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.nominalVoltage,&#10548;>>
+<<slots_table.PositionPoints,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#VoltageLevel]
-=== `VoltageLevel`
-+++The voltage levels having this base voltage.+++
+[#PowerSystemResources]
+=== `PowerSystemResources`
++++All power system resources at this location.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:BaseVoltage.VoltageLevel`
+| `cim:Location.PowerSystemResources`
 | Cardinality
 | 0..*
 | Type
-| xref::class/VoltageLevel.adoc[`VoltageLevel`]
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 
 |===
@@ -338,7 +425,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.VoltageLevel,&#10548;>>
+<<slots_table.PowerSystemResources,&#10548;>>
 --
 ////
 
@@ -355,7 +442,15 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/VoltageLevel.adoc[`VoltageLevel`] | xref::class/VoltageLevel.adoc#BaseVoltage[`BaseVoltage`]
+| xref::class/CoordinateSystem.adoc[`CoordinateSystem`] | xref::class/CoordinateSystem.adoc#Locations[`Locations`]
+
+
+
+| xref::class/PositionPoint.adoc[`PositionPoint`] | xref::class/PositionPoint.adoc#Location[`Location`]
+
+
+
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`] | xref::class/PowerSystemResource.adoc#Location[`Location`]
 
 
 |===

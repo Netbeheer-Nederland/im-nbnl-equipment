@@ -1,8 +1,8 @@
-= `SubLoadArea`
+= `CoordinateSystem`
 :toclevels: 4
 
 
-+++The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.+++
++++Coordinate reference system.+++
 
 
 [cols="h,3",width=65%]
@@ -11,11 +11,11 @@
 | Class
 
 | URI
-| `cim:SubLoadArea`
+| `cim:CoordinateSystem`
 
 
 | CIM standard (perspective)
-| IEC61970 (Grid)
+| IEC61968 (Enterprise)
 
 
 
@@ -23,8 +23,7 @@
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** xref::class/EnergyArea.adoc[`EnergyArea`]
-*** *`SubLoadArea`*
+** *`CoordinateSystem`*
 
 
 == Slots
@@ -39,7 +38,25 @@ vars: {
     pad: 20
   }
 }
-SubLoadArea {
+CoordinateSystem {
+  style {
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+Location {
+  style {
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+Name {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -48,29 +65,11 @@ SubLoadArea {
 
 
 
-LoadArea {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
+
+CoordinateSystem -> Location: Locations
 
 
-
-LoadGroup {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-
-SubLoadArea -> LoadArea: LoadArea
-
-
-SubLoadArea -> LoadGroup: LoadGroups
+CoordinateSystem -> Name: Names
 
 
 legend: "" {
@@ -126,19 +125,27 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
-| <<LoadArea,`LoadArea`>>
-//| [[slots_table.LoadArea]]<<LoadArea,`LoadArea`>>
-| 1 +
-xref::class/LoadArea.adoc[`LoadArea`]
-| +++The LoadArea where the SubLoadArea belongs.+++
+| <<Locations,`Locations`>>
+//| [[slots_table.Locations]]<<Locations,`Locations`>>
+| 0..* +
+xref::class/Location.adoc[`Location`]
+| +++All locations described with position points in this coordinate system.+++
 | _n/a_
 
-| <<LoadGroups,`LoadGroups`>>
-//| [[slots_table.LoadGroups]]<<LoadGroups,`LoadGroups`>>
-| 1..* +
-xref::class/LoadGroup.adoc[`LoadGroup`]
-| +++The Loadgroups in the SubLoadArea.+++
+| <<crsUrn,`crsUrn`>>
+//| [[slots_table.crsUrn]]<<crsUrn,`crsUrn`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.PositionPoints'.
+An...+++
 | _n/a_
+
+| <<Names,`Names`>>
+//| [[slots_table.Names]]<<Names,`Names`>>
+| 0..* +
+xref::class/Name.adoc[`Name`]
+| +++All names of this identified object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
@@ -147,36 +154,50 @@ https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
-| <<energyIdentCodeEic,`energyIdentCodeEic`>>
-//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1 +
-https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
-| 1 +
-https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
-| <<shortName,`shortName`>>
-//| [[slots_table.shortName]]<<shortName,`shortName`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| +++The name is any free human readable and possibly non unique text naming the object.+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
+
+
+//[discrete]
+[#crsUrn]
+=== `crsUrn`
++++A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.PositionPoints'.
+An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4.3.2.6
+A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:CoordinateSystem.crsUrn`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.crsUrn,&#10548;>>
+--
+////
 
 
 //[discrete]
@@ -209,22 +230,19 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#energyIdentCodeEic]
-=== `energyIdentCodeEic`
-+++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+[#Locations]
+=== `Locations`
++++All locations described with position points in this coordinate system.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.energyIdentCodeEic[`eu:IdentifiedObject.energyIdentCodeEic`]
+| `cim:CoordinateSystem.Locations`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| https://w3id.org/linkml/String[`string`]
-
-| Inherited from
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+| xref::class/Location.adoc[`Location`]
 
 
 |===
@@ -232,59 +250,7 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.energyIdentCodeEic,&#10548;>>
---
-////
-
-
-//[discrete]
-[#LoadArea]
-=== `LoadArea`
-+++The LoadArea where the SubLoadArea belongs.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:SubLoadArea.LoadArea`
-| Cardinality
-| 1
-| Type
-| xref::class/LoadArea.adoc[`LoadArea`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.LoadArea,&#10548;>>
---
-////
-
-
-//[discrete]
-[#LoadGroups]
-=== `LoadGroups`
-+++The Loadgroups in the SubLoadArea.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:SubLoadArea.LoadGroups`
-| Cardinality
-| 1..*
-| Type
-| xref::class/LoadGroup.adoc[`LoadGroup`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.LoadGroups,&#10548;>>
+<<slots_table.Locations,&#10548;>>
 --
 ////
 
@@ -301,7 +267,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.mRID`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -330,7 +296,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.name`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -349,19 +315,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#shortName]
-=== `shortName`
-+++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+[#Names]
+=== `Names`
++++All names of this identified object.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.shortName[`eu:IdentifiedObject.shortName`]
+| `cim:IdentifiedObject.Names`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| https://w3id.org/linkml/String[`string`]
+| xref::class/Name.adoc[`Name`]
 
 | Inherited from
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
@@ -372,7 +338,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.shortName,&#10548;>>
+<<slots_table.Names,&#10548;>>
 --
 ////
 
@@ -389,11 +355,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/LoadArea.adoc[`LoadArea`] | xref::class/LoadArea.adoc#SubLoadAreas[`SubLoadAreas`]
-
-
-
-| xref::class/LoadGroup.adoc[`LoadGroup`] | xref::class/LoadGroup.adoc#SubLoadArea[`SubLoadArea`]
+| xref::class/Location.adoc[`Location`] | xref::class/Location.adoc#CoordinateSystem[`CoordinateSystem`]
 
 
 |===

@@ -2,41 +2,13 @@
 * Information model
 ** xref::index.adoc[Index]
 ** Classes
-*** xref::class/IdentifiedObject.adoc[IdentifiedObject (root)]
-
-*** xref::class/ACDCTerminal.adoc[ACDCTerminal]
-
-
-
-*** xref::class/ACLineSegment.adoc[ACLineSegment]
-
-
+*** xref::class/GeographicalRegion.adoc[GeographicalRegion (root)]
 
 *** xref::class/BaseVoltage.adoc[BaseVoltage]
 
 
 
-*** xref::class/BasicIntervalSchedule.adoc[BasicIntervalSchedule]
-
-
-
-*** xref::class/Bay.adoc[Bay]
-
-
-
-*** xref::class/Breaker.adoc[Breaker]
-
-
-
-*** xref::class/BusbarSection.adoc[BusbarSection]
-
-
-
-*** xref::class/ConductingEquipment.adoc[ConductingEquipment]
-
-
-
-*** xref::class/Conductor.adoc[Conductor]
+*** xref::class/BoundaryPoint.adoc[BoundaryPoint]
 
 
 
@@ -48,31 +20,7 @@
 
 
 
-*** xref::class/Connector.adoc[Connector]
-
-
-
-*** xref::class/DayType.adoc[DayType]
-
-
-
-*** xref::class/Disconnector.adoc[Disconnector]
-
-
-
-*** xref::class/EnergyArea.adoc[EnergyArea]
-
-
-
-*** xref::class/EnergyConnection.adoc[EnergyConnection]
-
-
-
-*** xref::class/EnergyConsumer.adoc[EnergyConsumer]
-
-
-
-*** xref::class/Equipment.adoc[Equipment]
+*** xref::class/CoordinateSystem.adoc[CoordinateSystem]
 
 
 
@@ -80,40 +28,28 @@
 
 
 
-*** xref::class/Fuse.adoc[Fuse]
+
+*** xref::class/IdentifiedObject.adoc[IdentifiedObject]
 
 
 
-*** xref::class/GeographicalRegion.adoc[GeographicalRegion]
+*** xref::class/Location.adoc[Location]
 
 
 
-
-*** xref::class/Line.adoc[Line]
-
-
-
-*** xref::class/LoadArea.adoc[LoadArea]
+*** xref::class/Name.adoc[Name]
 
 
 
-*** xref::class/LoadBreakSwitch.adoc[LoadBreakSwitch]
+*** xref::class/NameType.adoc[NameType]
 
 
 
-*** xref::class/LoadGroup.adoc[LoadGroup]
+*** xref::class/NameTypeAuthority.adoc[NameTypeAuthority]
 
 
 
-*** xref::class/NonConformLoad.adoc[NonConformLoad]
-
-
-
-*** xref::class/NonConformLoadGroup.adoc[NonConformLoadGroup]
-
-
-
-*** xref::class/NonConformLoadSchedule.adoc[NonConformLoadSchedule]
+*** xref::class/PositionPoint.adoc[PositionPoint]
 
 
 
@@ -121,63 +57,11 @@
 
 
 
-*** xref::class/PowerTransformer.adoc[PowerTransformer]
-
-
-
-*** xref::class/PowerTransformerEnd.adoc[PowerTransformerEnd]
-
-
-
-*** xref::class/ProtectedSwitch.adoc[ProtectedSwitch]
-
-
-
-*** xref::class/RatioTapChanger.adoc[RatioTapChanger]
-
-
-
-*** xref::class/RegularIntervalSchedule.adoc[RegularIntervalSchedule]
-
-
-
-*** xref::class/RegularTimePoint.adoc[RegularTimePoint]
-
-
-
-*** xref::class/Season.adoc[Season]
-
-
-
-*** xref::class/SeasonDayTypeSchedule.adoc[SeasonDayTypeSchedule]
-
-
-
 *** xref::class/SubGeographicalRegion.adoc[SubGeographicalRegion]
 
 
 
-*** xref::class/SubLoadArea.adoc[SubLoadArea]
-
-
-
 *** xref::class/Substation.adoc[Substation]
-
-
-
-*** xref::class/Switch.adoc[Switch]
-
-
-
-*** xref::class/TapChanger.adoc[TapChanger]
-
-
-
-*** xref::class/Terminal.adoc[Terminal]
-
-
-
-*** xref::class/TransformerEnd.adoc[TransformerEnd]
 
 
 
@@ -186,22 +70,9 @@
 
 
 ** CIM data types
-*** xref::class/ActivePower.adoc[ActivePower]
-*** xref::class/ApparentPower.adoc[ApparentPower]
-*** xref::class/Conductance.adoc[Conductance]
-*** xref::class/CurrentFlow.adoc[CurrentFlow]
-*** xref::class/Length.adoc[Length]
-*** xref::class/PerCent.adoc[PerCent]
-*** xref::class/Reactance.adoc[Reactance]
-*** xref::class/ReactivePower.adoc[ReactivePower]
-*** xref::class/Resistance.adoc[Resistance]
-*** xref::class/Seconds.adoc[Seconds]
-*** xref::class/Susceptance.adoc[Susceptance]
 *** xref::class/Voltage.adoc[Voltage]
 
 
 ** Enumerations
-*** xref::enumeration/PhaseCode.adoc[PhaseCode]
 *** xref::enumeration/UnitMultiplier.adoc[UnitMultiplier]
 *** xref::enumeration/UnitSymbol.adoc[UnitSymbol]
-*** xref::enumeration/WindingConnection.adoc[WindingConnection]

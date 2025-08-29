@@ -58,8 +58,32 @@ ConnectivityNode {
 
 
 
+Location {
+  style {
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+Name {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
 
 ConnectivityNodeContainer -> ConnectivityNode: ConnectivityNodes
+
+
+ConnectivityNodeContainer -> Location: Location
+
+
+ConnectivityNodeContainer -> Name: Names
 
 
 legend: "" {
@@ -122,6 +146,20 @@ xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 | +++Connectivity nodes which belong to this connectivity node container.+++
 | _n/a_
 
+| <<Location,`Location`>>
+//| [[slots_table.Location]]<<Location,`Location`>>
+| 0..1 +
+xref::class/Location.adoc[`Location`]
+| +++Location of this power system resource.+++
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
+| <<Names,`Names`>>
+//| [[slots_table.Names]]<<Names,`Names`>>
+| 0..* +
+xref::class/Name.adoc[`Name`]
+| +++All names of this identified object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
 | 0..1 +
@@ -129,32 +167,18 @@ https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
-| <<energyIdentCodeEic,`energyIdentCodeEic`>>
-//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1 +
-https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
-| 1 +
-https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
-| <<shortName,`shortName`>>
-//| [[slots_table.shortName]]<<shortName,`shortName`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| +++The name is any free human readable and possibly non unique text naming the object.+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
@@ -217,22 +241,22 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#energyIdentCodeEic]
-=== `energyIdentCodeEic`
-+++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+[#Location]
+=== `Location`
++++Location of this power system resource.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.energyIdentCodeEic[`eu:IdentifiedObject.energyIdentCodeEic`]
+| `cim:PowerSystemResource.Location`
 | Cardinality
 | 0..1
 | Type
-| https://w3id.org/linkml/String[`string`]
+| xref::class/Location.adoc[`Location`]
 
 | Inherited from
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 
 |===
@@ -240,7 +264,7 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.energyIdentCodeEic,&#10548;>>
+<<slots_table.Location,&#10548;>>
 --
 ////
 
@@ -257,7 +281,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.mRID`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -286,7 +310,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.name`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -305,19 +329,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#shortName]
-=== `shortName`
-+++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+[#Names]
+=== `Names`
++++All names of this identified object.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.shortName[`eu:IdentifiedObject.shortName`]
+| `cim:IdentifiedObject.Names`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| https://w3id.org/linkml/String[`string`]
+| xref::class/Name.adoc[`Name`]
 
 | Inherited from
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
@@ -328,7 +352,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.shortName,&#10548;>>
+<<slots_table.Names,&#10548;>>
 --
 ////
 

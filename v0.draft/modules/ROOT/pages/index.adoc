@@ -1,6 +1,7 @@
 = NBNL Equipment Profile
 
-This vocabulary is describing the equipment profile based on IEC 61970-600-2.
+This vocabulary describes the NBNL Equipment Profile based on IEC
+61970-452:2021.
 
 .Data Product
 [d2,svg,theme=4]
@@ -12,27 +13,26 @@ vars: {
   }
 }
 
-PowerTransformerEnd -> PowerTransformer: "PowerTransformerEnd.PowerTransformer"
-NonConformLoadSchedule -> NonConformLoadGroup: "NonConformLoadSchedule.NonConformLoadGroup"
-Disconnector -> Bay: "Equipment.EquipmentContainer"
-Fuse -> Bay: "Equipment.EquipmentContainer"
-BusbarSection -> VoltageLevel: "Equipment.EquipmentContainer"
-EnergyConsumer -> UsagePoint: "EnergyConsumer.UsagePoint"
-RatioTapChanger -> PowerTransformerEnd: "RatioTapChanger.TransformerEnd"
-VoltageRelay -> Breaker: "ProtectionEquipment.ProtectedSwitch"
-LoadBreakSwitch -> Bay: "Equipment.EquipmentContainer"
-Breaker -> Bay: "Equipment.EquipmentContainer"
-RegularTimePoint -> NonConformLoadSchedule: "RegularTimePoint.IntervalSchedule"
-CurrentRelay -> Breaker: "ProtectionEquipment.ProtectedSwitch"
-PowerTransformerEnd -> BaseVoltage: "TransformerEnd.BaseVoltage"
-CurrentRelay -> Disconnector: "ProtectionEquipment.ProtectedSwitch"
-NonConformLoad -> NonConformLoadGroup: "NonConformLoad.LoadGroup"
-ACLineSegment -> Line: "Equipment.EquipmentContainer"
-Bay -> VoltageLevel: "Bay.VoltageLevel"
-VoltageLevel -> Substation: "VoltageLevel.Substation"
-VoltageLevel -> BaseVoltage: "VoltageLevel.BaseVoltage"
-Substation -> SubGeographicalRegion: "Substation.Region"
-Line -> SubGeographicalRegion: "Line.Region"
+classes: {
+  grid: {
+    style: {
+      fill: "#eccfcb"
+      shadow: true
+    }
+  }
+  enterprise: {
+    style: {
+      fill: "#d1e7c2"
+      shadow: true
+    }
+  }
+  market: {
+    style: {
+      fill: "#fffbef"
+      shadow: true
+    }
+  }
+}
 
 legend: "" {
   style: {
@@ -81,41 +81,41 @@ legend: "" {
   }
 }
 
-classes: {
-  empty: {
-    label: ""
-    style: {
-      fill: transparent
-      stroke: transparent
-    }
-  }
-  grid: {
-    style: {
-      fill: "#eccfcb"
-      shadow: true
-    }
-  }
-  enterprise: {
-    style: {
-      fill: "#d1e7c2"
-      shadow: true
-    }
-  }
-  market: {
-    style: {
-      fill: "#fffbef"
-      shadow: true
-    }
-  }
-  dataset: {
-    style: {
-      shadow: true
-    }
-  }
-}
+direction: up
+
+BaseVoltage.class: grid
+BoundaryPoint.class: grid
+ConnectivityNode.class: grid
+CoordinateSystem.class: enterprise
+GeographicalRegion.class: grid
+Location.class: enterprise
+PositionPoint.class: enterprise
+SubGeographicalRegion.class: grid
+Substation.class: grid
+Voltage.class: grid
+VoltageLevel.class: grid
+
+GeographicalRegion -> SubGeographicalRegion: "GeographicalRegion.Regions"
+SubGeographicalRegion -> Substation: "SubGeographicalRegion.Substations"
+SubGeographicalRegion -> GeographicalRegion: "SubGeographicalRegion.Region"
+Substation -> VoltageLevel: "Substation.VoltageLevels"
+Substation -> SubGeographicalRegion: "Substation.Region"
+Substation -> Location: "PowerSystemResource.Location"
+VoltageLevel -> BaseVoltage: "VoltageLevel.BaseVoltage"
+VoltageLevel -> Substation: "VoltageLevel.Substation"
+VoltageLevel -> ConnectivityNode: "ConnectivityNodeContainer.ConnectivityNodes"
+VoltageLevel -> Location: "PowerSystemResource.Location"
+BaseVoltage -> Voltage: "BaseVoltage.nominalVoltage"
+BaseVoltage -> VoltageLevel: "BaseVoltage.VoltageLevel"
+ConnectivityNode -> BoundaryPoint: "ConnectivityNode.BoundaryPoint"
+Location -> CoordinateSystem: "Location.CoordinateSystem"
+Location -> PositionPoint: "Location.PositionPoints"
+CoordinateSystem -> Location: "CoordinateSystem.Locations"
+PositionPoint -> Location: "PositionPoint.Location"
+BoundaryPoint -> ConnectivityNode: "BoundaryPoint.ConnectivityNode"
+BoundaryPoint -> Location: "PowerSystemResource.Location"
 ----
 
-== Additional artifacts
-
-* xref:schema:attachment$schemas/json_schema/im_nbnl_equipment.json_schema.json[JSON schema]
-* xref:schema:attachment$examples/im_nbnl_equipment.example.json[Example JSON instance data]
+The Equipment profile primarily defines the existence of equipment in the
+network model and specifies the physical characteristics of the network model
+equipment such as impedance and connectivity.

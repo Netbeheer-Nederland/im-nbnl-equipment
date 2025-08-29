@@ -1,0 +1,580 @@
+= `BoundaryPoint`
+:toclevels: 4
+
+
++++Designates a connection point at which one or more model authority sets shall connect to. The location of the connection point as well as other properties are agreed between organisations responsible for the interconnection, hence all attributes of the class represent this agreement.  It is primarily used in a boundary model authority set which can contain one or many BoundaryPoint-s among other Equipment-s and their connections.+++
+
+
+[cols="h,3",width=65%]
+|===
+| Type
+| Class
+
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint[`eu:BoundaryPoint`]
+
+
+
+
+|===
+
+== Class hierarchy
+* xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+*** *`BoundaryPoint`*
+
+
+== Slots
+
+
+
+.Associated classes
+[d2,svg,theme=4]
+----
+vars: {
+  d2-config: {
+    pad: 20
+  }
+}
+BoundaryPoint {
+  style {
+    fill: "#cccccc"
+    shadow: true
+  }
+}
+
+
+
+ConnectivityNode {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Location {
+  style {
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+Name {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+
+BoundaryPoint -> ConnectivityNode: ConnectivityNode
+
+
+BoundaryPoint -> Location: Location
+
+
+BoundaryPoint -> Name: Names
+
+
+legend: "" {
+  style: {
+    fill: transparent
+    stroke: transparent
+  }
+  grid-rows: 3
+  grid-columns: 2
+  grid-gap: 10
+  near: bottom-right
+  iec61968_color: "" {
+    style: {
+      fill: "#d1e7c2"
+      stroke: black
+      stroke-width: 1
+    }
+    width: 10
+    height: 10
+  }
+  iec61968_text: "IEC61968 (Enterprise)" {
+    shape: text
+  }
+  iec61970_color: "" {
+    style: {
+      fill: "#eccfcb"
+      stroke: black
+      stroke-width: 1
+    }
+    width: 10
+    height: 10
+  }
+  iec61970_text: "IEC61970 (Grid)" {
+    shape: text
+  }
+  iec62325_color: "" {
+    style: {
+      fill: "#fffbef"
+      stroke: black
+      stroke-width: 1
+    }
+    width: 10
+    height: 10
+  }
+  iec62325_text: "IEC62325 (Market)" {
+    shape: text
+  }
+}
+----
+
+
+[cols="1,1,2,1",width=100%]
+|===
+| Name | Type | Description | Inherited from
+
+| <<ConnectivityNode,`ConnectivityNode`>>
+//| [[slots_table.ConnectivityNode]]<<ConnectivityNode,`ConnectivityNode`>>
+| 1 +
+xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
+| +++The connectivity node that is designated as a boundary point.+++
+| _n/a_
+
+| <<fromEndIsoCode,`fromEndIsoCode`>>
+//| [[slots_table.fromEndIsoCode]]<<fromEndIsoCode,`fromEndIsoCode`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++The ISO code of the region which the "From" side of the Boundary point belongs to or it is connected to.
+The ISO code is a...+++
+| _n/a_
+
+| <<fromEndName,`fromEndName`>>
+//| [[slots_table.fromEndName]]<<fromEndName,`fromEndName`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++A human readable name with length of the string 64 characters maximum. It covers the following two cases:
+-if the Boundary...+++
+| _n/a_
+
+| <<fromEndNameTso,`fromEndNameTso`>>
+//| [[slots_table.fromEndNameTso]]<<fromEndNameTso,`fromEndNameTso`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "From"...+++
+| _n/a_
+
+| <<toEndIsoCode,`toEndIsoCode`>>
+//| [[slots_table.toEndIsoCode]]<<toEndIsoCode,`toEndIsoCode`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++The ISO code of the region which the "To" side of the Boundary point belongs to or is connected to.
+The ISO code is a...+++
+| _n/a_
+
+| <<toEndName,`toEndName`>>
+//| [[slots_table.toEndName]]<<toEndName,`toEndName`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++A human readable name with length of the string 64 characters maximum. It covers the following two cases:
+-if the Boundary...+++
+| _n/a_
+
+| <<toEndNameTso,`toEndNameTso`>>
+//| [[slots_table.toEndNameTso]]<<toEndNameTso,`toEndNameTso`>>
+| 1 +
+https://w3id.org/linkml/String[`string`]
+| +++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "To" side...+++
+| _n/a_
+
+| <<Location,`Location`>>
+//| [[slots_table.Location]]<<Location,`Location`>>
+| 0..1 +
+xref::class/Location.adoc[`Location`]
+| +++Location of this power system resource.+++
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
+| <<Names,`Names`>>
+//| [[slots_table.Names]]<<Names,`Names`>>
+| 0..* +
+xref::class/Name.adoc[`Name`]
+| +++All names of this identified object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<description,`description`>>
+//| [[slots_table.description]]<<description,`description`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<mRID,`mRID`>>
+//| [[slots_table.mRID]]<<mRID,`mRID`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+| <<name,`name`>>
+//| [[slots_table.name]]<<name,`name`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The name is any free human readable and possibly non unique text naming the object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+|===
+
+'''
+
+
+//[discrete]
+[#ConnectivityNode]
+=== `ConnectivityNode`
++++The connectivity node that is designated as a boundary point.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.ConnectivityNode[`eu:BoundaryPoint.ConnectivityNode`]
+| Cardinality
+| 1
+| Type
+| xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.ConnectivityNode,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#description]
+=== `description`
++++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:IdentifiedObject.description`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#fromEndIsoCode]
+=== `fromEndIsoCode`
++++The ISO code of the region which the "From" side of the Boundary point belongs to or it is connected to.
+The ISO code is a two-character country code as defined by ISO 3166 (http://www.iso.org/iso/country_codes). The length of the string is 2 characters maximum.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.fromEndIsoCode[`eu:BoundaryPoint.fromEndIsoCode`]
+| Cardinality
+| 1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.fromEndIsoCode,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#fromEndName]
+=== `fromEndName`
++++A human readable name with length of the string 64 characters maximum. It covers the following two cases:
+-if the Boundary point is placed on a tie-line, it is the name (IdentifiedObject.name) of the substation at which the "From" side of the tie-line is connected to.
+-if the Boundary point is placed in a substation, it is the name (IdentifiedObject.name) of the element (e.g. PowerTransformer, ACLineSegment, Switch, etc.) at which the "From" side of the Boundary point is connected to.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.fromEndName[`eu:BoundaryPoint.fromEndName`]
+| Cardinality
+| 1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.fromEndName,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#fromEndNameTso]
+=== `fromEndNameTso`
++++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "From" side of the interconnection is connected to. The length of the string is 64 characters maximum.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.fromEndNameTso[`eu:BoundaryPoint.fromEndNameTso`]
+| Cardinality
+| 1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.fromEndNameTso,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Location]
+=== `Location`
++++Location of this power system resource.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:PowerSystemResource.Location`
+| Cardinality
+| 0..1
+| Type
+| xref::class/Location.adoc[`Location`]
+
+| Inherited from
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Location,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#mRID]
+=== `mRID`
++++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:IdentifiedObject.mRID`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.mRID,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#name]
+=== `name`
++++The name is any free human readable and possibly non unique text naming the object.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:IdentifiedObject.name`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.name,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Names]
+=== `Names`
++++All names of this identified object.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:IdentifiedObject.Names`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Name.adoc[`Name`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Names,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#toEndIsoCode]
+=== `toEndIsoCode`
++++The ISO code of the region which the "To" side of the Boundary point belongs to or is connected to.
+The ISO code is a two-character country code as defined by ISO 3166 (http://www.iso.org/iso/country_codes). The length of the string is 2 characters maximum.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.toEndIsoCode[`eu:BoundaryPoint.toEndIsoCode`]
+| Cardinality
+| 1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.toEndIsoCode,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#toEndName]
+=== `toEndName`
++++A human readable name with length of the string 64 characters maximum. It covers the following two cases:
+-if the Boundary point is placed on a tie-line, it is the name (IdentifiedObject.name) of the substation at which the "To" side of the tie-line is connected to.
+-if the Boundary point is placed in a substation, it is the name (IdentifiedObject.name) of the element (e.g. PowerTransformer, ACLineSegment, Switch, etc.) at which the "To" side of the Boundary point is connected to.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.toEndName[`eu:BoundaryPoint.toEndName`]
+| Cardinality
+| 1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.toEndName,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#toEndNameTso]
+=== `toEndNameTso`
++++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "To" side of the interconnection is connected to. The length of the string is 64 characters maximum.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#BoundaryPoint.toEndNameTso[`eu:BoundaryPoint.toEndNameTso`]
+| Cardinality
+| 1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.toEndNameTso,&#10548;>>
+--
+////
+
+
+
+
+
+== Used by
+
+
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/ConnectivityNode.adoc[`ConnectivityNode`] | xref::class/ConnectivityNode.adoc#BoundaryPoint[`BoundaryPoint`]
+
+
+|===
+

@@ -47,15 +47,6 @@ ConnectivityNode {
 
 
 
-Terminal {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
 ConnectivityNodeContainer {
   style {
     fill: "#eccfcb"
@@ -65,11 +56,32 @@ ConnectivityNodeContainer {
 
 
 
+BoundaryPoint {
+  style {
+    fill: "#cccccc"
+    shadow: true
+  }
+}
 
-ConnectivityNode -> Terminal: Terminals
+
+
+Name {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
 
 
 ConnectivityNode -> ConnectivityNodeContainer: ConnectivityNodeContainer
+
+
+ConnectivityNode -> BoundaryPoint: BoundaryPoint
+
+
+ConnectivityNode -> Name: Names
 
 
 legend: "" {
@@ -125,6 +137,13 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<BoundaryPoint,`BoundaryPoint`>>
+//| [[slots_table.BoundaryPoint]]<<BoundaryPoint,`BoundaryPoint`>>
+| 0..1 +
+xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
+| +++The boundary point associated with the connectivity node.+++
+| _n/a_
+
 | <<ConnectivityNodeContainer,`ConnectivityNodeContainer`>>
 //| [[slots_table.ConnectivityNodeContainer]]<<ConnectivityNodeContainer,`ConnectivityNodeContainer`>>
 | 1 +
@@ -132,12 +151,12 @@ xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 | +++Container of this connectivity node.+++
 | _n/a_
 
-| <<Terminals,`Terminals`>>
-//| [[slots_table.Terminals]]<<Terminals,`Terminals`>>
+| <<Names,`Names`>>
+//| [[slots_table.Names]]<<Names,`Names`>>
 | 0..* +
-xref::class/Terminal.adoc[`Terminal`]
-| +++Terminals interconnected with zero impedance at a this connectivity node.+++
-| _n/a_
+xref::class/Name.adoc[`Name`]
+| +++All names of this identified object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
@@ -146,36 +165,48 @@ https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
-| <<energyIdentCodeEic,`energyIdentCodeEic`>>
-//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1 +
-https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
-| 1 +
-https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
-| <<shortName,`shortName`>>
-//| [[slots_table.shortName]]<<shortName,`shortName`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| +++The name is any free human readable and possibly non unique text naming the object.+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
+
+
+//[discrete]
+[#BoundaryPoint]
+=== `BoundaryPoint`
++++The boundary point associated with the connectivity node.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/eu#ConnectivityNode.BoundaryPoint[`eu:ConnectivityNode.BoundaryPoint`]
+| Cardinality
+| 0..1
+| Type
+| xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.BoundaryPoint,&#10548;>>
+--
+////
 
 
 //[discrete]
@@ -234,35 +265,6 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#energyIdentCodeEic]
-=== `energyIdentCodeEic`
-+++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.energyIdentCodeEic[`eu:IdentifiedObject.energyIdentCodeEic`]
-| Cardinality
-| 0..1
-| Type
-| https://w3id.org/linkml/String[`string`]
-
-| Inherited from
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.energyIdentCodeEic,&#10548;>>
---
-////
-
-
-//[discrete]
 [#mRID]
 === `mRID`
 +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
@@ -274,7 +276,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.mRID`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -303,7 +305,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.name`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -322,19 +324,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#shortName]
-=== `shortName`
-+++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+[#Names]
+=== `Names`
++++All names of this identified object.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.shortName[`eu:IdentifiedObject.shortName`]
+| `cim:IdentifiedObject.Names`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| https://w3id.org/linkml/String[`string`]
+| xref::class/Name.adoc[`Name`]
 
 | Inherited from
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
@@ -345,33 +347,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.shortName,&#10548;>>
---
-////
-
-
-//[discrete]
-[#Terminals]
-=== `Terminals`
-+++Terminals interconnected with zero impedance at a this connectivity node.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:ConnectivityNode.Terminals`
-| Cardinality
-| 0..*
-| Type
-| xref::class/Terminal.adoc[`Terminal`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Terminals,&#10548;>>
+<<slots_table.Names,&#10548;>>
 --
 ////
 
@@ -388,11 +364,11 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
+| xref::class/BoundaryPoint.adoc[`BoundaryPoint`] | xref::class/BoundaryPoint.adoc#ConnectivityNode[`ConnectivityNode`]
+
+
+
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`] | xref::class/ConnectivityNodeContainer.adoc#ConnectivityNodes[`ConnectivityNodes`]
-
-
-
-| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#ConnectivityNode[`ConnectivityNode`]
 
 
 |===

@@ -59,29 +59,7 @@ BaseVoltage {
 
 
 
-Bay {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
 Substation {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-
-
-
-
-Equipment {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -99,22 +77,38 @@ ConnectivityNode {
 
 
 
+Location {
+  style {
+    fill: "#d1e7c2"
+    shadow: true
+  }
+}
+
+
+
+Name {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
 
 VoltageLevel -> BaseVoltage: BaseVoltage
-
-
-VoltageLevel -> Bay: Bays
 
 
 VoltageLevel -> Substation: Substation
 
 
-
-
-VoltageLevel -> Equipment: Equipments
-
-
 VoltageLevel -> ConnectivityNode: ConnectivityNodes
+
+
+VoltageLevel -> Location: Location
+
+
+VoltageLevel -> Name: Names
 
 
 legend: "" {
@@ -177,42 +171,12 @@ xref::class/BaseVoltage.adoc[`BaseVoltage`]
 | +++The base voltage used for all equipment within the voltage level.+++
 | _n/a_
 
-| <<Bays,`Bays`>>
-//| [[slots_table.Bays]]<<Bays,`Bays`>>
-| 0..* +
-xref::class/Bay.adoc[`Bay`]
-| +++The bays within this voltage level.+++
-| _n/a_
-
 | <<Substation,`Substation`>>
 //| [[slots_table.Substation]]<<Substation,`Substation`>>
 | 1 +
 xref::class/Substation.adoc[`Substation`]
 | +++The substation of the voltage level.+++
 | _n/a_
-
-| <<highVoltageLimit,`highVoltageLimit`>>
-//| [[slots_table.highVoltageLimit]]<<highVoltageLimit,`highVoltageLimit`>>
-| 0..1 +
-xref::class/Voltage.adoc[`Voltage`]
-| +++The bus bar's high voltage limit.
-The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not...+++
-| _n/a_
-
-| <<lowVoltageLimit,`lowVoltageLimit`>>
-//| [[slots_table.lowVoltageLimit]]<<lowVoltageLimit,`lowVoltageLimit`>>
-| 0..1 +
-xref::class/Voltage.adoc[`Voltage`]
-| +++The bus bar's low voltage limit.
-The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not...+++
-| _n/a_
-
-| <<Equipments,`Equipments`>>
-//| [[slots_table.Equipments]]<<Equipments,`Equipments`>>
-| 0..* +
-xref::class/Equipment.adoc[`Equipment`]
-| +++Contained equipment.+++
-| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
 
 | <<ConnectivityNodes,`ConnectivityNodes`>>
 //| [[slots_table.ConnectivityNodes]]<<ConnectivityNodes,`ConnectivityNodes`>>
@@ -221,6 +185,20 @@ xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 | +++Connectivity nodes which belong to this connectivity node container.+++
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 
+| <<Location,`Location`>>
+//| [[slots_table.Location]]<<Location,`Location`>>
+| 0..1 +
+xref::class/Location.adoc[`Location`]
+| +++Location of this power system resource.+++
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
+| <<Names,`Names`>>
+//| [[slots_table.Names]]<<Names,`Names`>>
+| 0..* +
+xref::class/Name.adoc[`Name`]
+| +++All names of this identified object.+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
 | 0..1 +
@@ -228,32 +206,18 @@ https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
-| <<energyIdentCodeEic,`energyIdentCodeEic`>>
-//| [[slots_table.energyIdentCodeEic]]<<energyIdentCodeEic,`energyIdentCodeEic`>>
-| 0..1 +
-https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16...+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
-| 1 +
-https://w3id.org/linkml/String[`string`]
-| +++The name is any free human readable and possibly non unique text naming the object.+++
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-
-| <<shortName,`shortName`>>
-//| [[slots_table.shortName]]<<shortName,`shortName`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+| +++The name is any free human readable and possibly non unique text naming the object.+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
@@ -282,32 +246,6 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.BaseVoltage,&#10548;>>
---
-////
-
-
-//[discrete]
-[#Bays]
-=== `Bays`
-+++The bays within this voltage level.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:VoltageLevel.Bays`
-| Cardinality
-| 0..*
-| Type
-| xref::class/Bay.adoc[`Bay`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Bays,&#10548;>>
 --
 ////
 
@@ -371,22 +309,22 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#energyIdentCodeEic]
-=== `energyIdentCodeEic`
-+++The attribute is used for an exchange of the EIC code (Energy identification Code). The length of the string is 16 characters as defined by the EIC code. For details on EIC scheme please refer to ENTSO-E web site.+++
+[#Location]
+=== `Location`
++++Location of this power system resource.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.energyIdentCodeEic[`eu:IdentifiedObject.energyIdentCodeEic`]
+| `cim:PowerSystemResource.Location`
 | Cardinality
 | 0..1
 | Type
-| https://w3id.org/linkml/String[`string`]
+| xref::class/Location.adoc[`Location`]
 
 | Inherited from
-| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 
 |===
@@ -394,90 +332,7 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.energyIdentCodeEic,&#10548;>>
---
-////
-
-
-//[discrete]
-[#Equipments]
-=== `Equipments`
-+++Contained equipment.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:EquipmentContainer.Equipments`
-| Cardinality
-| 0..*
-| Type
-| xref::class/Equipment.adoc[`Equipment`]
-
-| Inherited from
-| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Equipments,&#10548;>>
---
-////
-
-
-//[discrete]
-[#highVoltageLimit]
-=== `highVoltageLimit`
-+++The bus bar's high voltage limit.
-The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with lowVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:VoltageLevel.highVoltageLimit`
-| Cardinality
-| 0..1
-| Type
-| xref::class/Voltage.adoc[`Voltage`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.highVoltageLimit,&#10548;>>
---
-////
-
-
-//[discrete]
-[#lowVoltageLimit]
-=== `lowVoltageLimit`
-+++The bus bar's low voltage limit.
-The limit applies to all equipment and nodes contained in a given VoltageLevel. It is not required that it is exchanged in pair with highVoltageLimit. It is preferable to use operational VoltageLimit, which prevails, if present.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:VoltageLevel.lowVoltageLimit`
-| Cardinality
-| 0..1
-| Type
-| xref::class/Voltage.adoc[`Voltage`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.lowVoltageLimit,&#10548;>>
+<<slots_table.Location,&#10548;>>
 --
 ////
 
@@ -494,7 +349,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.mRID`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -523,7 +378,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:IdentifiedObject.name`
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -542,19 +397,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#shortName]
-=== `shortName`
-+++The attribute is used for an exchange of a human readable short name with length of the string 12 characters maximum.+++
+[#Names]
+=== `Names`
++++All names of this identified object.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| http://iec.ch/TC57/CIM100-European#IdentifiedObject.shortName[`eu:IdentifiedObject.shortName`]
+| `cim:IdentifiedObject.Names`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| https://w3id.org/linkml/String[`string`]
+| xref::class/Name.adoc[`Name`]
 
 | Inherited from
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
@@ -565,7 +420,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.shortName,&#10548;>>
+<<slots_table.Names,&#10548;>>
 --
 ////
 
@@ -609,10 +464,6 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 | xref::class/BaseVoltage.adoc[`BaseVoltage`] | xref::class/BaseVoltage.adoc#VoltageLevel[`VoltageLevel`]
-
-
-
-| xref::class/Bay.adoc[`Bay`] | xref::class/Bay.adoc#VoltageLevel[`VoltageLevel`]
 
 
 
