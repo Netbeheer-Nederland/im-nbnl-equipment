@@ -15,6 +15,23 @@
 
 
 
+| Glossary mappings
+a|
+
+[cols="1,5"]
+!===
+! Mapping type ! Term
+
+! http://www.w3.org/2004/02/skos/core#exactMatch[`skos:exactMatch`]
+a! 
+
+https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/overdrachtspunt[`nbnl:overdrachtspunt`]
+
+
+
+!===
+
+
 
 |===
 
