@@ -7,10 +7,12 @@ imports:
 license: https://www.apache.org/licenses/LICENSE-2.0.txt
 prefixes:
   linkml: https://w3id.org/linkml/
+  cbs: https://www.cbs.nl/nl-nl/onze-diensten/methoden/begrippen/
   cim: https://cim.ucaiug.io/ns#
   eu: https://cim.ucaiug.io/ns/eu#
-  nl: https://cim.ucaiug.io/ns/nl#
   nbnl: https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/
+  nl: https://cim.ucaiug.io/ns/nl#
+  skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
 default_prefix: http://data.netbeheernederland.nl/data-product/im-nbnl-equipment/
 enums:
@@ -120,8 +122,10 @@ classes:
         range: SubGeographicalRegion
         required: false
         multivalued: true
-    tree_root: true
     class_uri: cim:GeographicalRegion
+    exact_mappings:
+      - cbs:landsdeel
+    tree_root: true
   SubGeographicalRegion:
     description: "A subset of a geographical region of a power system network model.\r\
       \n"
@@ -141,6 +145,8 @@ classes:
         range: GeographicalRegion
         required: false
         multivalued: false
+    narrow_mappings:
+      - nbnl:energienet
     class_uri: cim:SubGeographicalRegion
   Substation:
     description: "A collection of equipment for purposes other than generation or\
@@ -161,6 +167,8 @@ classes:
         range: SubGeographicalRegion
         required: false
         multivalued: false
+    narrow_mappings:
+      - nbnl:knooppunt
     class_uri: cim:Substation
   VoltageLevel:
     description: A collection of equipment at one common system voltage forming a
@@ -181,6 +189,8 @@ classes:
         range: Substation
         required: false
         multivalued: false
+    exact_mappings:
+      - nbnl:installatie
     class_uri: cim:VoltageLevel
   Voltage:
     annotations:
@@ -224,6 +234,8 @@ classes:
         range: VoltageLevel
         required: false
         multivalued: true
+    exact_mappings:
+      - nbnl:spanningsniveau
     class_uri: cim:BaseVoltage
   IdentifiedObject:
     description: This is a root class to provide common identification for all classes
@@ -387,6 +399,8 @@ classes:
         range: BoundaryPoint
         required: false
         multivalued: false
+    narrow_mappings:
+      - nbnl:knooppunt
     class_uri: cim:ConnectivityNode
   PowerSystemResource:
     description: A power system resource (PSR) can be an item of equipment such as
@@ -608,4 +622,6 @@ classes:
         range: ConnectivityNode
         required: false
         multivalued: false
+    exact_mappings:
+      - nbnl:overdrachtspunt
     class_uri: eu:BoundaryPoint
