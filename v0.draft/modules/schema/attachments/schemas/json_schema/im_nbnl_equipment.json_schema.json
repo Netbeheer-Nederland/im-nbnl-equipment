@@ -103,6 +103,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "fromEndIsoCode": {
                     "description": "The ISO code of the region which the \"From\" side of the Boundary point belongs to or it is connected to.\nThe ISO code is a two-character country code as defined by ISO 3166 (http://www.iso.org/iso/country_codes). The length of the string is 2 characters maximum.",
                     "type": [

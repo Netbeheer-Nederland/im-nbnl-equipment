@@ -142,6 +142,13 @@ xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 | +++The connectivity node that is designated as a boundary point.+++
 | _n/a_
 
+| <<european_article_number_ean,`european_article_number_ean`>>
+//| [[slots_table.european_article_number_ean]]<<european_article_number_ean,`european_article_number_ean`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
+| _n/a_
+
 | <<fromEndIsoCode,`fromEndIsoCode`>>
 //| [[slots_table.fromEndIsoCode]]<<fromEndIsoCode,`fromEndIsoCode`>>
 | 0..1 +
@@ -278,6 +285,32 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#european_article_number_ean]
+=== `european_article_number_ean`
++++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/nl#IdentifiedObject.europeanArticleNumberEAN[`nl:IdentifiedObject.europeanArticleNumberEAN`]
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.european_article_number_ean,&#10548;>>
 --
 ////
 
