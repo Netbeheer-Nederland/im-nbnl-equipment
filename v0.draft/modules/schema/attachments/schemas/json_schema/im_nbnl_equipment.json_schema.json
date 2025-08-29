@@ -31,6 +31,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -213,6 +220,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -273,6 +287,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -324,6 +345,13 @@
                 },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
                     "type": [
                         "string",
                         "null"
@@ -389,6 +417,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -438,6 +473,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -472,6 +514,13 @@
                 },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
                     "type": [
                         "string",
                         "null"
@@ -549,6 +598,13 @@
                 },
                 "direction": {
                     "description": "(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
                     "type": [
                         "string",
                         "null"
@@ -770,6 +826,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -825,6 +888,13 @@
                 },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
                     "type": [
                         "string",
                         "null"
@@ -906,6 +976,13 @@
                 },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
                     "type": [
                         "string",
                         "null"
@@ -1046,6 +1123,13 @@
                         "null"
                     ]
                 },
+                "european_article_number_ean": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "mRID": {
                     "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                     "type": [
@@ -1093,6 +1177,13 @@
         },
         "description": {
             "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "european_article_number_ean": {
+            "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
             "type": [
                 "string",
                 "null"

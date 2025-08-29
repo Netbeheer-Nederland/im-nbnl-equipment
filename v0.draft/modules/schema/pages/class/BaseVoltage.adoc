@@ -173,6 +173,13 @@ https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
+| <<european_article_number_ean,`european_article_number_ean`>>
+//| [[slots_table.european_article_number_ean]]<<european_article_number_ean,`european_article_number_ean`>>
+| 0..1 +
+https://w3id.org/linkml/String[`string`]
+| +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
 | 0..1 +
@@ -216,6 +223,35 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#european_article_number_ean]
+=== `european_article_number_ean`
++++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| https://cim.ucaiug.io/ns/nl#IdentifiedObject.europeanArticleNumberEAN[`nl:IdentifiedObject.europeanArticleNumberEAN`]
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.european_article_number_ean,&#10548;>>
 --
 ////
 

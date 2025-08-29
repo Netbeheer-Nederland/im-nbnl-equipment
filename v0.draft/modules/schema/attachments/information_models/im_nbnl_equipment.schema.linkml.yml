@@ -261,6 +261,14 @@ classes:
         range: string
         required: false
         multivalued: false
+      european_article_number_ean:
+        description: The attribute is used for an exchange of the EAN code (European
+          Article Number). The length of the string is 16 characters as defined by
+          the EAN code.
+        slot_uri: nl:IdentifiedObject.europeanArticleNumberEAN
+        range: string
+        required: false
+        multivalued: false
       name:
         description: "The name is any free human readable and possibly non unique\
           \ text naming the object.\r\n"
@@ -544,14 +552,6 @@ classes:
       among other Equipment-s and their connections.
     is_a: PowerSystemResource
     attributes:
-      european_article_number_ean:
-        description: The attribute is used for an exchange of the EAN code (European
-          Article Number). The length of the string is 16 characters as defined by
-          the EAN code.
-        slot_uri: nl:IdentifiedObject.europeanArticleNumberEAN
-        range: string
-        required: false
-        multivalued: false
       fromEndIsoCode:
         description: 'The ISO code of the region which the "From" side of the Boundary
           point belongs to or it is connected to.
