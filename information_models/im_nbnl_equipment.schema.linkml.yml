@@ -260,7 +260,7 @@ classes:
         range: string
         required: false
         multivalued: false
-      european_article_number_ean:
+      europeanArticleNumberEAN:
         description: The attribute is used for an exchange of the EAN code (European
           Article Number). The length of the string is 16 characters as defined by
           the EAN code.
