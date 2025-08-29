@@ -172,13 +172,13 @@ classes:
         description: The base voltage used for all equipment within the voltage level.
         slot_uri: cim:VoltageLevel.BaseVoltage
         range: BaseVoltage
-        required: true
+        required: false
         multivalued: false
       Substation:
         description: The substation of the voltage level.
         slot_uri: cim:VoltageLevel.Substation
         range: Substation
-        required: true
+        required: false
         multivalued: false
     class_uri: cim:VoltageLevel
   Voltage:
@@ -278,13 +278,13 @@ classes:
         description: Type of this name.
         slot_uri: cim:Name.NameType
         range: NameType
-        required: true
+        required: false
         multivalued: false
       IdentifiedObject:
         description: Identified object that this name designates.
         slot_uri: cim:Name.IdentifiedObject
         range: IdentifiedObject
-        required: true
+        required: false
         multivalued: false
     class_uri: cim:Name
   NameType:
@@ -378,7 +378,7 @@ classes:
         description: Container of this connectivity node.
         slot_uri: cim:ConnectivityNode.ConnectivityNodeContainer
         range: ConnectivityNodeContainer
-        required: true
+        required: false
         multivalued: false
       BoundaryPoint:
         description: The boundary point associated with the connectivity node.
@@ -516,7 +516,7 @@ classes:
         description: Location described by this position point.
         slot_uri: cim:PositionPoint.Location
         range: Location
-        required: true
+        required: false
         multivalued: false
     class_uri: cim:PositionPoint
   BoundaryPoint:
@@ -536,7 +536,7 @@ classes:
           The length of the string is 2 characters maximum.'
         slot_uri: eu:BoundaryPoint.fromEndIsoCode
         range: string
-        required: true
+        required: false
         multivalued: false
       fromEndName:
         description: 'A human readable name with length of the string 64 characters
@@ -551,7 +551,7 @@ classes:
           the "From" side of the Boundary point is connected to.'
         slot_uri: eu:BoundaryPoint.fromEndName
         range: string
-        required: true
+        required: false
         multivalued: false
       fromEndNameTso:
         description: Identifies the name of the transmission system operator, distribution
@@ -559,7 +559,7 @@ classes:
           is connected to. The length of the string is 64 characters maximum.
         slot_uri: eu:BoundaryPoint.fromEndNameTso
         range: string
-        required: true
+        required: false
         multivalued: false
       toEndIsoCode:
         description: 'The ISO code of the region which the "To" side of the Boundary
@@ -569,7 +569,7 @@ classes:
           The length of the string is 2 characters maximum.'
         slot_uri: eu:BoundaryPoint.toEndIsoCode
         range: string
-        required: true
+        required: false
         multivalued: false
       toEndName:
         description: 'A human readable name with length of the string 64 characters
@@ -583,7 +583,7 @@ classes:
           the "To" side of the Boundary point is connected to.'
         slot_uri: eu:BoundaryPoint.toEndName
         range: string
-        required: true
+        required: false
         multivalued: false
       toEndNameTso:
         description: Identifies the name of the transmission system operator, distribution
@@ -591,12 +591,12 @@ classes:
           is connected to. The length of the string is 64 characters maximum.
         slot_uri: eu:BoundaryPoint.toEndNameTso
         range: string
-        required: true
+        required: false
         multivalued: false
       ConnectivityNode:
         description: The connectivity node that is designated as a boundary point.
         slot_uri: eu:BoundaryPoint.ConnectivityNode
         range: ConnectivityNode
-        required: true
+        required: false
         multivalued: false
     class_uri: eu:BoundaryPoint
