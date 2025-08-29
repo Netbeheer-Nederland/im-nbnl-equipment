@@ -166,14 +166,14 @@ legend: "" {
 
 | <<BaseVoltage,`BaseVoltage`>>
 //| [[slots_table.BaseVoltage]]<<BaseVoltage,`BaseVoltage`>>
-| 1 +
+| 0..1 +
 xref::class/BaseVoltage.adoc[`BaseVoltage`]
 | +++The base voltage used for all equipment within the voltage level.+++
 | _n/a_
 
 | <<Substation,`Substation`>>
 //| [[slots_table.Substation]]<<Substation,`Substation`>>
-| 1 +
+| 0..1 +
 xref::class/Substation.adoc[`Substation`]
 | +++The substation of the voltage level.+++
 | _n/a_
@@ -235,7 +235,7 @@ https://w3id.org/linkml/String[`string`]
 | URI
 | `cim:VoltageLevel.BaseVoltage`
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/BaseVoltage.adoc[`BaseVoltage`]
 
@@ -436,7 +436,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | URI
 | `cim:VoltageLevel.Substation`
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/Substation.adoc[`Substation`]
 

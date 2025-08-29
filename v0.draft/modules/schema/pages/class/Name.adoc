@@ -126,14 +126,14 @@ legend: "" {
 
 | <<IdentifiedObject,`IdentifiedObject`>>
 //| [[slots_table.IdentifiedObject]]<<IdentifiedObject,`IdentifiedObject`>>
-| 1 +
+| 0..1 +
 xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 | +++Identified object that this name designates.+++
 | _n/a_
 
 | <<NameType,`NameType`>>
 //| [[slots_table.NameType]]<<NameType,`NameType`>>
-| 1 +
+| 0..1 +
 xref::class/NameType.adoc[`NameType`]
 | +++Type of this name.+++
 | _n/a_
@@ -160,7 +160,7 @@ https://w3id.org/linkml/String[`string`]
 | URI
 | `cim:Name.IdentifiedObject`
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
@@ -212,7 +212,7 @@ https://w3id.org/linkml/String[`string`]
 | URI
 | `cim:Name.NameType`
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/NameType.adoc[`NameType`]
 

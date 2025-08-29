@@ -146,7 +146,7 @@ xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
 
 | <<ConnectivityNodeContainer,`ConnectivityNodeContainer`>>
 //| [[slots_table.ConnectivityNodeContainer]]<<ConnectivityNodeContainer,`ConnectivityNodeContainer`>>
-| 1 +
+| 0..1 +
 xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 | +++Container of this connectivity node.+++
 | _n/a_
@@ -220,7 +220,7 @@ https://w3id.org/linkml/String[`string`]
 | URI
 | `cim:ConnectivityNode.ConnectivityNodeContainer`
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 

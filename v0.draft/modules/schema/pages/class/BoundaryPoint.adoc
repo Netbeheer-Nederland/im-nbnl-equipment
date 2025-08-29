@@ -137,14 +137,14 @@ legend: "" {
 
 | <<ConnectivityNode,`ConnectivityNode`>>
 //| [[slots_table.ConnectivityNode]]<<ConnectivityNode,`ConnectivityNode`>>
-| 1 +
+| 0..1 +
 xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 | +++The connectivity node that is designated as a boundary point.+++
 | _n/a_
 
 | <<fromEndIsoCode,`fromEndIsoCode`>>
 //| [[slots_table.fromEndIsoCode]]<<fromEndIsoCode,`fromEndIsoCode`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The ISO code of the region which the "From" side of the Boundary point belongs to or it is connected to.
 The ISO code is a...+++
@@ -152,7 +152,7 @@ The ISO code is a...+++
 
 | <<fromEndName,`fromEndName`>>
 //| [[slots_table.fromEndName]]<<fromEndName,`fromEndName`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++A human readable name with length of the string 64 characters maximum. It covers the following two cases:
 -if the Boundary...+++
@@ -160,14 +160,14 @@ https://w3id.org/linkml/String[`string`]
 
 | <<fromEndNameTso,`fromEndNameTso`>>
 //| [[slots_table.fromEndNameTso]]<<fromEndNameTso,`fromEndNameTso`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "From"...+++
 | _n/a_
 
 | <<toEndIsoCode,`toEndIsoCode`>>
 //| [[slots_table.toEndIsoCode]]<<toEndIsoCode,`toEndIsoCode`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The ISO code of the region which the "To" side of the Boundary point belongs to or is connected to.
 The ISO code is a...+++
@@ -175,7 +175,7 @@ The ISO code is a...+++
 
 | <<toEndName,`toEndName`>>
 //| [[slots_table.toEndName]]<<toEndName,`toEndName`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++A human readable name with length of the string 64 characters maximum. It covers the following two cases:
 -if the Boundary...+++
@@ -183,7 +183,7 @@ https://w3id.org/linkml/String[`string`]
 
 | <<toEndNameTso,`toEndNameTso`>>
 //| [[slots_table.toEndNameTso]]<<toEndNameTso,`toEndNameTso`>>
-| 1 +
+| 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "To" side...+++
 | _n/a_
@@ -238,7 +238,7 @@ https://w3id.org/linkml/String[`string`]
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.ConnectivityNode[`eu:BoundaryPoint.ConnectivityNode`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 
@@ -294,7 +294,7 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.fromEndIsoCode[`eu:BoundaryPoint.fromEndIsoCode`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -322,7 +322,7 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.fromEndName[`eu:BoundaryPoint.fromEndName`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -348,7 +348,7 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.fromEndNameTso[`eu:BoundaryPoint.fromEndNameTso`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -492,7 +492,7 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.toEndIsoCode[`eu:BoundaryPoint.toEndIsoCode`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -520,7 +520,7 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.toEndName[`eu:BoundaryPoint.toEndName`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 
@@ -546,7 +546,7 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 | URI
 | https://cim.ucaiug.io/ns/eu#BoundaryPoint.toEndNameTso[`eu:BoundaryPoint.toEndNameTso`]
 | Cardinality
-| 1
+| 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
 

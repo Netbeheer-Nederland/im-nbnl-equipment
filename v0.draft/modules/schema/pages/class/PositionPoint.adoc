@@ -114,7 +114,7 @@ legend: "" {
 
 | <<Location,`Location`>>
 //| [[slots_table.Location]]<<Location,`Location`>>
-| 1 +
+| 0..1 +
 xref::class/Location.adoc[`Location`]
 | +++Location described by this position point.+++
 | _n/a_
@@ -195,7 +195,7 @@ https://w3id.org/linkml/String[`string`]
 | URI
 | `cim:PositionPoint.Location`
 | Cardinality
-| 1
+| 0..1
 | Type
 | xref::class/Location.adoc[`Location`]
 
