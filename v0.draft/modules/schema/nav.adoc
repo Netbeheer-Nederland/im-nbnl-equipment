@@ -20,20 +20,12 @@
 
 
 
-*** xref::class/CoordinateSystem.adoc[CoordinateSystem]
-
-
-
 *** xref::class/EquipmentContainer.adoc[EquipmentContainer]
 
 
 
 
 *** xref::class/IdentifiedObject.adoc[IdentifiedObject]
-
-
-
-*** xref::class/Location.adoc[Location]
 
 
 
@@ -46,10 +38,6 @@
 
 
 *** xref::class/NameTypeAuthority.adoc[NameTypeAuthority]
-
-
-
-*** xref::class/PositionPoint.adoc[PositionPoint]
 
 
 

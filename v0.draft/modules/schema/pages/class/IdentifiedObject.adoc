@@ -25,9 +25,7 @@
 * *`IdentifiedObject`*
  ** xref::class/BaseVoltage.adoc[`BaseVoltage`]
  ** xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
- ** xref::class/CoordinateSystem.adoc[`CoordinateSystem`]
  ** xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
- ** xref::class/Location.adoc[`Location`]
  ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
  ** xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
 

@@ -19,9 +19,6 @@
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 | +++A base class for all objects that may contain connectivity nodes or topological nodes.+++
 
-| xref::class/CoordinateSystem.adoc[`CoordinateSystem`]
-| +++Coordinate reference system.+++
-
 | xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
 | +++A modelling construct to provide a root class for containing equipment.+++
 
@@ -30,9 +27,6 @@
 
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 | +++This is a root class to provide common identification for all classes needing identification and naming attributes.+++
-
-| xref::class/Location.adoc[`Location`]
-| +++The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more position points (coordinates) in a given coordinate system.+++
 
 | xref::class/Name.adoc[`Name`]
 | +++The Name class provides the means to define any number of human readable  names for an object. A name is <b>not</b> to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.+++
@@ -43,9 +37,6 @@ The localName is a human readable name of the object. It is a free text name loc
 
 | xref::class/NameTypeAuthority.adoc[`NameTypeAuthority`]
 | +++Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.+++
-
-| xref::class/PositionPoint.adoc[`PositionPoint`]
-| +++Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to describe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).+++
 
 | xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 | +++A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.+++

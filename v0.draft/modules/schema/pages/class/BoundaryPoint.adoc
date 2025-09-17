@@ -71,15 +71,6 @@ ConnectivityNode {
 
 
 
-Location {
-  style {
-    fill: "#d1e7c2"
-    shadow: true
-  }
-}
-
-
-
 Name {
   style {
     fill: "#eccfcb"
@@ -91,9 +82,6 @@ Name {
 
 
 BoundaryPoint -> ConnectivityNode: ConnectivityNode
-
-
-BoundaryPoint -> Location: Location
 
 
 BoundaryPoint -> Name: Names
@@ -204,13 +192,6 @@ https://w3id.org/linkml/String[`string`]
 https://w3id.org/linkml/String[`string`]
 | +++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "To" side...+++
 | _n/a_
-
-| <<Location,`Location`>>
-//| [[slots_table.Location]]<<Location,`Location`>>
-| 0..1 +
-xref::class/Location.adoc[`Location`]
-| +++Location of this power system resource.+++
-| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -412,35 +393,6 @@ The ISO code is a two-character country code as defined by ISO 3166 (http://www.
 [.text-left]
 --
 <<slots_table.fromEndNameTso,&#10548;>>
---
-////
-
-
-//[discrete]
-[#Location]
-=== `Location`
-+++Location of this power system resource.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:PowerSystemResource.Location`
-| Cardinality
-| 0..1
-| Type
-| xref::class/Location.adoc[`Location`]
-
-| Inherited from
-| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Location,&#10548;>>
 --
 ////
 

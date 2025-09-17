@@ -82,17 +82,6 @@
                     ],
                     "description": "The connectivity node that is designated as a boundary point."
                 },
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location of this power system resource."
-                },
                 "Names": {
                     "description": "All names of this identified object.",
                     "items": {
@@ -259,17 +248,6 @@
                         "null"
                     ]
                 },
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location of this power system resource."
-                },
                 "Names": {
                     "description": "All names of this identified object.",
                     "items": {
@@ -312,69 +290,6 @@
             "title": "ConnectivityNodeContainer",
             "type": "object"
         },
-        "CoordinateSystem": {
-            "additionalProperties": false,
-            "description": "Coordinate reference system.",
-            "properties": {
-                "Locations": {
-                    "description": "All locations described with position points in this coordinate system.",
-                    "items": {
-                        "$ref": "#/$defs/Location"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "Names": {
-                    "description": "All names of this identified object.",
-                    "items": {
-                        "$ref": "#/$defs/Name"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "crsUrn": {
-                    "description": "A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.PositionPoints'.\r\nAn example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc:def:crs:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry web site http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:crs:EPSG::4.3.2.6\r\nA profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "europeanArticleNumberEAN": {
-                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "mRID": {
-                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "CoordinateSystem",
-            "type": "object"
-        },
         "EquipmentContainer": {
             "additionalProperties": false,
             "description": "A modelling construct to provide a root class for containing equipment.",
@@ -388,17 +303,6 @@
                         "array",
                         "null"
                     ]
-                },
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location of this power system resource."
                 },
                 "Names": {
                     "description": "All names of this identified object.",
@@ -544,90 +448,6 @@
             "title": "IdentifiedObject",
             "type": "object"
         },
-        "Location": {
-            "additionalProperties": false,
-            "description": "The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more position points (coordinates) in a given coordinate system.",
-            "properties": {
-                "CoordinateSystem": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/CoordinateSystem"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Coordinate system used to describe position points of this location."
-                },
-                "Names": {
-                    "description": "All names of this identified object.",
-                    "items": {
-                        "$ref": "#/$defs/Name"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "PositionPoints": {
-                    "description": "Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.",
-                    "items": {
-                        "$ref": "#/$defs/PositionPoint"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "PowerSystemResources": {
-                    "description": "All power system resources at this location.",
-                    "items": {
-                        "$ref": "#/$defs/PowerSystemResource"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "direction": {
-                    "description": "(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.\r\n",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "europeanArticleNumberEAN": {
-                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "mRID": {
-                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "Location",
-            "type": "object"
-        },
         "Name": {
             "additionalProperties": false,
             "description": "The Name class provides the means to define any number of human readable  names for an object. A name is <b>not</b> to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.",
@@ -740,75 +560,10 @@
             "title": "NameTypeAuthority",
             "type": "object"
         },
-        "PositionPoint": {
-            "additionalProperties": false,
-            "description": "Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to describe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).",
-            "properties": {
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location described by this position point."
-                },
-                "groupNumber": {
-                    "description": "Zero-relative sequence number of this group within a series of points; used when there is a need to express disjoint groups of points that are considered to be part of a single location.",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "sequenceNumber": {
-                    "description": "Zero-relative sequence number of this point within a series of points.",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "xPosition": {
-                    "description": "X axis position.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "yPosition": {
-                    "description": "Y axis position.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "zPosition": {
-                    "description": "(if applicable) Z axis position.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "PositionPoint",
-            "type": "object"
-        },
         "PowerSystemResource": {
             "additionalProperties": false,
             "description": "A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.",
             "properties": {
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location of this power system resource."
-                },
                 "Names": {
                     "description": "All names of this identified object.",
                     "items": {
@@ -931,17 +686,6 @@
                         "array",
                         "null"
                     ]
-                },
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location of this power system resource."
                 },
                 "Names": {
                     "description": "All names of this identified object.",
@@ -1083,17 +827,6 @@
                         "array",
                         "null"
                     ]
-                },
-                "Location": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Location"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Location of this power system resource."
                 },
                 "Names": {
                     "description": "All names of this identified object.",

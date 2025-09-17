@@ -49,15 +49,6 @@ PowerSystemResource {
 
 
 
-Location {
-  style {
-    fill: "#d1e7c2"
-    shadow: true
-  }
-}
-
-
-
 Name {
   style {
     fill: "#eccfcb"
@@ -66,9 +57,6 @@ Name {
 }
 
 
-
-
-PowerSystemResource -> Location: Location
 
 
 PowerSystemResource -> Name: Names
@@ -126,13 +114,6 @@ legend: "" {
 [cols="1,1,2,1",width=100%]
 |===
 | Name | Type | Description | Inherited from
-
-| <<Location,`Location`>>
-//| [[slots_table.Location]]<<Location,`Location`>>
-| 0..1 +
-xref::class/Location.adoc[`Location`]
-| +++Location of this power system resource.+++
-| _n/a_
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -232,32 +213,6 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#Location]
-=== `Location`
-+++Location of this power system resource.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:PowerSystemResource.Location`
-| Cardinality
-| 0..1
-| Type
-| xref::class/Location.adoc[`Location`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Location,&#10548;>>
---
-////
-
-
-//[discrete]
 [#mRID]
 === `mRID`
 +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
@@ -351,14 +306,4 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 == Used by
 
 
-[cols="1,1",width=65%]
-|===
-| Source class | Slot name
-
-
-
-| xref::class/Location.adoc[`Location`] | xref::class/Location.adoc#PowerSystemResources[`PowerSystemResources`]
-
-
-|===
-
+This class is not used by any other classes as the range of a slot.
