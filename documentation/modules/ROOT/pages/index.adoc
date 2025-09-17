@@ -86,10 +86,7 @@ direction: up
 BaseVoltage.class: grid
 BoundaryPoint.class: grid
 ConnectivityNode.class: grid
-CoordinateSystem.class: enterprise
 GeographicalRegion.class: grid
-Location.class: enterprise
-PositionPoint.class: enterprise
 SubGeographicalRegion.class: grid
 Substation.class: grid
 Voltage.class: grid
@@ -100,20 +97,13 @@ SubGeographicalRegion -> Substation: "SubGeographicalRegion.Substations"
 SubGeographicalRegion -> GeographicalRegion: "SubGeographicalRegion.Region"
 Substation -> VoltageLevel: "Substation.VoltageLevels"
 Substation -> SubGeographicalRegion: "Substation.Region"
-Substation -> Location: "PowerSystemResource.Location"
 VoltageLevel -> BaseVoltage: "VoltageLevel.BaseVoltage"
 VoltageLevel -> Substation: "VoltageLevel.Substation"
 VoltageLevel -> ConnectivityNode: "ConnectivityNodeContainer.ConnectivityNodes"
-VoltageLevel -> Location: "PowerSystemResource.Location"
 BaseVoltage -> Voltage: "BaseVoltage.nominalVoltage"
 BaseVoltage -> VoltageLevel: "BaseVoltage.VoltageLevel"
 ConnectivityNode -> BoundaryPoint: "ConnectivityNode.BoundaryPoint"
-Location -> CoordinateSystem: "Location.CoordinateSystem"
-Location -> PositionPoint: "Location.PositionPoints"
-CoordinateSystem -> Location: "CoordinateSystem.Locations"
-PositionPoint -> Location: "PositionPoint.Location"
 BoundaryPoint -> ConnectivityNode: "BoundaryPoint.ConnectivityNode"
-BoundaryPoint -> Location: "PowerSystemResource.Location"
 ----
 
 The Equipment profile primarily defines the existence of equipment in the
