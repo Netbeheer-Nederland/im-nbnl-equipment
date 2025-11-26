@@ -1,8 +1,8 @@
-= `VoltageLevel`
+= `Terminal`
 :toclevels: 4
 
 
-+++A collection of equipment at one common system voltage forming a switchgear. The equipment typically consists of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.+++
++++An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.+++
 
 
 [cols="h,3",width=65%]
@@ -11,28 +11,11 @@
 | Class
 
 | URI
-| `cim:VoltageLevel`
+| `cim:Terminal`
 
 
 | CIM standard (perspective)
 | IEC61970 (Grid)
-
-
-| Glossary mappings
-a|
-
-[cols="1,5"]
-!===
-! Mapping type ! Term
-
-! http://www.w3.org/2004/02/skos/core#exactMatch[`skos:exactMatch`]
-a! 
-
-https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/voedingsgebied[`nbnl:voedingsgebied`]
-
-
-
-!===
 
 
 
@@ -40,10 +23,8 @@ https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/voedingsgeb
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
-*** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
-**** xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
-***** *`VoltageLevel`*
+** xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+*** *`Terminal`*
 
 
 == Slots
@@ -58,43 +39,7 @@ vars: {
     pad: 20
   }
 }
-VoltageLevel {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-BaseVoltage {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-Substation {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-Bay {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-Equipment {
+Terminal {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -112,7 +57,34 @@ ConnectivityNode {
 
 
 
-PSRType {
+ConductingEquipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+TransformerEnd {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Feeder {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+OperationalLimitSet {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -131,25 +103,22 @@ Name {
 
 
 
-VoltageLevel -> BaseVoltage: BaseVoltage
+Terminal -> ConnectivityNode: ConnectivityNode
 
 
-VoltageLevel -> Substation: Substation
+Terminal -> ConductingEquipment: ConductingEquipment
 
 
-VoltageLevel -> Bay: Bays
+Terminal -> TransformerEnd: TransformerEnd
 
 
-VoltageLevel -> Equipment: Equipments
+Terminal -> Feeder: NormalHeadFeeder
 
 
-VoltageLevel -> ConnectivityNode: ConnectivityNodes
+Terminal -> OperationalLimitSet: OperationalLimitSet
 
 
-VoltageLevel -> PSRType: PSRType
-
-
-VoltageLevel -> Name: Names
+Terminal -> Name: Names
 
 
 legend: "" {
@@ -205,47 +174,54 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
-| <<BaseVoltage,`BaseVoltage`>>
-//| [[slots_table.BaseVoltage]]<<BaseVoltage,`BaseVoltage`>>
+| <<ConductingEquipment,`ConductingEquipment`>>
+//| [[slots_table.ConductingEquipment]]<<ConductingEquipment,`ConductingEquipment`>>
 | 0..1 +
-xref::class/BaseVoltage.adoc[`BaseVoltage`]
-| +++The base voltage used for all equipment within the voltage level.+++
+xref::class/ConductingEquipment.adoc[`ConductingEquipment`]
+| +++The conducting equipment of the terminal. Conducting equipment have  terminals that may be connected to other conducting...+++
 | _n/a_
 
-| <<Bays,`Bays`>>
-//| [[slots_table.Bays]]<<Bays,`Bays`>>
-| 0..* +
-xref::class/Bay.adoc[`Bay`]
-| +++The bays within this voltage level.+++
-| _n/a_
-
-| <<Substation,`Substation`>>
-//| [[slots_table.Substation]]<<Substation,`Substation`>>
+| <<ConnectivityNode,`ConnectivityNode`>>
+//| [[slots_table.ConnectivityNode]]<<ConnectivityNode,`ConnectivityNode`>>
 | 0..1 +
-xref::class/Substation.adoc[`Substation`]
-| +++The substation of the voltage level.+++
-| _n/a_
-
-| <<Equipments,`Equipments`>>
-//| [[slots_table.Equipments]]<<Equipments,`Equipments`>>
-| 0..* +
-xref::class/Equipment.adoc[`Equipment`]
-| +++Contained equipment.+++
-| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
-
-| <<ConnectivityNodes,`ConnectivityNodes`>>
-//| [[slots_table.ConnectivityNodes]]<<ConnectivityNodes,`ConnectivityNodes`>>
-| 0..* +
 xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
-| +++Connectivity nodes which belong to this connectivity node container.+++
-| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+| +++The connectivity node to which this terminal connects with zero impedance.+++
+| _n/a_
 
-| <<PSRType,`PSRType`>>
-//| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
+| <<NormalHeadFeeder,`NormalHeadFeeder`>>
+//| [[slots_table.NormalHeadFeeder]]<<NormalHeadFeeder,`NormalHeadFeeder`>>
 | 0..1 +
-xref::class/PSRType.adoc[`PSRType`]
-| +++Custom classification for this power system resource.+++
-| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+xref::class/Feeder.adoc[`Feeder`]
+| +++The feeder that this terminal normally feeds.  Only specified for the terminals at head of feeders.+++
+| _n/a_
+
+| <<TransformerEnd,`TransformerEnd`>>
+//| [[slots_table.TransformerEnd]]<<TransformerEnd,`TransformerEnd`>>
+| 0..* +
+xref::class/TransformerEnd.adoc[`TransformerEnd`]
+| +++All transformer ends connected at this terminal.+++
+| _n/a_
+
+| <<OperationalLimitSet,`OperationalLimitSet`>>
+//| [[slots_table.OperationalLimitSet]]<<OperationalLimitSet,`OperationalLimitSet`>>
+| 0..* +
+xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+| +++The operational limit sets at the terminal.+++
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+
+| <<connected,`connected`>>
+//| [[slots_table.connected]]<<connected,`connected`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the...+++
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+
+| <<sequenceNumber,`sequenceNumber`>>
+//| [[slots_table.sequenceNumber]]<<sequenceNumber,`sequenceNumber`>>
+| 0..1 +
+https://w3id.org/linkml/Integer[`integer`]
+| +++The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts...+++
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -287,19 +263,19 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#BaseVoltage]
-=== `BaseVoltage`
-+++The base voltage used for all equipment within the voltage level.+++
+[#ConductingEquipment]
+=== `ConductingEquipment`
++++The conducting equipment of the terminal. Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:VoltageLevel.BaseVoltage`
+| `cim:Terminal.ConductingEquipment`
 | Cardinality
 | 0..1
 | Type
-| xref::class/BaseVoltage.adoc[`BaseVoltage`]
+| xref::class/ConductingEquipment.adoc[`ConductingEquipment`]
 
 
 |===
@@ -307,25 +283,29 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.BaseVoltage,&#10548;>>
+<<slots_table.ConductingEquipment,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#Bays]
-=== `Bays`
-+++The bays within this voltage level.+++
+[#connected]
+=== `connected`
++++The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not. 
+In a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:VoltageLevel.Bays`
+| `cim:ACDCTerminal.connected`
 | Cardinality
-| 0..*
+| 0..1
 | Type
-| xref::class/Bay.adoc[`Bay`]
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+| Inherited from
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
 
 
 |===
@@ -333,36 +313,33 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.Bays,&#10548;>>
+<<slots_table.connected,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#ConnectivityNodes]
-=== `ConnectivityNodes`
-+++Connectivity nodes which belong to this connectivity node container.+++
+[#ConnectivityNode]
+=== `ConnectivityNode`
++++The connectivity node to which this terminal connects with zero impedance.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:ConnectivityNodeContainer.ConnectivityNodes`
+| `cim:Terminal.ConnectivityNode`
 | Cardinality
-| 0..*
+| 0..1
 | Type
 | xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 
-| Inherited from
-| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
-
 
 |===
 
 ////
 [.text-left]
 --
-<<slots_table.ConnectivityNodes,&#10548;>>
+<<slots_table.ConnectivityNode,&#10548;>>
 --
 ////
 
@@ -392,35 +369,6 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
---
-////
-
-
-//[discrete]
-[#Equipments]
-=== `Equipments`
-+++Contained equipment.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:EquipmentContainer.Equipments`
-| Cardinality
-| 0..*
-| Type
-| xref::class/Equipment.adoc[`Equipment`]
-
-| Inherited from
-| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Equipments,&#10548;>>
 --
 ////
 
@@ -543,22 +491,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#PSRType]
-=== `PSRType`
-+++Custom classification for this power system resource.+++
+[#NormalHeadFeeder]
+=== `NormalHeadFeeder`
++++The feeder that this terminal normally feeds.  Only specified for the terminals at head of feeders.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:PowerSystemResource.PSRType`
+| `cim:Terminal.NormalHeadFeeder`
 | Cardinality
 | 0..1
 | Type
-| xref::class/PSRType.adoc[`PSRType`]
-
-| Inherited from
-| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+| xref::class/Feeder.adoc[`Feeder`]
 
 
 |===
@@ -566,25 +511,28 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.PSRType,&#10548;>>
+<<slots_table.NormalHeadFeeder,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#Substation]
-=== `Substation`
-+++The substation of the voltage level.+++
+[#OperationalLimitSet]
+=== `OperationalLimitSet`
++++The operational limit sets at the terminal.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:VoltageLevel.Substation`
+| `cim:ACDCTerminal.OperationalLimitSet`
 | Cardinality
-| 0..1
+| 0..*
 | Type
-| xref::class/Substation.adoc[`Substation`]
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+
+| Inherited from
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
 
 
 |===
@@ -592,7 +540,62 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.Substation,&#10548;>>
+<<slots_table.OperationalLimitSet,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#sequenceNumber]
+=== `sequenceNumber`
++++The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ACDCTerminal.sequenceNumber`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Integer[`integer`]
+
+| Inherited from
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.sequenceNumber,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#TransformerEnd]
+=== `TransformerEnd`
++++All transformer ends connected at this terminal.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Terminal.TransformerEnd`
+| Cardinality
+| 0..*
+| Type
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.TransformerEnd,&#10548;>>
 --
 ////
 
@@ -609,15 +612,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/BaseVoltage.adoc[`BaseVoltage`] | xref::class/BaseVoltage.adoc#VoltageLevel[`VoltageLevel`]
+| xref::class/ConductingEquipment.adoc[`ConductingEquipment`] | xref::class/ConductingEquipment.adoc#Terminals[`Terminals`]
 
 
 
-| xref::class/Bay.adoc[`Bay`] | xref::class/Bay.adoc#VoltageLevel[`VoltageLevel`]
+| xref::class/ConnectivityNode.adoc[`ConnectivityNode`] | xref::class/ConnectivityNode.adoc#Terminals[`Terminals`]
 
 
 
-| xref::class/Substation.adoc[`Substation`] | xref::class/Substation.adoc#VoltageLevels[`VoltageLevels`]
+| xref::class/Feeder.adoc[`Feeder`] | xref::class/Feeder.adoc#NormalHeadTerminal[`NormalHeadTerminal`]
+
+
+
+| xref::class/TransformerEnd.adoc[`TransformerEnd`] | xref::class/TransformerEnd.adoc#Terminal[`Terminal`]
 
 
 |===

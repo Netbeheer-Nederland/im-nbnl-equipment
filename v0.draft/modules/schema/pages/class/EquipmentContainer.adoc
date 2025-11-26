@@ -26,6 +26,8 @@
 ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 *** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 **** *`EquipmentContainer`*
+ ***** xref::class/Bay.adoc[`Bay`]
+ ***** xref::class/Feeder.adoc[`Feeder`]
  ***** xref::class/Substation.adoc[`Substation`]
  ***** xref::class/VoltageLevel.adoc[`VoltageLevel`]
 
@@ -51,7 +53,25 @@ EquipmentContainer {
 
 
 
+Equipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
 ConnectivityNode {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+PSRType {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -70,7 +90,13 @@ Name {
 
 
 
+EquipmentContainer -> Equipment: Equipments
+
+
 EquipmentContainer -> ConnectivityNode: ConnectivityNodes
+
+
+EquipmentContainer -> PSRType: PSRType
 
 
 EquipmentContainer -> Name: Names
@@ -129,12 +155,26 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<Equipments,`Equipments`>>
+//| [[slots_table.Equipments]]<<Equipments,`Equipments`>>
+| 0..* +
+xref::class/Equipment.adoc[`Equipment`]
+| +++Contained equipment.+++
+| _n/a_
+
 | <<ConnectivityNodes,`ConnectivityNodes`>>
 //| [[slots_table.ConnectivityNodes]]<<ConnectivityNodes,`ConnectivityNodes`>>
 | 0..* +
 xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 | +++Connectivity nodes which belong to this connectivity node container.+++
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+
+| <<PSRType,`PSRType`>>
+//| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
+| 0..1 +
+xref::class/PSRType.adoc[`PSRType`]
+| +++Custom classification for this power system resource.+++
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -229,6 +269,32 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Equipments]
+=== `Equipments`
++++Contained equipment.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:EquipmentContainer.Equipments`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Equipment.adoc[`Equipment`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Equipments,&#10548;>>
 --
 ////
 
@@ -350,10 +416,49 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 
 
+//[discrete]
+[#PSRType]
+=== `PSRType`
++++Custom classification for this power system resource.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:PowerSystemResource.PSRType`
+| Cardinality
+| 0..1
+| Type
+| xref::class/PSRType.adoc[`PSRType`]
+
+| Inherited from
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.PSRType,&#10548;>>
+--
+////
+
+
 
 
 
 == Used by
 
 
-This class is not used by any other classes as the range of a slot.
+[cols="1,1",width=65%]
+|===
+| Source class | Slot name
+
+
+
+| xref::class/Equipment.adoc[`Equipment`] | xref::class/Equipment.adoc#EquipmentContainer[`EquipmentContainer`]
+
+
+|===
+

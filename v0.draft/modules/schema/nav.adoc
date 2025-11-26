@@ -4,11 +4,27 @@
 ** Classes
 *** xref::class/GeographicalRegion.adoc[GeographicalRegion (root)]
 
+*** xref::class/ACDCTerminal.adoc[ACDCTerminal]
+
+
+
+*** xref::class/ActivePowerLimit.adoc[ActivePowerLimit]
+
+
+
 *** xref::class/BaseVoltage.adoc[BaseVoltage]
 
 
 
+*** xref::class/Bay.adoc[Bay]
+
+
+
 *** xref::class/BoundaryPoint.adoc[BoundaryPoint]
+
+
+
+*** xref::class/ConductingEquipment.adoc[ConductingEquipment]
 
 
 
@@ -20,7 +36,23 @@
 
 
 
+*** xref::class/EnergyConnection.adoc[EnergyConnection]
+
+
+
+*** xref::class/EnergyConsumer.adoc[EnergyConsumer]
+
+
+
+*** xref::class/Equipment.adoc[Equipment]
+
+
+
 *** xref::class/EquipmentContainer.adoc[EquipmentContainer]
+
+
+
+*** xref::class/Feeder.adoc[Feeder]
 
 
 
@@ -41,7 +73,27 @@
 
 
 
+*** xref::class/OperationalLimit.adoc[OperationalLimit]
+
+
+
+*** xref::class/OperationalLimitSet.adoc[OperationalLimitSet]
+
+
+
 *** xref::class/PowerSystemResource.adoc[PowerSystemResource]
+
+
+
+*** xref::class/PowerTransformer.adoc[PowerTransformer]
+
+
+
+*** xref::class/PowerTransformerEnd.adoc[PowerTransformerEnd]
+
+
+
+*** xref::class/PSRType.adoc[PSRType]
 
 
 
@@ -53,14 +105,28 @@
 
 
 
+*** xref::class/Switch.adoc[Switch]
+
+
+
+*** xref::class/Terminal.adoc[Terminal]
+
+
+
+*** xref::class/TransformerEnd.adoc[TransformerEnd]
+
+
+
 *** xref::class/VoltageLevel.adoc[VoltageLevel]
 
 
 
 ** CIM data types
+*** xref::class/ActivePower.adoc[ActivePower]
 *** xref::class/Voltage.adoc[Voltage]
 
 
 ** Enumerations
+*** xref::enumeration/BusbarConfiguration.adoc[BusbarConfiguration]
 *** xref::enumeration/UnitMultiplier.adoc[UnitMultiplier]
 *** xref::enumeration/UnitSymbol.adoc[UnitSymbol]

@@ -1,8 +1,14 @@
-= `PowerSystemResource`
+= `PowerTransformerEnd`
 :toclevels: 4
 
 
-+++A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.+++
++++A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
+The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows.
+1) for a two Terminal PowerTransformer the high voltage (TransformerEnd.endNumber=1) PowerTransformerEnd has non zero values on r, r0, x, and x0 while the low voltage (TransformerEnd.endNumber=2) PowerTransformerEnd has zero values for r, r0, x, and x0.  Parameters are always provided, even if the PowerTransformerEnds have the same rated voltage.  In this case, the parameters are provided at the PowerTransformerEnd which has TransformerEnd.endNumber equal to 1.
+2) for a three Terminal PowerTransformer the three PowerTransformerEnds represent a star equivalent with each leg in the star represented by r, r0, x, and x0 values.
+3) For a three Terminal transformer each PowerTransformerEnd shall have g, g0, b and b0 values corresponding to the no load losses distributed on the three PowerTransformerEnds. The total no load loss shunt impedances may also be placed at one of the PowerTransformerEnds, preferably the end numbered 1, having the shunt values on end 1.  This is the preferred way.
+4) for a PowerTransformer with more than three Terminals the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance or split the transformer into multiple PowerTransformers.
+Each PowerTransformerEnd must be contained by a PowerTransformer. Because a PowerTransformerEnd (or any other object) can not be contained by more than one parent, a PowerTransformerEnd can not have an association to an EquipmentContainer (Substation, VoltageLevel, etc).+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +17,7 @@
 | Class
 
 | URI
-| `cim:PowerSystemResource`
+| `cim:PowerTransformerEnd`
 
 
 | CIM standard (perspective)
@@ -23,10 +29,8 @@
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** *`PowerSystemResource`*
- *** xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
- *** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
- *** xref::class/Equipment.adoc[`Equipment`]
+** xref::class/TransformerEnd.adoc[`TransformerEnd`]
+*** *`PowerTransformerEnd`*
 
 
 == Slots
@@ -41,7 +45,7 @@ vars: {
     pad: 20
   }
 }
-PowerSystemResource {
+PowerTransformerEnd {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -50,7 +54,25 @@ PowerSystemResource {
 
 
 
-PSRType {
+PowerTransformer {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+BaseVoltage {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Terminal {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -69,10 +91,16 @@ Name {
 
 
 
-PowerSystemResource -> PSRType: PSRType
+PowerTransformerEnd -> PowerTransformer: PowerTransformer
 
 
-PowerSystemResource -> Name: Names
+PowerTransformerEnd -> BaseVoltage: BaseVoltage
+
+
+PowerTransformerEnd -> Terminal: Terminal
+
+
+PowerTransformerEnd -> Name: Names
 
 
 legend: "" {
@@ -128,12 +156,33 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
-| <<PSRType,`PSRType`>>
-//| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
+| <<PowerTransformer,`PowerTransformer`>>
+//| [[slots_table.PowerTransformer]]<<PowerTransformer,`PowerTransformer`>>
 | 0..1 +
-xref::class/PSRType.adoc[`PSRType`]
-| +++Custom classification for this power system resource.+++
+xref::class/PowerTransformer.adoc[`PowerTransformer`]
+| +++The power transformer of this power transformer end.+++
 | _n/a_
+
+| <<BaseVoltage,`BaseVoltage`>>
+//| [[slots_table.BaseVoltage]]<<BaseVoltage,`BaseVoltage`>>
+| 0..1 +
+xref::class/BaseVoltage.adoc[`BaseVoltage`]
+| +++Base voltage of the transformer end.  This is essential for PU calculation.+++
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+| <<Terminal,`Terminal`>>
+//| [[slots_table.Terminal]]<<Terminal,`Terminal`>>
+| 0..1 +
+xref::class/Terminal.adoc[`Terminal`]
+| +++Terminal of the power transformer to which this transformer end belongs.+++
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+| <<endNumber,`endNumber`>>
+//| [[slots_table.endNumber]]<<endNumber,`endNumber`>>
+| 0..1 +
+https://w3id.org/linkml/Integer[`integer`]
+| +++Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock...+++
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -175,6 +224,35 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
+[#BaseVoltage]
+=== `BaseVoltage`
++++Base voltage of the transformer end.  This is essential for PU calculation.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:TransformerEnd.BaseVoltage`
+| Cardinality
+| 0..1
+| Type
+| xref::class/BaseVoltage.adoc[`BaseVoltage`]
+
+| Inherited from
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.BaseVoltage,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
@@ -199,6 +277,35 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#endNumber]
+=== `endNumber`
++++Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.  Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:TransformerEnd.endNumber`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Integer[`integer`]
+
+| Inherited from
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.endNumber,&#10548;>>
 --
 ////
 
@@ -321,19 +428,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#PSRType]
-=== `PSRType`
-+++Custom classification for this power system resource.+++
+[#PowerTransformer]
+=== `PowerTransformer`
++++The power transformer of this power transformer end.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:PowerSystemResource.PSRType`
+| `cim:PowerTransformerEnd.PowerTransformer`
 | Cardinality
 | 0..1
 | Type
-| xref::class/PSRType.adoc[`PSRType`]
+| xref::class/PowerTransformer.adoc[`PowerTransformer`]
 
 
 |===
@@ -341,7 +448,36 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.PSRType,&#10548;>>
+<<slots_table.PowerTransformer,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Terminal]
+=== `Terminal`
++++Terminal of the power transformer to which this transformer end belongs.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:TransformerEnd.Terminal`
+| Cardinality
+| 0..1
+| Type
+| xref::class/Terminal.adoc[`Terminal`]
+
+| Inherited from
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Terminal,&#10548;>>
 --
 ////
 
@@ -358,7 +494,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/PSRType.adoc[`PSRType`] | xref::class/PSRType.adoc#PowerSystemResources[`PowerSystemResources`]
+| xref::class/PowerTransformer.adoc[`PowerTransformer`] | xref::class/PowerTransformer.adoc#PowerTransformerEnd[`PowerTransformerEnd`]
 
 
 |===

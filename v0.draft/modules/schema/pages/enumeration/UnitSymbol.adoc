@@ -89,6 +89,10 @@ The integer values are used for harmonization with IEC 61850.+++
 
 
 
+| xref::class/ActivePower.adoc[`ActivePower`] | xref::class/ActivePower.adoc#unit[`unit`]
+
+
+
 | xref::class/Voltage.adoc[`Voltage`] | xref::class/Voltage.adoc#unit[`unit`]
 
 

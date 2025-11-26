@@ -69,6 +69,10 @@ For example, the SI unit for mass is "kg" and not "g".  If the unit symbol is de
 
 
 
+| xref::class/ActivePower.adoc[`ActivePower`] | xref::class/ActivePower.adoc#multiplier[`multiplier`]
+
+
+
 | xref::class/Voltage.adoc[`Voltage`] | xref::class/Voltage.adoc#multiplier[`multiplier`]
 
 

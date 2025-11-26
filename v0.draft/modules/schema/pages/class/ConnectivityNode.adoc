@@ -82,6 +82,15 @@ BoundaryPoint {
 
 
 
+Terminal {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
 Name {
   style {
     fill: "#eccfcb"
@@ -96,6 +105,9 @@ ConnectivityNode -> ConnectivityNodeContainer: ConnectivityNodeContainer
 
 
 ConnectivityNode -> BoundaryPoint: BoundaryPoint
+
+
+ConnectivityNode -> Terminal: Terminals
 
 
 ConnectivityNode -> Name: Names
@@ -166,6 +178,13 @@ xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
 | 0..1 +
 xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 | +++Container of this connectivity node.+++
+| _n/a_
+
+| <<Terminals,`Terminals`>>
+//| [[slots_table.Terminals]]<<Terminals,`Terminals`>>
+| 0..* +
+xref::class/Terminal.adoc[`Terminal`]
+| +++Terminals interconnected with zero impedance at a this connectivity node.+++
 | _n/a_
 
 | <<Names,`Names`>>
@@ -405,6 +424,32 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 
 
+//[discrete]
+[#Terminals]
+=== `Terminals`
++++Terminals interconnected with zero impedance at a this connectivity node.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ConnectivityNode.Terminals`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Terminal.adoc[`Terminal`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Terminals,&#10548;>>
+--
+////
+
+
 
 
 
@@ -422,6 +467,10 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`] | xref::class/ConnectivityNodeContainer.adoc#ConnectivityNodes[`ConnectivityNodes`]
+
+
+
+| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#ConnectivityNode[`ConnectivityNode`]
 
 
 |===

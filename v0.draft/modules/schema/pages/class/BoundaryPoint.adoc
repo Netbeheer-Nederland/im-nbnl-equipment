@@ -71,6 +71,15 @@ ConnectivityNode {
 
 
 
+PSRType {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
 Name {
   style {
     fill: "#eccfcb"
@@ -82,6 +91,9 @@ Name {
 
 
 BoundaryPoint -> ConnectivityNode: ConnectivityNode
+
+
+BoundaryPoint -> PSRType: PSRType
 
 
 BoundaryPoint -> Name: Names
@@ -192,6 +204,13 @@ https://w3id.org/linkml/String[`string`]
 https://w3id.org/linkml/String[`string`]
 | +++Identifies the name of the transmission system operator, distribution system operator or other entity at which the "To" side...+++
 | _n/a_
+
+| <<PSRType,`PSRType`>>
+//| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
+| 0..1 +
+xref::class/PSRType.adoc[`PSRType`]
+| +++Custom classification for this power system resource.+++
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -481,6 +500,35 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [.text-left]
 --
 <<slots_table.Names,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#PSRType]
+=== `PSRType`
++++Custom classification for this power system resource.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:PowerSystemResource.PSRType`
+| Cardinality
+| 0..1
+| Type
+| xref::class/PSRType.adoc[`PSRType`]
+
+| Inherited from
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.PSRType,&#10548;>>
 --
 ////
 

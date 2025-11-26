@@ -1,8 +1,8 @@
-= `PowerSystemResource`
+= `Equipment`
 :toclevels: 4
 
 
-+++A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.+++
++++The parts of a power system that are physical devices, electronic or mechanical.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +11,7 @@
 | Class
 
 | URI
-| `cim:PowerSystemResource`
+| `cim:Equipment`
 
 
 | CIM standard (perspective)
@@ -23,10 +23,9 @@
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** *`PowerSystemResource`*
- *** xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
- *** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
- *** xref::class/Equipment.adoc[`Equipment`]
+** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+*** *`Equipment`*
+ **** xref::class/ConductingEquipment.adoc[`ConductingEquipment`]
 
 
 == Slots
@@ -41,7 +40,25 @@ vars: {
     pad: 20
   }
 }
-PowerSystemResource {
+Equipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+OperationalLimitSet {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+EquipmentContainer {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -69,10 +86,16 @@ Name {
 
 
 
-PowerSystemResource -> PSRType: PSRType
+Equipment -> OperationalLimitSet: OperationalLimitSet
 
 
-PowerSystemResource -> Name: Names
+Equipment -> EquipmentContainer: EquipmentContainer
+
+
+Equipment -> PSRType: PSRType
+
+
+Equipment -> Name: Names
 
 
 legend: "" {
@@ -128,12 +151,54 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<EquipmentContainer,`EquipmentContainer`>>
+//| [[slots_table.EquipmentContainer]]<<EquipmentContainer,`EquipmentContainer`>>
+| 0..1 +
+xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+| +++Container of this equipment.+++
+| _n/a_
+
+| <<OperationalLimitSet,`OperationalLimitSet`>>
+//| [[slots_table.OperationalLimitSet]]<<OperationalLimitSet,`OperationalLimitSet`>>
+| 0..* +
+xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+| +++The operational limit sets associated with this equipment.+++
+| _n/a_
+
+| <<aggregate,`aggregate`>>
+//| [[slots_table.aggregate]]<<aggregate,`aggregate`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases...+++
+| _n/a_
+
+| <<inService,`inService`>>
+//| [[slots_table.inService]]<<inService,`inService`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines...+++
+| _n/a_
+
+| <<networkAnalysisEnabled,`networkAnalysisEnabled`>>
+//| [[slots_table.networkAnalysisEnabled]]<<networkAnalysisEnabled,`networkAnalysisEnabled`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.+++
+| _n/a_
+
+| <<normallyInService,`normallyInService`>>
+//| [[slots_table.normallyInService]]<<normallyInService,`normallyInService`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for...+++
+| _n/a_
+
 | <<PSRType,`PSRType`>>
 //| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
 | 0..1 +
 xref::class/PSRType.adoc[`PSRType`]
 | +++Custom classification for this power system resource.+++
-| _n/a_
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -175,6 +240,33 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
+[#aggregate]
+=== `aggregate`
++++The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to “true” the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  
+The attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.aggregate`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.aggregate,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
@@ -204,6 +296,32 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
+[#EquipmentContainer]
+=== `EquipmentContainer`
++++Container of this equipment.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.EquipmentContainer`
+| Cardinality
+| 0..1
+| Type
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.EquipmentContainer,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#europeanArticleNumberEAN]
 === `europeanArticleNumberEAN`
 +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.+++
@@ -228,6 +346,32 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.europeanArticleNumberEAN,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#inService]
+=== `inService`
++++Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.inService`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.inService,&#10548;>>
 --
 ////
 
@@ -321,6 +465,84 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
+[#networkAnalysisEnabled]
+=== `networkAnalysisEnabled`
++++The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.networkAnalysisEnabled`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.networkAnalysisEnabled,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#normallyInService]
+=== `normallyInService`
++++Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.normallyInService`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.normallyInService,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#OperationalLimitSet]
+=== `OperationalLimitSet`
++++The operational limit sets associated with this equipment.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.OperationalLimitSet`
+| Cardinality
+| 0..*
+| Type
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.OperationalLimitSet,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#PSRType]
 === `PSRType`
 +++Custom classification for this power system resource.+++
@@ -334,6 +556,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | 0..1
 | Type
 | xref::class/PSRType.adoc[`PSRType`]
+
+| Inherited from
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 
 |===
@@ -358,7 +583,11 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/PSRType.adoc[`PSRType`] | xref::class/PSRType.adoc#PowerSystemResources[`PowerSystemResources`]
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`] | xref::class/EquipmentContainer.adoc#Equipments[`Equipments`]
+
+
+
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`] | xref::class/OperationalLimitSet.adoc#Equipment[`Equipment`]
 
 
 |===

@@ -7,11 +7,23 @@
 | Name | Description
 
 
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+| +++An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.+++
+
+| xref::class/ActivePowerLimit.adoc[`ActivePowerLimit`]
+| +++Limit on active power flow.+++
+
 | xref::class/BaseVoltage.adoc[`BaseVoltage`]
 | +++Defines a system base voltage which is referenced.+++
 
+| xref::class/Bay.adoc[`Bay`]
+| +++A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.  A bay typically represents a physical grouping related to modularization of equipment.+++
+
 | xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
 | +++Designates a connection point at which one or more model authority sets shall connect to. The location of the connection point as well as other properties are agreed between organisations responsible for the interconnection, hence all attributes of the class represent this agreement.  It is primarily used in a boundary model authority set which can contain one or many BoundaryPoint-s among other Equipment-s and their connections.+++
+
+| xref::class/ConductingEquipment.adoc[`ConductingEquipment`]
+| +++The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.+++
 
 | xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
 | +++Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.+++
@@ -19,8 +31,22 @@
 | xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
 | +++A base class for all objects that may contain connectivity nodes or topological nodes.+++
 
+| xref::class/EnergyConnection.adoc[`EnergyConnection`]
+| +++A connection of energy generation or consumption on the power system model.+++
+
+| xref::class/EnergyConsumer.adoc[`EnergyConsumer`]
+| +++Generic user of energy - a  point of consumption on the power system model.
+EnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.+++
+
+| xref::class/Equipment.adoc[`Equipment`]
+| +++The parts of a power system that are physical devices, electronic or mechanical.+++
+
 | xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
 | +++A modelling construct to provide a root class for containing equipment.+++
+
+| xref::class/Feeder.adoc[`Feeder`]
+| +++A collection of equipment for organizational purposes, used for grouping distribution resources.
+The organization a feeder does not necessarily reflect connectivity or current operation state.+++
 
 | xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
 | +++A geographical region of a power system network model.+++
@@ -38,14 +64,49 @@ The localName is a human readable name of the object. It is a free text name loc
 | xref::class/NameTypeAuthority.adoc[`NameTypeAuthority`]
 | +++Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.+++
 
+| xref::class/OperationalLimit.adoc[`OperationalLimit`]
+| +++A value and normal value associated with a specific kind of limit. 
+The sub class value and normalValue attributes vary inversely to the associated OperationalLimitType.acceptableDuration (acceptableDuration for short).  
+If a particular piece of equipment has multiple operational limits of the same kind (apparent power, current, etc.), the limit with the greatest acceptableDuration shall have the smallest limit value and the limit with the smallest acceptableDuration shall have the largest limit value.  Note: A large current can only be allowed to flow through a piece of equipment for a short duration without causing damage, but a lesser current can be allowed to flow for a longer duration.+++
+
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+| +++A set of limits associated with equipment.  Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.+++
+
 | xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 | +++A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.+++
+
+| xref::class/PowerTransformer.adoc[`PowerTransformer`]
+| +++An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits. Transformers can be used to control voltage and phase shift (active power flow).
+A power transformer may be composed of separate transformer tanks that need not be identical.
+A power transformer can be modelled with or without tanks and is intended for use in both balanced and unbalanced representations.   A power transformer typically has two terminals, but may have one (grounding), three or more terminals.
+The inherited association ConductingEquipment.BaseVoltage should not be used.  The association from TransformerEnd to BaseVoltage should be used instead.+++
+
+| xref::class/PowerTransformerEnd.adoc[`PowerTransformerEnd`]
+| +++A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
+The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows.
+1) for a two Terminal PowerTransformer the high voltage (TransformerEnd.endNumber=1) PowerTransformerEnd has non zero values on r, r0, x, and x0 while the low voltage (TransformerEnd.endNumber=2) PowerTransformerEnd has zero values for r, r0, x, and x0.  Parameters are always provided, even if the PowerTransformerEnds have the same rated voltage.  In this case, the parameters are provided at the PowerTransformerEnd which has TransformerEnd.endNumber equal to 1.
+2) for a three Terminal PowerTransformer the three PowerTransformerEnds represent a star equivalent with each leg in the star represented by r, r0, x, and x0 values.
+3) For a three Terminal transformer each PowerTransformerEnd shall have g, g0, b and b0 values corresponding to the no load losses distributed on the three PowerTransformerEnds. The total no load loss shunt impedances may also be placed at one of the PowerTransformerEnds, preferably the end numbered 1, having the shunt values on end 1.  This is the preferred way.
+4) for a PowerTransformer with more than three Terminals the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance or split the transformer into multiple PowerTransformers.
+Each PowerTransformerEnd must be contained by a PowerTransformer. Because a PowerTransformerEnd (or any other object) can not be contained by more than one parent, a PowerTransformerEnd can not have an association to an EquipmentContainer (Substation, VoltageLevel, etc).+++
+
+| xref::class/PSRType.adoc[`PSRType`]
+| +++Classifying instances of the same class, e.g. overhead and underground ACLineSegments. This classification mechanism is intended to provide flexibility outside the scope of this document, i.e. provide customisation that is non standard.+++
 
 | xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
 | +++A subset of a geographical region of a power system network model.+++
 
 | xref::class/Substation.adoc[`Substation`]
 | +++A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.+++
+
+| xref::class/Switch.adoc[`Switch`]
+| +++A generic device designed to close, or open, or both, one or more electric circuits.  All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.+++
+
+| xref::class/Terminal.adoc[`Terminal`]
+| +++An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.+++
+
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+| +++A conducting connection point of a power transformer. It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.+++
 
 | xref::class/VoltageLevel.adoc[`VoltageLevel`]
 | +++A collection of equipment at one common system voltage forming a switchgear. The equipment typically consists of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.+++
@@ -61,6 +122,9 @@ The localName is a human readable name of the object. It is a free text name loc
 | Name | Description
 
 
+| xref::class/ActivePower.adoc[`ActivePower`]
+| +++Product of RMS value of the voltage and the RMS value of the in-phase component of the current.+++
+
 | xref::class/Voltage.adoc[`Voltage`]
 | +++Electrical voltage, can be both AC and DC.+++
 
@@ -74,6 +138,9 @@ The localName is a human readable name of the object. It is a free text name loc
 [cols="1,2"]
 |===
 | Name | Description
+
+| xref::enumeration/BusbarConfiguration.adoc[`BusbarConfiguration`]
+| +++Busbar layout for bay.+++
 
 | xref::enumeration/UnitMultiplier.adoc[`UnitMultiplier`]
 | +++The unit multipliers defined for the CIM.  When applied to unit symbols, the unit symbol is treated as a derived unit. Regardless of the contents of the unit symbol text, the unit symbol shall be treated as if it were a single-character unit symbol. Unit symbols should not contain multipliers, and it should be left to the multiplier to define the multiple for an entire data type. 

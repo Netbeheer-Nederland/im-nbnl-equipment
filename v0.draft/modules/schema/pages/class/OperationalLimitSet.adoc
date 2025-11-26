@@ -1,8 +1,8 @@
-= `IdentifiedObject`
+= `OperationalLimitSet`
 :toclevels: 4
 
 
-+++This is a root class to provide common identification for all classes needing identification and naming attributes.+++
++++A set of limits associated with equipment.  Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +11,7 @@
 | Class
 
 | URI
-| `cim:IdentifiedObject`
+| `cim:OperationalLimitSet`
 
 
 | CIM standard (perspective)
@@ -22,17 +22,8 @@
 |===
 
 == Class hierarchy
-* *`IdentifiedObject`*
- ** xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
- ** xref::class/BaseVoltage.adoc[`BaseVoltage`]
- ** xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
- ** xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
- ** xref::class/OperationalLimit.adoc[`OperationalLimit`]
- ** xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
- ** xref::class/PSRType.adoc[`PSRType`]
- ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
- ** xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
- ** xref::class/TransformerEnd.adoc[`TransformerEnd`]
+* xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+** *`OperationalLimitSet`*
 
 
 == Slots
@@ -47,7 +38,34 @@ vars: {
     pad: 20
   }
 }
-IdentifiedObject {
+OperationalLimitSet {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Equipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+ACDCTerminal {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+OperationalLimit {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -66,7 +84,16 @@ Name {
 
 
 
-IdentifiedObject -> Name: Names
+OperationalLimitSet -> Equipment: Equipment
+
+
+OperationalLimitSet -> ACDCTerminal: Terminal
+
+
+OperationalLimitSet -> OperationalLimit: OperationalLimitValue
+
+
+OperationalLimitSet -> Name: Names
 
 
 legend: "" {
@@ -122,40 +149,61 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<Equipment,`Equipment`>>
+//| [[slots_table.Equipment]]<<Equipment,`Equipment`>>
+| 0..1 +
+xref::class/Equipment.adoc[`Equipment`]
+| +++The equipment to which the limit set applies.+++
+| _n/a_
+
+| <<OperationalLimitValue,`OperationalLimitValue`>>
+//| [[slots_table.OperationalLimitValue]]<<OperationalLimitValue,`OperationalLimitValue`>>
+| 0..* +
+xref::class/OperationalLimit.adoc[`OperationalLimit`]
+| +++Values of equipment limits.+++
+| _n/a_
+
+| <<Terminal,`Terminal`>>
+//| [[slots_table.Terminal]]<<Terminal,`Terminal`>>
+| 0..1 +
+xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+| +++The terminal where the operational limit set apply.+++
+| _n/a_
+
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
 | 0..* +
 xref::class/Name.adoc[`Name`]
 | +++All names of this identified object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 //| [[slots_table.europeanArticleNumberEAN]]<<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The name is any free human readable and possibly non unique text naming the object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
@@ -176,6 +224,9 @@ https://w3id.org/linkml/String[`string`]
 | Type
 | https://w3id.org/linkml/String[`string`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -183,6 +234,32 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Equipment]
+=== `Equipment`
++++The equipment to which the limit set applies.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:OperationalLimitSet.Equipment`
+| Cardinality
+| 0..1
+| Type
+| xref::class/Equipment.adoc[`Equipment`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Equipment,&#10548;>>
 --
 ////
 
@@ -201,6 +278,9 @@ https://w3id.org/linkml/String[`string`]
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -229,6 +309,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | https://w3id.org/linkml/String[`string`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -254,6 +337,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -281,6 +367,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | xref::class/Name.adoc[`Name`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -288,6 +377,58 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [.text-left]
 --
 <<slots_table.Names,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#OperationalLimitValue]
+=== `OperationalLimitValue`
++++Values of equipment limits.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:OperationalLimitSet.OperationalLimitValue`
+| Cardinality
+| 0..*
+| Type
+| xref::class/OperationalLimit.adoc[`OperationalLimit`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.OperationalLimitValue,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Terminal]
+=== `Terminal`
++++The terminal where the operational limit set apply.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:OperationalLimitSet.Terminal`
+| Cardinality
+| 0..1
+| Type
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Terminal,&#10548;>>
 --
 ////
 
@@ -304,7 +445,15 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/Name.adoc[`Name`] | xref::class/Name.adoc#IdentifiedObject[`IdentifiedObject`]
+| xref::class/ACDCTerminal.adoc[`ACDCTerminal`] | xref::class/ACDCTerminal.adoc#OperationalLimitSet[`OperationalLimitSet`]
+
+
+
+| xref::class/Equipment.adoc[`Equipment`] | xref::class/Equipment.adoc#OperationalLimitSet[`OperationalLimitSet`]
+
+
+
+| xref::class/OperationalLimit.adoc[`OperationalLimit`] | xref::class/OperationalLimit.adoc#OperationalLimitSet[`OperationalLimitSet`]
 
 
 |===

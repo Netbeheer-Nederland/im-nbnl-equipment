@@ -15,6 +15,7 @@ prefixes:
   nl: https://cim.ucaiug.io/ns/nl#
   skos: http://www.w3.org/2004/02/skos/core#
   xsd: http://www.w3.org/2001/XMLSchema#
+  github: https://github.com/
 default_prefix: http://data.netbeheernederland.nl/data-product/im-nbnl-equipment/
 enums:
   UnitMultiplier:
@@ -111,10 +112,25 @@ enums:
         meaning: cim:UnitSymbol.Wb
       Wh:
         meaning: cim:UnitSymbol.Wh
+  BusbarConfiguration:
+    description: "Busbar layout for bay.\r\n"
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM
+    enum_uri: cim:BusbarConfiguration
+    permissible_values:
+      doubleBus:
+        meaning: cim:BusbarConfiguration.doubleBus
+      mainWithTransfer:
+        meaning: cim:BusbarConfiguration.mainWithTransfer
+      ringBus:
+        meaning: cim:BusbarConfiguration.ringBus
+      singleBus:
+        meaning: cim:BusbarConfiguration.singleBus
 classes:
   GeographicalRegion:
-    description: "A geographical region of a power system network model.\r\n"
+    description: "A geographical region of a power system network model."
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    exact_mappings:
+    - cbs:landsdeel
     is_a: IdentifiedObject
     attributes:
       Regions:
@@ -124,13 +140,12 @@ classes:
         required: false
         multivalued: true
     class_uri: cim:GeographicalRegion
-    exact_mappings:
-      - cbs:landsdeel
     tree_root: true
   SubGeographicalRegion:
-    description: "A subset of a geographical region of a power system network model.\r\
-      \n"
+    description: "A subset of a geographical region of a power system network model."
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    narrow_mappings:
+    - nbnl:energienet
     is_a: IdentifiedObject
     attributes:
       Substations:
@@ -146,14 +161,14 @@ classes:
         range: GeographicalRegion
         required: false
         multivalued: false
-    narrow_mappings:
-      - nbnl:energienet
     class_uri: cim:SubGeographicalRegion
   Substation:
     description: "A collection of equipment for purposes other than generation or\
       \ utilization, through which electric energy in bulk is passed for the purposes\
-      \ of switching or modifying its characteristics. \r\n"
+      \ of switching or modifying its characteristics."
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    narrow_mappings:
+    - nbnl:knooppunt
     is_a: EquipmentContainer
     attributes:
       VoltageLevels:
@@ -168,14 +183,42 @@ classes:
         range: SubGeographicalRegion
         required: false
         multivalued: false
-    narrow_mappings:
-      - nbnl:knooppunt
+      Bays:
+        description: Bays contained in the substation.
+        slot_uri: cim:Substation.Bays
+        range: Bay
+        required: false
+        multivalued: true
+      NormalEnergizedFeeder:
+        description: The normal energized feeders of the substation. Also used for
+          naming purposes.
+        slot_uri: cim:Substation.NormalEnergizedFeeder
+        range: Feeder
+        required: false
+        multivalued: true
+      NamingFeeder:
+        description: The primary feeder that normally energizes the secondary substation.
+          Used for naming purposes.  Either this association or the substation to
+          subgeographical region should be used for hierarchical containment specification.
+        slot_uri: cim:Substation.NamingFeeder
+        range: Feeder
+        required: false
+        multivalued: false
+      NormalEnergizingFeeder:
+        description: The feeders that potentially energize  the downstream substation.  Should
+          be consistent with the associations that describe the naming hierarchy.
+        slot_uri: cim:Substation.NormalEnergizingFeeder
+        range: Feeder
+        required: false
+        multivalued: true
     class_uri: cim:Substation
   VoltageLevel:
     description: A collection of equipment at one common system voltage forming a
       switchgear. The equipment typically consists of breakers, busbars, instrumentation,
       control, regulation and protection devices as well as assemblies of all these.
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    exact_mappings:
+    - nbnl:voedingsgebied
     is_a: EquipmentContainer
     attributes:
       BaseVoltage:
@@ -190,8 +233,12 @@ classes:
         range: Substation
         required: false
         multivalued: false
-    exact_mappings:
-      - nbnl:installatie
+      Bays:
+        description: The bays within this voltage level.
+        slot_uri: cim:VoltageLevel.Bays
+        range: Bay
+        required: false
+        multivalued: true
     class_uri: cim:VoltageLevel
   Voltage:
     annotations:
@@ -220,6 +267,8 @@ classes:
   BaseVoltage:
     description: 'Defines a system base voltage which is referenced. '
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    exact_mappings:
+    - nbnl:spanningsniveau
     is_a: IdentifiedObject
     attributes:
       nominalVoltage:
@@ -235,8 +284,21 @@ classes:
         range: VoltageLevel
         required: false
         multivalued: true
-    exact_mappings:
-      - nbnl:spanningsniveau
+      ConductingEquipment:
+        description: All conducting equipment with this base voltage.  Use only when
+          there is no voltage level container used and only one base voltage applies.  For
+          example, not used for transformers.
+        slot_uri: cim:BaseVoltage.ConductingEquipment
+        range: ConductingEquipment
+        required: false
+        multivalued: true
+      TransformerEnds:
+        description: Transformer ends at the base voltage.  This is essential for
+          PU calculation.
+        slot_uri: cim:BaseVoltage.TransformerEnds
+        range: TransformerEnd
+        required: false
+        multivalued: true
     class_uri: cim:BaseVoltage
   IdentifiedObject:
     description: This is a root class to provide common identification for all classes
@@ -376,6 +438,13 @@ classes:
     description: 'A modelling construct to provide a root class for containing equipment. '
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
     is_a: ConnectivityNodeContainer
+    attributes:
+      Equipments:
+        description: Contained equipment.
+        slot_uri: cim:EquipmentContainer.Equipments
+        range: Equipment
+        required: false
+        multivalued: true
     class_uri: cim:EquipmentContainer
   ConnectivityNodeContainer:
     description: "A base class for all objects that may contain connectivity nodes\
@@ -394,6 +463,8 @@ classes:
     description: Connectivity nodes are points where terminals of AC conducting equipment
       are connected together with zero impedance.
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    narrow_mappings:
+    - nbnl:knooppunt
     is_a: IdentifiedObject
     attributes:
       ConnectivityNodeContainer:
@@ -408,8 +479,13 @@ classes:
         range: BoundaryPoint
         required: false
         multivalued: false
-    narrow_mappings:
-      - nbnl:knooppunt
+      Terminals:
+        description: 'Terminals interconnected with zero impedance at a this connectivity
+          node. '
+        slot_uri: cim:ConnectivityNode.Terminals
+        range: Terminal
+        required: false
+        multivalued: true
     class_uri: cim:ConnectivityNode
   PowerSystemResource:
     description: A power system resource (PSR) can be an item of equipment such as
@@ -418,6 +494,13 @@ classes:
       Power system resources can have measurements associated.
     from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
     is_a: IdentifiedObject
+    attributes:
+      PSRType:
+        description: Custom classification for this power system resource.
+        slot_uri: cim:PowerSystemResource.PSRType
+        range: PSRType
+        required: false
+        multivalued: false
     class_uri: cim:PowerSystemResource
   BoundaryPoint:
     description: Designates a connection point at which one or more model authority
@@ -426,6 +509,8 @@ classes:
       hence all attributes of the class represent this agreement.  It is primarily
       used in a boundary model authority set which can contain one or many BoundaryPoint-s
       among other Equipment-s and their connections.
+    exact_mappings:
+    - nbnl:overdrachtspunt
     is_a: PowerSystemResource
     attributes:
       fromEndIsoCode:
@@ -499,6 +584,459 @@ classes:
         range: ConnectivityNode
         required: false
         multivalued: false
-    exact_mappings:
-      - nbnl:overdrachtspunt
     class_uri: eu:BoundaryPoint
+  ConductingEquipment:
+    description: The parts of the AC power system that are designed to carry current
+      or that are conductively connected through terminals.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: Equipment
+    attributes:
+      BaseVoltage:
+        description: Base voltage of this conducting equipment.  Use only when there
+          is no voltage level container used and only one base voltage applies.  For
+          example, not used for transformers.
+        slot_uri: cim:ConductingEquipment.BaseVoltage
+        range: BaseVoltage
+        required: false
+        multivalued: false
+      Terminals:
+        description: Conducting equipment have terminals that may be connected to
+          other conducting equipment terminals via connectivity nodes or topological
+          nodes.
+        slot_uri: cim:ConductingEquipment.Terminals
+        range: Terminal
+        required: false
+        multivalued: true
+    class_uri: cim:ConductingEquipment
+  Terminal:
+    description: An AC electrical connection point to a piece of conducting equipment.
+      Terminals are connected at physical connection points called connectivity nodes.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: ACDCTerminal
+    attributes:
+      ConnectivityNode:
+        description: The connectivity node to which this terminal connects with zero
+          impedance.
+        slot_uri: cim:Terminal.ConnectivityNode
+        range: ConnectivityNode
+        required: false
+        multivalued: false
+      ConductingEquipment:
+        description: The conducting equipment of the terminal. Conducting equipment
+          have  terminals that may be connected to other conducting equipment terminals
+          via connectivity nodes or topological nodes.
+        slot_uri: cim:Terminal.ConductingEquipment
+        range: ConductingEquipment
+        required: false
+        multivalued: false
+      TransformerEnd:
+        description: All transformer ends connected at this terminal.
+        slot_uri: cim:Terminal.TransformerEnd
+        range: TransformerEnd
+        required: false
+        multivalued: true
+      NormalHeadFeeder:
+        description: The feeder that this terminal normally feeds.  Only specified
+          for the terminals at head of feeders.
+        slot_uri: cim:Terminal.NormalHeadFeeder
+        range: Feeder
+        required: false
+        multivalued: false
+    class_uri: cim:Terminal
+  TransformerEnd:
+    description: A conducting connection point of a power transformer. It corresponds
+      to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding
+      class served a similar purpose, but this class is more flexible because it associates
+      to terminal but is not a specialization of ConductingEquipment.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Wires
+    is_a: IdentifiedObject
+    attributes:
+      endNumber:
+        description: "Number for this transformer end, corresponding to the end's\
+          \ order in the power transformer vector group or phase angle clock number.\
+          \  Highest voltage winding should be 1.  Each end within a power transformer\
+          \ should have a unique subsequent end number.   Note the transformer end\
+          \ number need not match the terminal sequence number.\r\n"
+        slot_uri: cim:TransformerEnd.endNumber
+        range: integer
+        required: false
+        multivalued: false
+      BaseVoltage:
+        description: Base voltage of the transformer end.  This is essential for PU
+          calculation.
+        slot_uri: cim:TransformerEnd.BaseVoltage
+        range: BaseVoltage
+        required: false
+        multivalued: false
+      Terminal:
+        description: Terminal of the power transformer to which this transformer end
+          belongs.
+        slot_uri: cim:TransformerEnd.Terminal
+        range: Terminal
+        required: false
+        multivalued: false
+    class_uri: cim:TransformerEnd
+  Feeder:
+    description: "A collection of equipment for organizational purposes, used for\
+      \ grouping distribution resources.\r\nThe organization a feeder does not necessarily\
+      \ reflect connectivity or current operation state.\r\n\r\n"
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: EquipmentContainer
+    attributes:
+      NormalEnergizingSubstation:
+        description: The substation that nominally energizes the feeder.  Also used
+          for naming purposes.
+        slot_uri: cim:Feeder.NormalEnergizingSubstation
+        range: Substation
+        required: false
+        multivalued: false
+      NamingSecondarySubstation:
+        description: The secondary substations that are normally energized from the
+          feeder.  Used for naming purposes.   Should be consistent with the other
+          associations for energizing terminal specification and the feeder energization
+          specification.
+        slot_uri: cim:Feeder.NamingSecondarySubstation
+        range: Substation
+        required: false
+        multivalued: true
+      NormalHeadTerminal:
+        description: The normal head terminal or terminals of the feeder.
+        slot_uri: cim:Feeder.NormalHeadTerminal
+        range: Terminal
+        required: true
+        multivalued: true
+      NormalEnergizedSubstation:
+        description: The substations that are normally energized by the feeder.
+        slot_uri: cim:Feeder.NormalEnergizedSubstation
+        range: Substation
+        required: false
+        multivalued: true
+    class_uri: cim:Feeder
+  Bay:
+    description: "A collection of power system resources (within a given substation)\
+      \ including conducting equipment, protection relays, measurements, and telemetry.\
+      \  A bay typically represents a physical grouping related to modularization\
+      \ of equipment.\r\n"
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: EquipmentContainer
+    attributes:
+      busBarConfiguration:
+        description: Busbar configuration.
+        slot_uri: cim:Bay.busBarConfiguration
+        range: BusbarConfiguration
+        required: false
+        multivalued: false
+      Substation:
+        description: Substation containing the bay.
+        slot_uri: cim:Bay.Substation
+        range: Substation
+        required: false
+        multivalued: false
+      VoltageLevel:
+        description: The voltage level containing this bay.
+        slot_uri: cim:Bay.VoltageLevel
+        range: VoltageLevel
+        required: false
+        multivalued: false
+    class_uri: cim:Bay
+  ACDCTerminal:
+    description: An electrical connection point (AC or DC) to a piece of conducting
+      equipment. Terminals are connected at physical connection points called connectivity
+      nodes.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: IdentifiedObject
+    attributes:
+      connected:
+        description: "The connected status is related to a bus-branch model and the\
+          \ topological node to terminal relation.  True implies the terminal is connected\
+          \ to the related topological node and false implies it is not. \r\nIn a\
+          \ bus-branch model, the connected status is used to tell if equipment is\
+          \ disconnected without having to change the connectivity described by the\
+          \ topological node to terminal relation. A valid case is that conducting\
+          \ equipment can be connected in one end and open in the other. In particular\
+          \ for an AC line segment, where the reactive line charging can be significant,\
+          \ this is a relevant case.\r\n"
+        slot_uri: cim:ACDCTerminal.connected
+        range: boolean
+        required: false
+        multivalued: false
+      sequenceNumber:
+        description: "The orientation of the terminal connections for a multiple terminal\
+          \ conducting equipment.  The sequence numbering starts with 1 and additional\
+          \ terminals should follow in increasing order.   The first terminal is the\
+          \ \"starting point\" for a two terminal branch.\r\n"
+        slot_uri: cim:ACDCTerminal.sequenceNumber
+        range: integer
+        required: false
+        multivalued: false
+      OperationalLimitSet:
+        description: The operational limit sets at the terminal.
+        slot_uri: cim:ACDCTerminal.OperationalLimitSet
+        range: OperationalLimitSet
+        required: false
+        multivalued: true
+    class_uri: cim:ACDCTerminal
+  OperationalLimitSet:
+    description: "A set of limits associated with equipment.  Sets of limits might\
+      \ apply to a specific temperature, or season for example. A set of limits may\
+      \ contain different severities of limit levels that would apply to the same\
+      \ equipment. The set may contain limits of different types such as apparent\
+      \ power and current limits or high and low voltage limits  that are logically\
+      \ applied together as a set.\r\n"
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.OperationalLimits
+    is_a: IdentifiedObject
+    attributes:
+      Equipment:
+        description: The equipment to which the limit set applies.
+        slot_uri: cim:OperationalLimitSet.Equipment
+        range: Equipment
+        required: false
+        multivalued: false
+      Terminal:
+        description: The terminal where the operational limit set apply.
+        slot_uri: cim:OperationalLimitSet.Terminal
+        range: ACDCTerminal
+        required: false
+        multivalued: false
+      OperationalLimitValue:
+        description: Values of equipment limits.
+        slot_uri: cim:OperationalLimitSet.OperationalLimitValue
+        range: OperationalLimit
+        required: false
+        multivalued: true
+    class_uri: cim:OperationalLimitSet
+  Equipment:
+    description: The parts of a power system that are physical devices, electronic
+      or mechanical.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: PowerSystemResource
+    attributes:
+      aggregate:
+        description: "The aggregate flag provides an alternative way of representing\
+          \ an aggregated (equivalent) element. It is applicable in cases when the\
+          \ dedicated classes for equivalent equipment do not have all of the attributes\
+          \ necessary to represent the required level of detail.  In case the flag\
+          \ is set to \u201Ctrue\u201D the single instance of equipment represents\
+          \ multiple pieces of equipment that have been modelled together as an aggregate\
+          \ equivalent obtained by a network reduction procedure. Examples would be\
+          \ power transformers or synchronous machines operating in parallel modelled\
+          \ as a single aggregate power transformer or aggregate synchronous machine.\
+          \  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and\
+          \ EquivalentInjection."
+        slot_uri: cim:Equipment.aggregate
+        range: boolean
+        required: false
+        multivalued: false
+      inService:
+        description: Specifies the availability of the equipment. True means the equipment
+          is available for topology processing, which determines if the equipment
+          is energized or not. False means that the equipment is treated by network
+          applications as if it is not in the model.
+        slot_uri: cim:Equipment.inService
+        range: boolean
+        required: false
+        multivalued: false
+      networkAnalysisEnabled:
+        description: The equipment is enabled to participate in network analysis.  If
+          unspecified, the value is assumed to be true.
+        slot_uri: cim:Equipment.networkAnalysisEnabled
+        range: boolean
+        required: false
+        multivalued: false
+      normallyInService:
+        description: Specifies the availability of the equipment under normal operating
+          conditions. True means the equipment is available for topology processing,
+          which determines if the equipment is energized or not. False means that
+          the equipment is treated by network applications as if it is not in the
+          model.
+        slot_uri: cim:Equipment.normallyInService
+        range: boolean
+        required: false
+        multivalued: false
+      OperationalLimitSet:
+        description: The operational limit sets associated with this equipment.
+        slot_uri: cim:Equipment.OperationalLimitSet
+        range: OperationalLimitSet
+        required: false
+        multivalued: true
+      EquipmentContainer:
+        description: Container of this equipment.
+        slot_uri: cim:Equipment.EquipmentContainer
+        range: EquipmentContainer
+        required: false
+        multivalued: false
+    class_uri: cim:Equipment
+  OperationalLimit:
+    description: "A value and normal value associated with a specific kind of limit.\
+      \ \r\nThe sub class value and normalValue attributes vary inversely to the associated\
+      \ OperationalLimitType.acceptableDuration (acceptableDuration for short).  \r\
+      \nIf a particular piece of equipment has multiple operational limits of the\
+      \ same kind (apparent power, current, etc.), the limit with the greatest acceptableDuration\
+      \ shall have the smallest limit value and the limit with the smallest acceptableDuration\
+      \ shall have the largest limit value.  Note: A large current can only be allowed\
+      \ to flow through a piece of equipment for a short duration without causing\
+      \ damage, but a lesser current can be allowed to flow for a longer duration. "
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.OperationalLimits
+    is_a: IdentifiedObject
+    attributes:
+      OperationalLimitSet:
+        description: The limit set to which the limit values belong.
+        slot_uri: cim:OperationalLimit.OperationalLimitSet
+        range: OperationalLimitSet
+        required: false
+        multivalued: false
+    class_uri: cim:OperationalLimit
+  PSRType:
+    description: Classifying instances of the same class, e.g. overhead and underground
+      ACLineSegments. This classification mechanism is intended to provide flexibility
+      outside the scope of this document, i.e. provide customisation that is non standard.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Core
+    is_a: IdentifiedObject
+    attributes:
+      PowerSystemResources:
+        description: Power system resources classified with this power system resource
+          type.
+        slot_uri: cim:PSRType.PowerSystemResources
+        range: PowerSystemResource
+        required: false
+        multivalued: true
+    class_uri: cim:PSRType
+  PowerTransformer:
+    description: "An electrical device consisting of  two or more coupled windings,\
+      \ with or without a magnetic core, for introducing mutual coupling between electric\
+      \ circuits. Transformers can be used to control voltage and phase shift (active\
+      \ power flow).\r\nA power transformer may be composed of separate transformer\
+      \ tanks that need not be identical.\r\nA power transformer can be modelled with\
+      \ or without tanks and is intended for use in both balanced and unbalanced representations.\
+      \   A power transformer typically has two terminals, but may have one (grounding),\
+      \ three or more terminals.\r\nThe inherited association ConductingEquipment.BaseVoltage\
+      \ should not be used.  The association from TransformerEnd to BaseVoltage should\
+      \ be used instead."
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Wires
+    is_a: ConductingEquipment
+    attributes:
+      PowerTransformerEnd:
+        description: The ends of this power transformer.
+        slot_uri: cim:PowerTransformer.PowerTransformerEnd
+        range: PowerTransformerEnd
+        required: false
+        multivalued: true
+    class_uri: cim:PowerTransformer
+  PowerTransformerEnd:
+    description: "A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.\r\
+      \nThe impedance values r, r0, x, and x0 of a PowerTransformerEnd represents\
+      \ a star equivalent as follows.\r\n1) for a two Terminal PowerTransformer the\
+      \ high voltage (TransformerEnd.endNumber=1) PowerTransformerEnd has non zero\
+      \ values on r, r0, x, and x0 while the low voltage (TransformerEnd.endNumber=2)\
+      \ PowerTransformerEnd has zero values for r, r0, x, and x0.  Parameters are\
+      \ always provided, even if the PowerTransformerEnds have the same rated voltage.\
+      \  In this case, the parameters are provided at the PowerTransformerEnd which\
+      \ has TransformerEnd.endNumber equal to 1.\r\n2) for a three Terminal PowerTransformer\
+      \ the three PowerTransformerEnds represent a star equivalent with each leg in\
+      \ the star represented by r, r0, x, and x0 values.\r\n3) For a three Terminal\
+      \ transformer each PowerTransformerEnd shall have g, g0, b and b0 values corresponding\
+      \ to the no load losses distributed on the three PowerTransformerEnds. The total\
+      \ no load loss shunt impedances may also be placed at one of the PowerTransformerEnds,\
+      \ preferably the end numbered 1, having the shunt values on end 1.  This is\
+      \ the preferred way.\r\n4) for a PowerTransformer with more than three Terminals\
+      \ the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance\
+      \ or split the transformer into multiple PowerTransformers.\r\nEach PowerTransformerEnd\
+      \ must be contained by a PowerTransformer. Because a PowerTransformerEnd (or\
+      \ any other object) can not be contained by more than one parent, a PowerTransformerEnd\
+      \ can not have an association to an EquipmentContainer (Substation, VoltageLevel,\
+      \ etc)."
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Wires
+    is_a: TransformerEnd
+    attributes:
+      PowerTransformer:
+        description: The power transformer of this power transformer end.
+        slot_uri: cim:PowerTransformerEnd.PowerTransformer
+        range: PowerTransformer
+        required: false
+        multivalued: false
+    class_uri: cim:PowerTransformerEnd
+  EnergyConsumer:
+    description: "Generic user of energy - a  point of consumption on the power system\
+      \ model.\r\nEnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning\
+      \ only if there is no LoadResponseCharacteristic associated with EnergyConsumer\
+      \ or if LoadResponseCharacteristic.exponentModel is set to False."
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Wires
+    is_a: EnergyConnection
+    attributes:
+      customerCount:
+        description: "Number of individual customers represented by this demand.\r\
+          \n"
+        slot_uri: cim:EnergyConsumer.customerCount
+        range: integer
+        required: false
+        multivalued: false
+    class_uri: cim:EnergyConsumer
+  ActivePower:
+    annotations:
+      represents_cim_data_type:
+        tag: represents_cim_data_type
+        value: true
+    description: Product of RMS value of the voltage and the RMS value of the in-phase
+      component of the current.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Domain
+    attributes:
+      multiplier:
+        slot_uri: cim:ActivePower.multiplier
+        range: UnitMultiplier
+        required: false
+        multivalued: false
+      unit:
+        slot_uri: cim:ActivePower.unit
+        range: UnitSymbol
+        required: false
+        multivalued: false
+      value:
+        slot_uri: cim:ActivePower.value
+        range: float
+        required: false
+        multivalued: false
+    class_uri: cim:ActivePower
+  EnergyConnection:
+    description: A connection of energy generation or consumption on the power system
+      model.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Wires
+    is_a: ConductingEquipment
+    class_uri: cim:EnergyConnection
+  Switch:
+    description: A generic device designed to close, or open, or both, one or more
+      electric circuits.  All switches are two terminal devices including grounding
+      switches. The ACDCTerminal.connected at the two sides of the switch shall not
+      be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen
+      and .locked are relevant.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.Wires
+    is_a: ConductingEquipment
+    attributes:
+      normalOpen:
+        description: The attribute is used in cases when no Measurement for the status
+          value is present. If the Switch has a status measurement the Discrete.normalValue
+          is expected to match with the Switch.normalOpen.
+        slot_uri: cim:Switch.normalOpen
+        range: boolean
+        required: false
+        multivalued: false
+    class_uri: cim:Switch
+  ActivePowerLimit:
+    description: Limit on active power flow.
+    from_schema: https://cim.ucaiug.io/ns#TC57CIM.IEC61970.Base.OperationalLimits
+    is_a: OperationalLimit
+    attributes:
+      normalValue:
+        description: The normal value of active power limit. The attribute shall be
+          a positive value or zero.
+        slot_uri: cim:ActivePowerLimit.normalValue
+        range: ActivePower
+        required: false
+        multivalued: false
+      value:
+        description: Value of active power limit. The attribute shall be a positive
+          value or zero.
+        slot_uri: cim:ActivePowerLimit.value
+        range: ActivePower
+        required: false
+        multivalued: false
+    class_uri: cim:ActivePowerLimit

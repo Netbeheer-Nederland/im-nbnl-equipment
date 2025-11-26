@@ -1,8 +1,8 @@
-= `IdentifiedObject`
+= `ActivePowerLimit`
 :toclevels: 4
 
 
-+++This is a root class to provide common identification for all classes needing identification and naming attributes.+++
++++Limit on active power flow.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +11,7 @@
 | Class
 
 | URI
-| `cim:IdentifiedObject`
+| `cim:ActivePowerLimit`
 
 
 | CIM standard (perspective)
@@ -22,17 +22,9 @@
 |===
 
 == Class hierarchy
-* *`IdentifiedObject`*
- ** xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
- ** xref::class/BaseVoltage.adoc[`BaseVoltage`]
- ** xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
- ** xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
- ** xref::class/OperationalLimit.adoc[`OperationalLimit`]
- ** xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
- ** xref::class/PSRType.adoc[`PSRType`]
- ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
- ** xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
- ** xref::class/TransformerEnd.adoc[`TransformerEnd`]
+* xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+** xref::class/OperationalLimit.adoc[`OperationalLimit`]
+*** *`ActivePowerLimit`*
 
 
 == Slots
@@ -47,7 +39,20 @@ vars: {
     pad: 20
   }
 }
-IdentifiedObject {
+ActivePowerLimit {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+
+
+
+
+OperationalLimitSet {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -66,7 +71,12 @@ Name {
 
 
 
-IdentifiedObject -> Name: Names
+
+
+ActivePowerLimit -> OperationalLimitSet: OperationalLimitSet
+
+
+ActivePowerLimit -> Name: Names
 
 
 legend: "" {
@@ -122,40 +132,61 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<normalValue,`normalValue`>>
+//| [[slots_table.normalValue]]<<normalValue,`normalValue`>>
+| 0..1 +
+xref::class/ActivePower.adoc[`ActivePower`]
+| +++The normal value of active power limit. The attribute shall be a positive value or zero.+++
+| _n/a_
+
+| <<value,`value`>>
+//| [[slots_table.value]]<<value,`value`>>
+| 0..1 +
+xref::class/ActivePower.adoc[`ActivePower`]
+| +++Value of active power limit. The attribute shall be a positive value or zero.+++
+| _n/a_
+
+| <<OperationalLimitSet,`OperationalLimitSet`>>
+//| [[slots_table.OperationalLimitSet]]<<OperationalLimitSet,`OperationalLimitSet`>>
+| 0..1 +
+xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+| +++The limit set to which the limit values belong.+++
+| xref::class/OperationalLimit.adoc[`OperationalLimit`]
+
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
 | 0..* +
 xref::class/Name.adoc[`Name`]
 | +++All names of this identified object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 //| [[slots_table.europeanArticleNumberEAN]]<<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The name is any free human readable and possibly non unique text naming the object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
@@ -175,6 +206,9 @@ https://w3id.org/linkml/String[`string`]
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -201,6 +235,9 @@ https://w3id.org/linkml/String[`string`]
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -229,6 +266,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | https://w3id.org/linkml/String[`string`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -254,6 +294,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -281,6 +324,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | xref::class/Name.adoc[`Name`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -292,20 +338,91 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 
 
+//[discrete]
+[#normalValue]
+=== `normalValue`
++++The normal value of active power limit. The attribute shall be a positive value or zero.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ActivePowerLimit.normalValue`
+| Cardinality
+| 0..1
+| Type
+| xref::class/ActivePower.adoc[`ActivePower`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.normalValue,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#OperationalLimitSet]
+=== `OperationalLimitSet`
++++The limit set to which the limit values belong.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:OperationalLimit.OperationalLimitSet`
+| Cardinality
+| 0..1
+| Type
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+
+| Inherited from
+| xref::class/OperationalLimit.adoc[`OperationalLimit`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.OperationalLimitSet,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#value]
+=== `value`
++++Value of active power limit. The attribute shall be a positive value or zero.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ActivePowerLimit.value`
+| Cardinality
+| 0..1
+| Type
+| xref::class/ActivePower.adoc[`ActivePower`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.value,&#10548;>>
+--
+////
+
+
 
 
 
 == Used by
 
 
-[cols="1,1",width=65%]
-|===
-| Source class | Slot name
-
-
-
-| xref::class/Name.adoc[`Name`] | xref::class/Name.adoc#IdentifiedObject[`IdentifiedObject`]
-
-
-|===
-
+This class is not used by any other classes as the range of a slot.

@@ -1,8 +1,8 @@
-= `PowerSystemResource`
+= `Bay`
 :toclevels: 4
 
 
-+++A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.+++
++++A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.  A bay typically represents a physical grouping related to modularization of equipment.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +11,7 @@
 | Class
 
 | URI
-| `cim:PowerSystemResource`
+| `cim:Bay`
 
 
 | CIM standard (perspective)
@@ -23,10 +23,10 @@
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** *`PowerSystemResource`*
- *** xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
- *** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
- *** xref::class/Equipment.adoc[`Equipment`]
+** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+*** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+**** xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+***** *`Bay`*
 
 
 == Slots
@@ -41,7 +41,43 @@ vars: {
     pad: 20
   }
 }
-PowerSystemResource {
+Bay {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Substation {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+VoltageLevel {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Equipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+ConnectivityNode {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -69,10 +105,22 @@ Name {
 
 
 
-PowerSystemResource -> PSRType: PSRType
+Bay -> Substation: Substation
 
 
-PowerSystemResource -> Name: Names
+Bay -> VoltageLevel: VoltageLevel
+
+
+Bay -> Equipment: Equipments
+
+
+Bay -> ConnectivityNode: ConnectivityNodes
+
+
+Bay -> PSRType: PSRType
+
+
+Bay -> Name: Names
 
 
 legend: "" {
@@ -128,12 +176,47 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<Substation,`Substation`>>
+//| [[slots_table.Substation]]<<Substation,`Substation`>>
+| 0..1 +
+xref::class/Substation.adoc[`Substation`]
+| +++Substation containing the bay.+++
+| _n/a_
+
+| <<VoltageLevel,`VoltageLevel`>>
+//| [[slots_table.VoltageLevel]]<<VoltageLevel,`VoltageLevel`>>
+| 0..1 +
+xref::class/VoltageLevel.adoc[`VoltageLevel`]
+| +++The voltage level containing this bay.+++
+| _n/a_
+
+| <<busBarConfiguration,`busBarConfiguration`>>
+//| [[slots_table.busBarConfiguration]]<<busBarConfiguration,`busBarConfiguration`>>
+| 0..1 +
+xref::enumeration/BusbarConfiguration.adoc[`BusbarConfiguration`]
+| +++Busbar configuration.+++
+| _n/a_
+
+| <<Equipments,`Equipments`>>
+//| [[slots_table.Equipments]]<<Equipments,`Equipments`>>
+| 0..* +
+xref::class/Equipment.adoc[`Equipment`]
+| +++Contained equipment.+++
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+
+| <<ConnectivityNodes,`ConnectivityNodes`>>
+//| [[slots_table.ConnectivityNodes]]<<ConnectivityNodes,`ConnectivityNodes`>>
+| 0..* +
+xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
+| +++Connectivity nodes which belong to this connectivity node container.+++
+| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+
 | <<PSRType,`PSRType`>>
 //| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
 | 0..1 +
 xref::class/PSRType.adoc[`PSRType`]
 | +++Custom classification for this power system resource.+++
-| _n/a_
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -175,6 +258,61 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
+[#busBarConfiguration]
+=== `busBarConfiguration`
++++Busbar configuration.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Bay.busBarConfiguration`
+| Cardinality
+| 0..1
+| Type
+| xref::enumeration/BusbarConfiguration.adoc[`BusbarConfiguration`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.busBarConfiguration,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#ConnectivityNodes]
+=== `ConnectivityNodes`
++++Connectivity nodes which belong to this connectivity node container.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ConnectivityNodeContainer.ConnectivityNodes`
+| Cardinality
+| 0..*
+| Type
+| xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
+
+| Inherited from
+| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.ConnectivityNodes,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
@@ -199,6 +337,35 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Equipments]
+=== `Equipments`
++++Contained equipment.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:EquipmentContainer.Equipments`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Equipment.adoc[`Equipment`]
+
+| Inherited from
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Equipments,&#10548;>>
 --
 ////
 
@@ -335,6 +502,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | xref::class/PSRType.adoc[`PSRType`]
 
+| Inherited from
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+
 
 |===
 
@@ -342,6 +512,58 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [.text-left]
 --
 <<slots_table.PSRType,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Substation]
+=== `Substation`
++++Substation containing the bay.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Bay.Substation`
+| Cardinality
+| 0..1
+| Type
+| xref::class/Substation.adoc[`Substation`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Substation,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#VoltageLevel]
+=== `VoltageLevel`
++++The voltage level containing this bay.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Bay.VoltageLevel`
+| Cardinality
+| 0..1
+| Type
+| xref::class/VoltageLevel.adoc[`VoltageLevel`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.VoltageLevel,&#10548;>>
 --
 ////
 
@@ -358,7 +580,11 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/PSRType.adoc[`PSRType`] | xref::class/PSRType.adoc#PowerSystemResources[`PowerSystemResources`]
+| xref::class/Substation.adoc[`Substation`] | xref::class/Substation.adoc#Bays[`Bays`]
+
+
+
+| xref::class/VoltageLevel.adoc[`VoltageLevel`] | xref::class/VoltageLevel.adoc#Bays[`Bays`]
 
 
 |===

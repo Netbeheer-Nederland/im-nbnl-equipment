@@ -75,6 +75,24 @@ VoltageLevel {
 
 
 
+ConductingEquipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+TransformerEnd {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
 Name {
   style {
     fill: "#eccfcb"
@@ -87,6 +105,12 @@ Name {
 
 
 BaseVoltage -> VoltageLevel: VoltageLevel
+
+
+BaseVoltage -> ConductingEquipment: ConductingEquipment
+
+
+BaseVoltage -> TransformerEnd: TransformerEnds
 
 
 BaseVoltage -> Name: Names
@@ -145,6 +169,20 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<ConductingEquipment,`ConductingEquipment`>>
+//| [[slots_table.ConductingEquipment]]<<ConductingEquipment,`ConductingEquipment`>>
+| 0..* +
+xref::class/ConductingEquipment.adoc[`ConductingEquipment`]
+| +++All conducting equipment with this base voltage.  Use only when there is no voltage level container used and only one base...+++
+| _n/a_
+
+| <<TransformerEnds,`TransformerEnds`>>
+//| [[slots_table.TransformerEnds]]<<TransformerEnds,`TransformerEnds`>>
+| 0..* +
+xref::class/TransformerEnd.adoc[`TransformerEnd`]
+| +++Transformer ends at the base voltage.  This is essential for PU calculation.+++
+| _n/a_
+
 | <<VoltageLevel,`VoltageLevel`>>
 //| [[slots_table.VoltageLevel]]<<VoltageLevel,`VoltageLevel`>>
 | 0..* +
@@ -196,6 +234,32 @@ https://w3id.org/linkml/String[`string`]
 |===
 
 '''
+
+
+//[discrete]
+[#ConductingEquipment]
+=== `ConductingEquipment`
++++All conducting equipment with this base voltage.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:BaseVoltage.ConductingEquipment`
+| Cardinality
+| 0..*
+| Type
+| xref::class/ConductingEquipment.adoc[`ConductingEquipment`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.ConductingEquipment,&#10548;>>
+--
+////
 
 
 //[discrete]
@@ -371,6 +435,32 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
+[#TransformerEnds]
+=== `TransformerEnds`
++++Transformer ends at the base voltage.  This is essential for PU calculation.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:BaseVoltage.TransformerEnds`
+| Cardinality
+| 0..*
+| Type
+| xref::class/TransformerEnd.adoc[`TransformerEnd`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.TransformerEnds,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#VoltageLevel]
 === `VoltageLevel`
 +++The voltage levels having this base voltage.+++
@@ -405,6 +495,14 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [cols="1,1",width=65%]
 |===
 | Source class | Slot name
+
+
+
+| xref::class/ConductingEquipment.adoc[`ConductingEquipment`] | xref::class/ConductingEquipment.adoc#BaseVoltage[`BaseVoltage`]
+
+
+
+| xref::class/TransformerEnd.adoc[`TransformerEnd`] | xref::class/TransformerEnd.adoc#BaseVoltage[`BaseVoltage`]
 
 
 

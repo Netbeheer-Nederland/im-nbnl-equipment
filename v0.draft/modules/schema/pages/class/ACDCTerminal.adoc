@@ -1,8 +1,8 @@
-= `IdentifiedObject`
+= `ACDCTerminal`
 :toclevels: 4
 
 
-+++This is a root class to provide common identification for all classes needing identification and naming attributes.+++
++++An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +11,7 @@
 | Class
 
 | URI
-| `cim:IdentifiedObject`
+| `cim:ACDCTerminal`
 
 
 | CIM standard (perspective)
@@ -22,17 +22,9 @@
 |===
 
 == Class hierarchy
-* *`IdentifiedObject`*
- ** xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
- ** xref::class/BaseVoltage.adoc[`BaseVoltage`]
- ** xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
- ** xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
- ** xref::class/OperationalLimit.adoc[`OperationalLimit`]
- ** xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
- ** xref::class/PSRType.adoc[`PSRType`]
- ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
- ** xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
- ** xref::class/TransformerEnd.adoc[`TransformerEnd`]
+* xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+** *`ACDCTerminal`*
+ *** xref::class/Terminal.adoc[`Terminal`]
 
 
 == Slots
@@ -47,7 +39,16 @@ vars: {
     pad: 20
   }
 }
-IdentifiedObject {
+ACDCTerminal {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+OperationalLimitSet {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -66,7 +67,10 @@ Name {
 
 
 
-IdentifiedObject -> Name: Names
+ACDCTerminal -> OperationalLimitSet: OperationalLimitSet
+
+
+ACDCTerminal -> Name: Names
 
 
 legend: "" {
@@ -122,43 +126,91 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<OperationalLimitSet,`OperationalLimitSet`>>
+//| [[slots_table.OperationalLimitSet]]<<OperationalLimitSet,`OperationalLimitSet`>>
+| 0..* +
+xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+| +++The operational limit sets at the terminal.+++
+| _n/a_
+
+| <<connected,`connected`>>
+//| [[slots_table.connected]]<<connected,`connected`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the...+++
+| _n/a_
+
+| <<sequenceNumber,`sequenceNumber`>>
+//| [[slots_table.sequenceNumber]]<<sequenceNumber,`sequenceNumber`>>
+| 0..1 +
+https://w3id.org/linkml/Integer[`integer`]
+| +++The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts...+++
+| _n/a_
+
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
 | 0..* +
 xref::class/Name.adoc[`Name`]
 | +++All names of this identified object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 //| [[slots_table.europeanArticleNumberEAN]]<<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The name is any free human readable and possibly non unique text naming the object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
+
+
+//[discrete]
+[#connected]
+=== `connected`
++++The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not. 
+In a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ACDCTerminal.connected`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.connected,&#10548;>>
+--
+////
 
 
 //[discrete]
@@ -175,6 +227,9 @@ https://w3id.org/linkml/String[`string`]
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -201,6 +256,9 @@ https://w3id.org/linkml/String[`string`]
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -229,6 +287,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | https://w3id.org/linkml/String[`string`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -254,6 +315,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -281,6 +345,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | xref::class/Name.adoc[`Name`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -288,6 +355,58 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [.text-left]
 --
 <<slots_table.Names,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#OperationalLimitSet]
+=== `OperationalLimitSet`
++++The operational limit sets at the terminal.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ACDCTerminal.OperationalLimitSet`
+| Cardinality
+| 0..*
+| Type
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.OperationalLimitSet,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#sequenceNumber]
+=== `sequenceNumber`
++++The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ACDCTerminal.sequenceNumber`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Integer[`integer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.sequenceNumber,&#10548;>>
 --
 ////
 
@@ -304,7 +423,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/Name.adoc[`Name`] | xref::class/Name.adoc#IdentifiedObject[`IdentifiedObject`]
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`] | xref::class/OperationalLimitSet.adoc#Terminal[`Terminal`]
 
 
 |===

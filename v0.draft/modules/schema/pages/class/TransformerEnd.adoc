@@ -1,8 +1,8 @@
-= `IdentifiedObject`
+= `TransformerEnd`
 :toclevels: 4
 
 
-+++This is a root class to provide common identification for all classes needing identification and naming attributes.+++
++++A conducting connection point of a power transformer. It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +11,7 @@
 | Class
 
 | URI
-| `cim:IdentifiedObject`
+| `cim:TransformerEnd`
 
 
 | CIM standard (perspective)
@@ -22,17 +22,9 @@
 |===
 
 == Class hierarchy
-* *`IdentifiedObject`*
- ** xref::class/ACDCTerminal.adoc[`ACDCTerminal`]
- ** xref::class/BaseVoltage.adoc[`BaseVoltage`]
- ** xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
- ** xref::class/GeographicalRegion.adoc[`GeographicalRegion`]
- ** xref::class/OperationalLimit.adoc[`OperationalLimit`]
- ** xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
- ** xref::class/PSRType.adoc[`PSRType`]
- ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
- ** xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
- ** xref::class/TransformerEnd.adoc[`TransformerEnd`]
+* xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+** *`TransformerEnd`*
+ *** xref::class/PowerTransformerEnd.adoc[`PowerTransformerEnd`]
 
 
 == Slots
@@ -47,7 +39,25 @@ vars: {
     pad: 20
   }
 }
-IdentifiedObject {
+TransformerEnd {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+BaseVoltage {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Terminal {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -66,7 +76,13 @@ Name {
 
 
 
-IdentifiedObject -> Name: Names
+TransformerEnd -> BaseVoltage: BaseVoltage
+
+
+TransformerEnd -> Terminal: Terminal
+
+
+TransformerEnd -> Name: Names
 
 
 legend: "" {
@@ -122,43 +138,90 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<BaseVoltage,`BaseVoltage`>>
+//| [[slots_table.BaseVoltage]]<<BaseVoltage,`BaseVoltage`>>
+| 0..1 +
+xref::class/BaseVoltage.adoc[`BaseVoltage`]
+| +++Base voltage of the transformer end.  This is essential for PU calculation.+++
+| _n/a_
+
+| <<Terminal,`Terminal`>>
+//| [[slots_table.Terminal]]<<Terminal,`Terminal`>>
+| 0..1 +
+xref::class/Terminal.adoc[`Terminal`]
+| +++Terminal of the power transformer to which this transformer end belongs.+++
+| _n/a_
+
+| <<endNumber,`endNumber`>>
+//| [[slots_table.endNumber]]<<endNumber,`endNumber`>>
+| 0..1 +
+https://w3id.org/linkml/Integer[`integer`]
+| +++Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock...+++
+| _n/a_
+
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
 | 0..* +
 xref::class/Name.adoc[`Name`]
 | +++All names of this identified object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<description,`description`>>
 //| [[slots_table.description]]<<description,`description`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 //| [[slots_table.europeanArticleNumberEAN]]<<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<mRID,`mRID`>>
 //| [[slots_table.mRID]]<<mRID,`mRID`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is...+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<name,`name`>>
 //| [[slots_table.name]]<<name,`name`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
 | +++The name is any free human readable and possibly non unique text naming the object.+++
-| _n/a_
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 |===
 
 '''
+
+
+//[discrete]
+[#BaseVoltage]
+=== `BaseVoltage`
++++Base voltage of the transformer end.  This is essential for PU calculation.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:TransformerEnd.BaseVoltage`
+| Cardinality
+| 0..1
+| Type
+| xref::class/BaseVoltage.adoc[`BaseVoltage`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.BaseVoltage,&#10548;>>
+--
+////
 
 
 //[discrete]
@@ -176,6 +239,9 @@ https://w3id.org/linkml/String[`string`]
 | Type
 | https://w3id.org/linkml/String[`string`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -183,6 +249,32 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#endNumber]
+=== `endNumber`
++++Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.  Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:TransformerEnd.endNumber`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Integer[`integer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.endNumber,&#10548;>>
 --
 ////
 
@@ -201,6 +293,9 @@ https://w3id.org/linkml/String[`string`]
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -229,6 +324,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | https://w3id.org/linkml/String[`string`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -254,6 +352,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | 0..1
 | Type
 | https://w3id.org/linkml/String[`string`]
+
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 
 |===
@@ -281,6 +382,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | Type
 | xref::class/Name.adoc[`Name`]
 
+| Inherited from
+| xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
+
 
 |===
 
@@ -288,6 +392,32 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 [.text-left]
 --
 <<slots_table.Names,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Terminal]
+=== `Terminal`
++++Terminal of the power transformer to which this transformer end belongs.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:TransformerEnd.Terminal`
+| Cardinality
+| 0..1
+| Type
+| xref::class/Terminal.adoc[`Terminal`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Terminal,&#10548;>>
 --
 ////
 
@@ -304,7 +434,11 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/Name.adoc[`Name`] | xref::class/Name.adoc#IdentifiedObject[`IdentifiedObject`]
+| xref::class/BaseVoltage.adoc[`BaseVoltage`] | xref::class/BaseVoltage.adoc#TransformerEnds[`TransformerEnds`]
+
+
+
+| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#TransformerEnd[`TransformerEnd`]
 
 
 |===

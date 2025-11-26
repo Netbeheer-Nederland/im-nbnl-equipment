@@ -1,8 +1,8 @@
-= `Substation`
+= `ConductingEquipment`
 :toclevels: 4
 
 
-+++A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.+++
++++The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.+++
 
 
 [cols="h,3",width=65%]
@@ -11,28 +11,11 @@
 | Class
 
 | URI
-| `cim:Substation`
+| `cim:ConductingEquipment`
 
 
 | CIM standard (perspective)
 | IEC61970 (Grid)
-
-
-| Glossary mappings
-a|
-
-[cols="1,5"]
-!===
-! Mapping type ! Term
-
-! http://www.w3.org/2004/02/skos/core#narrowMatch[`skos:narrowMatch`]
-a! 
-
-https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/knooppunt[`nbnl:knooppunt`]
-
-
-
-!===
 
 
 
@@ -41,9 +24,11 @@ https://begrippen.netbeheernederland.nl/energiesysteembeheer/nl/page/knooppunt[`
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 ** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
-*** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
-**** xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
-***** *`Substation`*
+*** xref::class/Equipment.adoc[`Equipment`]
+**** *`ConductingEquipment`*
+ ***** xref::class/EnergyConnection.adoc[`EnergyConnection`]
+ ***** xref::class/PowerTransformer.adoc[`PowerTransformer`]
+ ***** xref::class/Switch.adoc[`Switch`]
 
 
 == Slots
@@ -58,7 +43,7 @@ vars: {
     pad: 20
   }
 }
-Substation {
+ConductingEquipment {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -67,7 +52,7 @@ Substation {
 
 
 
-VoltageLevel {
+BaseVoltage {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -76,7 +61,7 @@ VoltageLevel {
 
 
 
-SubGeographicalRegion {
+Terminal {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -85,7 +70,7 @@ SubGeographicalRegion {
 
 
 
-Bay {
+OperationalLimitSet {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -94,43 +79,7 @@ Bay {
 
 
 
-Feeder {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-Feeder {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-Feeder {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-Equipment {
-  style {
-    fill: "#eccfcb"
-    shadow: true
-  }
-}
-
-
-
-ConnectivityNode {
+EquipmentContainer {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -158,34 +107,22 @@ Name {
 
 
 
-Substation -> VoltageLevel: VoltageLevels
+ConductingEquipment -> BaseVoltage: BaseVoltage
 
 
-Substation -> SubGeographicalRegion: Region
+ConductingEquipment -> Terminal: Terminals
 
 
-Substation -> Bay: Bays
+ConductingEquipment -> OperationalLimitSet: OperationalLimitSet
 
 
-Substation -> Feeder: NormalEnergizedFeeder
+ConductingEquipment -> EquipmentContainer: EquipmentContainer
 
 
-Substation -> Feeder: NamingFeeder
+ConductingEquipment -> PSRType: PSRType
 
 
-Substation -> Feeder: NormalEnergizingFeeder
-
-
-Substation -> Equipment: Equipments
-
-
-Substation -> ConnectivityNode: ConnectivityNodes
-
-
-Substation -> PSRType: PSRType
-
-
-Substation -> Name: Names
+ConductingEquipment -> Name: Names
 
 
 legend: "" {
@@ -241,61 +178,61 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
-| <<Bays,`Bays`>>
-//| [[slots_table.Bays]]<<Bays,`Bays`>>
-| 0..* +
-xref::class/Bay.adoc[`Bay`]
-| +++Bays contained in the substation.+++
-| _n/a_
-
-| <<NamingFeeder,`NamingFeeder`>>
-//| [[slots_table.NamingFeeder]]<<NamingFeeder,`NamingFeeder`>>
+| <<BaseVoltage,`BaseVoltage`>>
+//| [[slots_table.BaseVoltage]]<<BaseVoltage,`BaseVoltage`>>
 | 0..1 +
-xref::class/Feeder.adoc[`Feeder`]
-| +++The primary feeder that normally energizes the secondary substation. Used for naming purposes.  Either this association or...+++
+xref::class/BaseVoltage.adoc[`BaseVoltage`]
+| +++Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage...+++
 | _n/a_
 
-| <<NormalEnergizedFeeder,`NormalEnergizedFeeder`>>
-//| [[slots_table.NormalEnergizedFeeder]]<<NormalEnergizedFeeder,`NormalEnergizedFeeder`>>
+| <<Terminals,`Terminals`>>
+//| [[slots_table.Terminals]]<<Terminals,`Terminals`>>
 | 0..* +
-xref::class/Feeder.adoc[`Feeder`]
-| +++The normal energized feeders of the substation. Also used for naming purposes.+++
+xref::class/Terminal.adoc[`Terminal`]
+| +++Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or...+++
 | _n/a_
 
-| <<NormalEnergizingFeeder,`NormalEnergizingFeeder`>>
-//| [[slots_table.NormalEnergizingFeeder]]<<NormalEnergizingFeeder,`NormalEnergizingFeeder`>>
-| 0..* +
-xref::class/Feeder.adoc[`Feeder`]
-| +++The feeders that potentially energize  the downstream substation.  Should be consistent with the associations that describe...+++
-| _n/a_
-
-| <<Region,`Region`>>
-//| [[slots_table.Region]]<<Region,`Region`>>
+| <<EquipmentContainer,`EquipmentContainer`>>
+//| [[slots_table.EquipmentContainer]]<<EquipmentContainer,`EquipmentContainer`>>
 | 0..1 +
-xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
-| +++The SubGeographicalRegion containing the substation.+++
-| _n/a_
+xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+| +++Container of this equipment.+++
+| xref::class/Equipment.adoc[`Equipment`]
 
-| <<VoltageLevels,`VoltageLevels`>>
-//| [[slots_table.VoltageLevels]]<<VoltageLevels,`VoltageLevels`>>
+| <<OperationalLimitSet,`OperationalLimitSet`>>
+//| [[slots_table.OperationalLimitSet]]<<OperationalLimitSet,`OperationalLimitSet`>>
 | 0..* +
-xref::class/VoltageLevel.adoc[`VoltageLevel`]
-| +++The voltage levels within this substation.+++
-| _n/a_
+xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+| +++The operational limit sets associated with this equipment.+++
+| xref::class/Equipment.adoc[`Equipment`]
 
-| <<Equipments,`Equipments`>>
-//| [[slots_table.Equipments]]<<Equipments,`Equipments`>>
-| 0..* +
-xref::class/Equipment.adoc[`Equipment`]
-| +++Contained equipment.+++
-| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+| <<aggregate,`aggregate`>>
+//| [[slots_table.aggregate]]<<aggregate,`aggregate`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases...+++
+| xref::class/Equipment.adoc[`Equipment`]
 
-| <<ConnectivityNodes,`ConnectivityNodes`>>
-//| [[slots_table.ConnectivityNodes]]<<ConnectivityNodes,`ConnectivityNodes`>>
-| 0..* +
-xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
-| +++Connectivity nodes which belong to this connectivity node container.+++
-| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+| <<inService,`inService`>>
+//| [[slots_table.inService]]<<inService,`inService`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines...+++
+| xref::class/Equipment.adoc[`Equipment`]
+
+| <<networkAnalysisEnabled,`networkAnalysisEnabled`>>
+//| [[slots_table.networkAnalysisEnabled]]<<networkAnalysisEnabled,`networkAnalysisEnabled`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.+++
+| xref::class/Equipment.adoc[`Equipment`]
+
+| <<normallyInService,`normallyInService`>>
+//| [[slots_table.normallyInService]]<<normallyInService,`normallyInService`>>
+| 0..1 +
+https://w3id.org/linkml/Boolean[`boolean`]
+| +++Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for...+++
+| xref::class/Equipment.adoc[`Equipment`]
 
 | <<PSRType,`PSRType`>>
 //| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
@@ -344,19 +281,23 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#Bays]
-=== `Bays`
-+++Bays contained in the substation.+++
+[#aggregate]
+=== `aggregate`
++++The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to “true” the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  
+The attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:Substation.Bays`
+| `cim:Equipment.aggregate`
 | Cardinality
-| 0..*
+| 0..1
 | Type
-| xref::class/Bay.adoc[`Bay`]
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+| Inherited from
+| xref::class/Equipment.adoc[`Equipment`]
 
 
 |===
@@ -364,28 +305,25 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.Bays,&#10548;>>
+<<slots_table.aggregate,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#ConnectivityNodes]
-=== `ConnectivityNodes`
-+++Connectivity nodes which belong to this connectivity node container.+++
+[#BaseVoltage]
+=== `BaseVoltage`
++++Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:ConnectivityNodeContainer.ConnectivityNodes`
+| `cim:ConductingEquipment.BaseVoltage`
 | Cardinality
-| 0..*
+| 0..1
 | Type
-| xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
-
-| Inherited from
-| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+| xref::class/BaseVoltage.adoc[`BaseVoltage`]
 
 
 |===
@@ -393,7 +331,7 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.ConnectivityNodes,&#10548;>>
+<<slots_table.BaseVoltage,&#10548;>>
 --
 ////
 
@@ -428,22 +366,22 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
-[#Equipments]
-=== `Equipments`
-+++Contained equipment.+++
+[#EquipmentContainer]
+=== `EquipmentContainer`
++++Container of this equipment.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:EquipmentContainer.Equipments`
+| `cim:Equipment.EquipmentContainer`
 | Cardinality
-| 0..*
+| 0..1
 | Type
-| xref::class/Equipment.adoc[`Equipment`]
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
 
 | Inherited from
-| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+| xref::class/Equipment.adoc[`Equipment`]
 
 
 |===
@@ -451,7 +389,7 @@ https://w3id.org/linkml/String[`string`]
 ////
 [.text-left]
 --
-<<slots_table.Equipments,&#10548;>>
+<<slots_table.EquipmentContainer,&#10548;>>
 --
 ////
 
@@ -481,6 +419,35 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.europeanArticleNumberEAN,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#inService]
+=== `inService`
++++Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Equipment.inService`
+| Cardinality
+| 0..1
+| Type
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+| Inherited from
+| xref::class/Equipment.adoc[`Equipment`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.inService,&#10548;>>
 --
 ////
 
@@ -574,19 +541,22 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#NamingFeeder]
-=== `NamingFeeder`
-+++The primary feeder that normally energizes the secondary substation. Used for naming purposes.  Either this association or the substation to subgeographical region should be used for hierarchical containment specification.+++
+[#networkAnalysisEnabled]
+=== `networkAnalysisEnabled`
++++The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:Substation.NamingFeeder`
+| `cim:Equipment.networkAnalysisEnabled`
 | Cardinality
 | 0..1
 | Type
-| xref::class/Feeder.adoc[`Feeder`]
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+| Inherited from
+| xref::class/Equipment.adoc[`Equipment`]
 
 
 |===
@@ -594,25 +564,28 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.NamingFeeder,&#10548;>>
+<<slots_table.networkAnalysisEnabled,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#NormalEnergizedFeeder]
-=== `NormalEnergizedFeeder`
-+++The normal energized feeders of the substation. Also used for naming purposes.+++
+[#normallyInService]
+=== `normallyInService`
++++Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:Substation.NormalEnergizedFeeder`
+| `cim:Equipment.normallyInService`
 | Cardinality
-| 0..*
+| 0..1
 | Type
-| xref::class/Feeder.adoc[`Feeder`]
+| https://w3id.org/linkml/Boolean[`boolean`]
+
+| Inherited from
+| xref::class/Equipment.adoc[`Equipment`]
 
 
 |===
@@ -620,25 +593,28 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.NormalEnergizedFeeder,&#10548;>>
+<<slots_table.normallyInService,&#10548;>>
 --
 ////
 
 
 //[discrete]
-[#NormalEnergizingFeeder]
-=== `NormalEnergizingFeeder`
-+++The feeders that potentially energize  the downstream substation.  Should be consistent with the associations that describe the naming hierarchy.+++
+[#OperationalLimitSet]
+=== `OperationalLimitSet`
++++The operational limit sets associated with this equipment.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:Substation.NormalEnergizingFeeder`
+| `cim:Equipment.OperationalLimitSet`
 | Cardinality
 | 0..*
 | Type
-| xref::class/Feeder.adoc[`Feeder`]
+| xref::class/OperationalLimitSet.adoc[`OperationalLimitSet`]
+
+| Inherited from
+| xref::class/Equipment.adoc[`Equipment`]
 
 
 |===
@@ -646,7 +622,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.NormalEnergizingFeeder,&#10548;>>
+<<slots_table.OperationalLimitSet,&#10548;>>
 --
 ////
 
@@ -681,45 +657,19 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
-[#Region]
-=== `Region`
-+++The SubGeographicalRegion containing the substation.+++
+[#Terminals]
+=== `Terminals`
++++Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.+++
 
 
 [cols="h,4",width=65%]
 |===
 | URI
-| `cim:Substation.Region`
-| Cardinality
-| 0..1
-| Type
-| xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`]
-
-
-|===
-
-////
-[.text-left]
---
-<<slots_table.Region,&#10548;>>
---
-////
-
-
-//[discrete]
-[#VoltageLevels]
-=== `VoltageLevels`
-+++The voltage levels within this substation.+++
-
-
-[cols="h,4",width=65%]
-|===
-| URI
-| `cim:Substation.VoltageLevels`
+| `cim:ConductingEquipment.Terminals`
 | Cardinality
 | 0..*
 | Type
-| xref::class/VoltageLevel.adoc[`VoltageLevel`]
+| xref::class/Terminal.adoc[`Terminal`]
 
 
 |===
@@ -727,7 +677,7 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 ////
 [.text-left]
 --
-<<slots_table.VoltageLevels,&#10548;>>
+<<slots_table.Terminals,&#10548;>>
 --
 ////
 
@@ -744,19 +694,11 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/Bay.adoc[`Bay`] | xref::class/Bay.adoc#Substation[`Substation`]
+| xref::class/BaseVoltage.adoc[`BaseVoltage`] | xref::class/BaseVoltage.adoc#ConductingEquipment[`ConductingEquipment`]
 
 
 
-| xref::class/Feeder.adoc[`Feeder`] | xref::class/Feeder.adoc#NormalEnergizedSubstation[`NormalEnergizedSubstation`]
-
-
-
-| xref::class/SubGeographicalRegion.adoc[`SubGeographicalRegion`] | xref::class/SubGeographicalRegion.adoc#Substations[`Substations`]
-
-
-
-| xref::class/VoltageLevel.adoc[`VoltageLevel`] | xref::class/VoltageLevel.adoc#Substation[`Substation`]
+| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#ConductingEquipment[`ConductingEquipment`]
 
 
 |===

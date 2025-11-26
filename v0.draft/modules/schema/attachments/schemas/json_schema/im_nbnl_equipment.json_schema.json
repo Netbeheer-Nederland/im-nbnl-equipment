@@ -1,13 +1,202 @@
 {
     "$defs": {
-        "BaseVoltage": {
+        "ACDCTerminal": {
             "additionalProperties": false,
-            "description": "Defines a system base voltage which is referenced.",
+            "description": "An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.",
             "properties": {
                 "Names": {
                     "description": "All names of this identified object.",
                     "items": {
                         "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets at the terminal.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "connected": {
+                    "description": "The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not. \r\nIn a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.\r\n",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sequenceNumber": {
+                    "description": "The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the \"starting point\" for a two terminal branch.\r\n",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ACDCTerminal",
+            "type": "object"
+        },
+        "ActivePower": {
+            "additionalProperties": false,
+            "description": "Product of RMS value of the voltage and the RMS value of the in-phase component of the current.",
+            "properties": {
+                "multiplier": {
+                    "$ref": "#/$defs/UnitMultiplier"
+                },
+                "unit": {
+                    "$ref": "#/$defs/UnitSymbol"
+                },
+                "value": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ActivePower",
+            "type": "object"
+        },
+        "ActivePowerLimit": {
+            "additionalProperties": false,
+            "description": "Limit on active power flow.",
+            "properties": {
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OperationalLimitSet"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The limit set to which the limit values belong."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "normalValue": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ActivePower"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The normal value of active power limit. The attribute shall be a positive value or zero."
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ActivePower"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Value of active power limit. The attribute shall be a positive value or zero."
+                }
+            },
+            "title": "ActivePowerLimit",
+            "type": "object"
+        },
+        "BaseVoltage": {
+            "additionalProperties": false,
+            "description": "Defines a system base voltage which is referenced.",
+            "properties": {
+                "ConductingEquipment": {
+                    "description": "All conducting equipment with this base voltage.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.",
+                    "items": {
+                        "$ref": "#/$defs/ConductingEquipment"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "TransformerEnds": {
+                    "description": "Transformer ends at the base voltage.  This is essential for PU calculation.",
+                    "items": {
+                        "$ref": "#/$defs/TransformerEnd"
                     },
                     "type": [
                         "array",
@@ -67,6 +256,109 @@
             "title": "BaseVoltage",
             "type": "object"
         },
+        "Bay": {
+            "additionalProperties": false,
+            "description": "A collection of power system resources (within a given substation) including conducting equipment, protection relays, measurements, and telemetry.  A bay typically represents a physical grouping related to modularization of equipment.",
+            "properties": {
+                "ConnectivityNodes": {
+                    "description": "Connectivity nodes which belong to this connectivity node container.",
+                    "items": {
+                        "$ref": "#/$defs/ConnectivityNode"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Equipments": {
+                    "description": "Contained equipment.",
+                    "items": {
+                        "$ref": "#/$defs/Equipment"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "Substation": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Substation"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Substation containing the bay."
+                },
+                "VoltageLevel": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VoltageLevel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The voltage level containing this bay."
+                },
+                "busBarConfiguration": {
+                    "$ref": "#/$defs/BusbarConfiguration",
+                    "description": "Busbar configuration."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Bay",
+            "type": "object"
+        },
         "BoundaryPoint": {
             "additionalProperties": false,
             "description": "Designates a connection point at which one or more model authority sets shall connect to. The location of the connection point as well as other properties are agreed between organisations responsible for the interconnection, hence all attributes of the class represent this agreement.  It is primarily used in a boundary model authority set which can contain one or many BoundaryPoint-s among other Equipment-s and their connections.",
@@ -91,6 +383,17 @@
                         "array",
                         "null"
                     ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
                 },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
@@ -166,6 +469,144 @@
             "title": "BoundaryPoint",
             "type": "object"
         },
+        "BusbarConfiguration": {
+            "description": "Busbar layout for bay.",
+            "enum": [
+                "doubleBus",
+                "mainWithTransfer",
+                "ringBus",
+                "singleBus"
+            ],
+            "title": "BusbarConfiguration",
+            "type": "string"
+        },
+        "ConductingEquipment": {
+            "additionalProperties": false,
+            "description": "The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers."
+                },
+                "EquipmentContainer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EquipmentContainer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Container of this equipment."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets associated with this equipment.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "Terminals": {
+                    "description": "Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "aggregate": {
+                    "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "inService": {
+                    "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "networkAnalysisEnabled": {
+                    "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normallyInService": {
+                    "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ConductingEquipment",
+            "type": "object"
+        },
         "ConnectivityNode": {
             "additionalProperties": false,
             "description": "Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.",
@@ -196,6 +637,16 @@
                     "description": "All names of this identified object.",
                     "items": {
                         "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Terminals": {
+                    "description": "Terminals interconnected with zero impedance at a this connectivity node. ",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
                     },
                     "type": [
                         "array",
@@ -258,6 +709,17 @@
                         "null"
                     ]
                 },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
                     "type": [
@@ -290,6 +752,373 @@
             "title": "ConnectivityNodeContainer",
             "type": "object"
         },
+        "EnergyConnection": {
+            "additionalProperties": false,
+            "description": "A connection of energy generation or consumption on the power system model.",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers."
+                },
+                "EquipmentContainer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EquipmentContainer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Container of this equipment."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets associated with this equipment.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "Terminals": {
+                    "description": "Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "aggregate": {
+                    "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "inService": {
+                    "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "networkAnalysisEnabled": {
+                    "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normallyInService": {
+                    "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "title": "EnergyConnection",
+            "type": "object"
+        },
+        "EnergyConsumer": {
+            "additionalProperties": false,
+            "description": "Generic user of energy - a  point of consumption on the power system model.\r\nEnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers."
+                },
+                "EquipmentContainer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EquipmentContainer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Container of this equipment."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets associated with this equipment.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "Terminals": {
+                    "description": "Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "aggregate": {
+                    "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "customerCount": {
+                    "description": "Number of individual customers represented by this demand.\r\n",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "inService": {
+                    "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "networkAnalysisEnabled": {
+                    "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normallyInService": {
+                    "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "title": "EnergyConsumer",
+            "type": "object"
+        },
+        "Equipment": {
+            "additionalProperties": false,
+            "description": "The parts of a power system that are physical devices, electronic or mechanical.",
+            "properties": {
+                "EquipmentContainer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EquipmentContainer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Container of this equipment."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets associated with this equipment.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "aggregate": {
+                    "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "inService": {
+                    "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "networkAnalysisEnabled": {
+                    "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normallyInService": {
+                    "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Equipment",
+            "type": "object"
+        },
         "EquipmentContainer": {
             "additionalProperties": false,
             "description": "A modelling construct to provide a root class for containing equipment.",
@@ -298,6 +1127,16 @@
                     "description": "Connectivity nodes which belong to this connectivity node container.",
                     "items": {
                         "$ref": "#/$defs/ConnectivityNode"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Equipments": {
+                    "description": "Contained equipment.",
+                    "items": {
+                        "$ref": "#/$defs/Equipment"
                     },
                     "type": [
                         "array",
@@ -313,6 +1152,17 @@
                         "array",
                         "null"
                     ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
                 },
                 "description": {
                     "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
@@ -344,6 +1194,124 @@
                 }
             },
             "title": "EquipmentContainer",
+            "type": "object"
+        },
+        "Feeder": {
+            "additionalProperties": false,
+            "description": "A collection of equipment for organizational purposes, used for grouping distribution resources.\r\nThe organization a feeder does not necessarily reflect connectivity or current operation state.",
+            "properties": {
+                "ConnectivityNodes": {
+                    "description": "Connectivity nodes which belong to this connectivity node container.",
+                    "items": {
+                        "$ref": "#/$defs/ConnectivityNode"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Equipments": {
+                    "description": "Contained equipment.",
+                    "items": {
+                        "$ref": "#/$defs/Equipment"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "NamingSecondarySubstation": {
+                    "description": "The secondary substations that are normally energized from the feeder.  Used for naming purposes.   Should be consistent with the other associations for energizing terminal specification and the feeder energization specification.",
+                    "items": {
+                        "$ref": "#/$defs/Substation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "NormalEnergizedSubstation": {
+                    "description": "The substations that are normally energized by the feeder.",
+                    "items": {
+                        "$ref": "#/$defs/Substation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "NormalEnergizingSubstation": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Substation"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The substation that nominally energizes the feeder.  Also used for naming purposes."
+                },
+                "NormalHeadTerminal": {
+                    "description": "The normal head terminal or terminals of the feeder.",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
+                    },
+                    "type": "array"
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "NormalHeadTerminal"
+            ],
+            "title": "Feeder",
             "type": "object"
         },
         "GeographicalRegion": {
@@ -560,14 +1528,159 @@
             "title": "NameTypeAuthority",
             "type": "object"
         },
-        "PowerSystemResource": {
+        "OperationalLimit": {
             "additionalProperties": false,
-            "description": "A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.",
+            "description": "A value and normal value associated with a specific kind of limit. \r\nThe sub class value and normalValue attributes vary inversely to the associated OperationalLimitType.acceptableDuration (acceptableDuration for short).  \r\nIf a particular piece of equipment has multiple operational limits of the same kind (apparent power, current, etc.), the limit with the greatest acceptableDuration shall have the smallest limit value and the limit with the smallest acceptableDuration shall have the largest limit value.  Note: A large current can only be allowed to flow through a piece of equipment for a short duration without causing damage, but a lesser current can be allowed to flow for a longer duration.",
             "properties": {
                 "Names": {
                     "description": "All names of this identified object.",
                     "items": {
                         "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OperationalLimitSet"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The limit set to which the limit values belong."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "OperationalLimit",
+            "type": "object"
+        },
+        "OperationalLimitSet": {
+            "additionalProperties": false,
+            "description": "A set of limits associated with equipment.  Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.",
+            "properties": {
+                "Equipment": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Equipment"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The equipment to which the limit set applies."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitValue": {
+                    "description": "Values of equipment limits.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimit"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Terminal": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ACDCTerminal"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The terminal where the operational limit set apply."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "OperationalLimitSet",
+            "type": "object"
+        },
+        "PSRType": {
+            "additionalProperties": false,
+            "description": "Classifying instances of the same class, e.g. overhead and underground ACLineSegments. This classification mechanism is intended to provide flexibility outside the scope of this document, i.e. provide customisation that is non standard.",
+            "properties": {
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PowerSystemResources": {
+                    "description": "Power system resources classified with this power system resource type.",
+                    "items": {
+                        "$ref": "#/$defs/PowerSystemResource"
                     },
                     "type": [
                         "array",
@@ -603,7 +1716,287 @@
                     ]
                 }
             },
+            "title": "PSRType",
+            "type": "object"
+        },
+        "PowerSystemResource": {
+            "additionalProperties": false,
+            "description": "A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.",
+            "properties": {
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
             "title": "PowerSystemResource",
+            "type": "object"
+        },
+        "PowerTransformer": {
+            "additionalProperties": false,
+            "description": "An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits. Transformers can be used to control voltage and phase shift (active power flow).\r\nA power transformer may be composed of separate transformer tanks that need not be identical.\r\nA power transformer can be modelled with or without tanks and is intended for use in both balanced and unbalanced representations.   A power transformer typically has two terminals, but may have one (grounding), three or more terminals.\r\nThe inherited association ConductingEquipment.BaseVoltage should not be used.  The association from TransformerEnd to BaseVoltage should be used instead.",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers."
+                },
+                "EquipmentContainer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EquipmentContainer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Container of this equipment."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets associated with this equipment.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "PowerTransformerEnd": {
+                    "description": "The ends of this power transformer.",
+                    "items": {
+                        "$ref": "#/$defs/PowerTransformerEnd"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Terminals": {
+                    "description": "Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "aggregate": {
+                    "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "inService": {
+                    "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "networkAnalysisEnabled": {
+                    "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normallyInService": {
+                    "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "title": "PowerTransformer",
+            "type": "object"
+        },
+        "PowerTransformerEnd": {
+            "additionalProperties": false,
+            "description": "A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.\r\nThe impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows.\r\n1) for a two Terminal PowerTransformer the high voltage (TransformerEnd.endNumber=1) PowerTransformerEnd has non zero values on r, r0, x, and x0 while the low voltage (TransformerEnd.endNumber=2) PowerTransformerEnd has zero values for r, r0, x, and x0.  Parameters are always provided, even if the PowerTransformerEnds have the same rated voltage.  In this case, the parameters are provided at the PowerTransformerEnd which has TransformerEnd.endNumber equal to 1.\r\n2) for a three Terminal PowerTransformer the three PowerTransformerEnds represent a star equivalent with each leg in the star represented by r, r0, x, and x0 values.\r\n3) For a three Terminal transformer each PowerTransformerEnd shall have g, g0, b and b0 values corresponding to the no load losses distributed on the three PowerTransformerEnds. The total no load loss shunt impedances may also be placed at one of the PowerTransformerEnds, preferably the end numbered 1, having the shunt values on end 1.  This is the preferred way.\r\n4) for a PowerTransformer with more than three Terminals the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance or split the transformer into multiple PowerTransformers.\r\nEach PowerTransformerEnd must be contained by a PowerTransformer. Because a PowerTransformerEnd (or any other object) can not be contained by more than one parent, a PowerTransformerEnd can not have an association to an EquipmentContainer (Substation, VoltageLevel, etc).",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of the transformer end.  This is essential for PU calculation."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PowerTransformer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PowerTransformer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The power transformer of this power transformer end."
+                },
+                "Terminal": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Terminal"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Terminal of the power transformer to which this transformer end belongs."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "endNumber": {
+                    "description": "Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.  Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.\r\n",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "PowerTransformerEnd",
             "type": "object"
         },
         "SubGeographicalRegion": {
@@ -677,10 +2070,30 @@
             "additionalProperties": false,
             "description": "A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.",
             "properties": {
+                "Bays": {
+                    "description": "Bays contained in the substation.",
+                    "items": {
+                        "$ref": "#/$defs/Bay"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "ConnectivityNodes": {
                     "description": "Connectivity nodes which belong to this connectivity node container.",
                     "items": {
                         "$ref": "#/$defs/ConnectivityNode"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Equipments": {
+                    "description": "Contained equipment.",
+                    "items": {
+                        "$ref": "#/$defs/Equipment"
                     },
                     "type": [
                         "array",
@@ -696,6 +2109,48 @@
                         "array",
                         "null"
                     ]
+                },
+                "NamingFeeder": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Feeder"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The primary feeder that normally energizes the secondary substation. Used for naming purposes.  Either this association or the substation to subgeographical region should be used for hierarchical containment specification."
+                },
+                "NormalEnergizedFeeder": {
+                    "description": "The normal energized feeders of the substation. Also used for naming purposes.",
+                    "items": {
+                        "$ref": "#/$defs/Feeder"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "NormalEnergizingFeeder": {
+                    "description": "The feeders that potentially energize  the downstream substation.  Should be consistent with the associations that describe the naming hierarchy.",
+                    "items": {
+                        "$ref": "#/$defs/Feeder"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
                 },
                 "Region": {
                     "anyOf": [
@@ -748,6 +2203,328 @@
                 }
             },
             "title": "Substation",
+            "type": "object"
+        },
+        "Switch": {
+            "additionalProperties": false,
+            "description": "A generic device designed to close, or open, or both, one or more electric circuits.  All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers."
+                },
+                "EquipmentContainer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/EquipmentContainer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Container of this equipment."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets associated with this equipment.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
+                },
+                "Terminals": {
+                    "description": "Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.",
+                    "items": {
+                        "$ref": "#/$defs/Terminal"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "aggregate": {
+                    "description": "The aggregate flag provides an alternative way of representing an aggregated (equivalent) element. It is applicable in cases when the dedicated classes for equivalent equipment do not have all of the attributes necessary to represent the required level of detail.  In case the flag is set to \u201ctrue\u201d the single instance of equipment represents multiple pieces of equipment that have been modelled together as an aggregate equivalent obtained by a network reduction procedure. Examples would be power transformers or synchronous machines operating in parallel modelled as a single aggregate power transformer or aggregate synchronous machine.  \r\nThe attribute is not used for EquivalentBranch, EquivalentShunt and EquivalentInjection.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "inService": {
+                    "description": "Specifies the availability of the equipment. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "networkAnalysisEnabled": {
+                    "description": "The equipment is enabled to participate in network analysis.  If unspecified, the value is assumed to be true.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normalOpen": {
+                    "description": "The attribute is used in cases when no Measurement for the status value is present. If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "normallyInService": {
+                    "description": "Specifies the availability of the equipment under normal operating conditions. True means the equipment is available for topology processing, which determines if the equipment is energized or not. False means that the equipment is treated by network applications as if it is not in the model.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Switch",
+            "type": "object"
+        },
+        "Terminal": {
+            "additionalProperties": false,
+            "description": "An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.",
+            "properties": {
+                "ConductingEquipment": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ConductingEquipment"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The conducting equipment of the terminal. Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes."
+                },
+                "ConnectivityNode": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ConnectivityNode"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The connectivity node to which this terminal connects with zero impedance."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "NormalHeadFeeder": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Feeder"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The feeder that this terminal normally feeds.  Only specified for the terminals at head of feeders."
+                },
+                "OperationalLimitSet": {
+                    "description": "The operational limit sets at the terminal.",
+                    "items": {
+                        "$ref": "#/$defs/OperationalLimitSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "TransformerEnd": {
+                    "description": "All transformer ends connected at this terminal.",
+                    "items": {
+                        "$ref": "#/$defs/TransformerEnd"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "connected": {
+                    "description": "The connected status is related to a bus-branch model and the topological node to terminal relation.  True implies the terminal is connected to the related topological node and false implies it is not. \r\nIn a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.\r\n",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sequenceNumber": {
+                    "description": "The orientation of the terminal connections for a multiple terminal conducting equipment.  The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the \"starting point\" for a two terminal branch.\r\n",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Terminal",
+            "type": "object"
+        },
+        "TransformerEnd": {
+            "additionalProperties": false,
+            "description": "A conducting connection point of a power transformer. It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.",
+            "properties": {
+                "BaseVoltage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/BaseVoltage"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Base voltage of the transformer end.  This is essential for PU calculation."
+                },
+                "Names": {
+                    "description": "All names of this identified object.",
+                    "items": {
+                        "$ref": "#/$defs/Name"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Terminal": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Terminal"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Terminal of the power transformer to which this transformer end belongs."
+                },
+                "description": {
+                    "description": "The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "endNumber": {
+                    "description": "Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.  Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.\r\n",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "europeanArticleNumberEAN": {
+                    "description": "The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mRID": {
+                    "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.\r\nFor CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "The name is any free human readable and possibly non unique text naming the object.\r\n",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "TransformerEnd",
             "type": "object"
         },
         "UnitMultiplier": {
@@ -818,10 +2595,30 @@
                     ],
                     "description": "The base voltage used for all equipment within the voltage level."
                 },
+                "Bays": {
+                    "description": "The bays within this voltage level.",
+                    "items": {
+                        "$ref": "#/$defs/Bay"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "ConnectivityNodes": {
                     "description": "Connectivity nodes which belong to this connectivity node container.",
                     "items": {
                         "$ref": "#/$defs/ConnectivityNode"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "Equipments": {
+                    "description": "Contained equipment.",
+                    "items": {
+                        "$ref": "#/$defs/Equipment"
                     },
                     "type": [
                         "array",
@@ -837,6 +2634,17 @@
                         "array",
                         "null"
                     ]
+                },
+                "PSRType": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/PSRType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Custom classification for this power system resource."
                 },
                 "Substation": {
                     "anyOf": [

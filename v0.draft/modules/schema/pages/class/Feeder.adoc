@@ -1,8 +1,9 @@
-= `PowerSystemResource`
+= `Feeder`
 :toclevels: 4
 
 
-+++A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.+++
++++A collection of equipment for organizational purposes, used for grouping distribution resources.
+The organization a feeder does not necessarily reflect connectivity or current operation state.+++
 
 
 [cols="h,3",width=65%]
@@ -11,7 +12,7 @@
 | Class
 
 | URI
-| `cim:PowerSystemResource`
+| `cim:Feeder`
 
 
 | CIM standard (perspective)
@@ -23,10 +24,10 @@
 
 == Class hierarchy
 * xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
-** *`PowerSystemResource`*
- *** xref::class/BoundaryPoint.adoc[`BoundaryPoint`]
- *** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
- *** xref::class/Equipment.adoc[`Equipment`]
+** xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
+*** xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+**** xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+***** *`Feeder`*
 
 
 == Slots
@@ -41,7 +42,61 @@ vars: {
     pad: 20
   }
 }
-PowerSystemResource {
+Feeder {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Substation {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Substation {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Terminal {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Substation {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+Equipment {
+  style {
+    fill: "#eccfcb"
+    shadow: true
+  }
+}
+
+
+
+ConnectivityNode {
   style {
     fill: "#eccfcb"
     shadow: true
@@ -69,10 +124,28 @@ Name {
 
 
 
-PowerSystemResource -> PSRType: PSRType
+Feeder -> Substation: NormalEnergizingSubstation
 
 
-PowerSystemResource -> Name: Names
+Feeder -> Substation: NamingSecondarySubstation
+
+
+Feeder -> Terminal: NormalHeadTerminal
+
+
+Feeder -> Substation: NormalEnergizedSubstation
+
+
+Feeder -> Equipment: Equipments
+
+
+Feeder -> ConnectivityNode: ConnectivityNodes
+
+
+Feeder -> PSRType: PSRType
+
+
+Feeder -> Name: Names
 
 
 legend: "" {
@@ -128,12 +201,54 @@ legend: "" {
 |===
 | Name | Type | Description | Inherited from
 
+| <<NamingSecondarySubstation,`NamingSecondarySubstation`>>
+//| [[slots_table.NamingSecondarySubstation]]<<NamingSecondarySubstation,`NamingSecondarySubstation`>>
+| 0..* +
+xref::class/Substation.adoc[`Substation`]
+| +++The secondary substations that are normally energized from the feeder.  Used for naming purposes.   Should be consistent...+++
+| _n/a_
+
+| <<NormalEnergizedSubstation,`NormalEnergizedSubstation`>>
+//| [[slots_table.NormalEnergizedSubstation]]<<NormalEnergizedSubstation,`NormalEnergizedSubstation`>>
+| 0..* +
+xref::class/Substation.adoc[`Substation`]
+| +++The substations that are normally energized by the feeder.+++
+| _n/a_
+
+| <<NormalEnergizingSubstation,`NormalEnergizingSubstation`>>
+//| [[slots_table.NormalEnergizingSubstation]]<<NormalEnergizingSubstation,`NormalEnergizingSubstation`>>
+| 0..1 +
+xref::class/Substation.adoc[`Substation`]
+| +++The substation that nominally energizes the feeder.  Also used for naming purposes.+++
+| _n/a_
+
+| <<NormalHeadTerminal,`NormalHeadTerminal`>>
+//| [[slots_table.NormalHeadTerminal]]<<NormalHeadTerminal,`NormalHeadTerminal`>>
+| 1..* +
+xref::class/Terminal.adoc[`Terminal`]
+| +++The normal head terminal or terminals of the feeder.+++
+| _n/a_
+
+| <<Equipments,`Equipments`>>
+//| [[slots_table.Equipments]]<<Equipments,`Equipments`>>
+| 0..* +
+xref::class/Equipment.adoc[`Equipment`]
+| +++Contained equipment.+++
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+
+| <<ConnectivityNodes,`ConnectivityNodes`>>
+//| [[slots_table.ConnectivityNodes]]<<ConnectivityNodes,`ConnectivityNodes`>>
+| 0..* +
+xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
+| +++Connectivity nodes which belong to this connectivity node container.+++
+| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+
 | <<PSRType,`PSRType`>>
 //| [[slots_table.PSRType]]<<PSRType,`PSRType`>>
 | 0..1 +
 xref::class/PSRType.adoc[`PSRType`]
 | +++Custom classification for this power system resource.+++
-| _n/a_
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 | <<Names,`Names`>>
 //| [[slots_table.Names]]<<Names,`Names`>>
@@ -175,6 +290,35 @@ https://w3id.org/linkml/String[`string`]
 
 
 //[discrete]
+[#ConnectivityNodes]
+=== `ConnectivityNodes`
++++Connectivity nodes which belong to this connectivity node container.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:ConnectivityNodeContainer.ConnectivityNodes`
+| Cardinality
+| 0..*
+| Type
+| xref::class/ConnectivityNode.adoc[`ConnectivityNode`]
+
+| Inherited from
+| xref::class/ConnectivityNodeContainer.adoc[`ConnectivityNodeContainer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.ConnectivityNodes,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#description]
 === `description`
 +++The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.+++
@@ -199,6 +343,35 @@ https://w3id.org/linkml/String[`string`]
 [.text-left]
 --
 <<slots_table.description,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#Equipments]
+=== `Equipments`
++++Contained equipment.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:EquipmentContainer.Equipments`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Equipment.adoc[`Equipment`]
+
+| Inherited from
+| xref::class/EquipmentContainer.adoc[`EquipmentContainer`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.Equipments,&#10548;>>
 --
 ////
 
@@ -321,6 +494,110 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 //[discrete]
+[#NamingSecondarySubstation]
+=== `NamingSecondarySubstation`
++++The secondary substations that are normally energized from the feeder.  Used for naming purposes.   Should be consistent with the other associations for energizing terminal specification and the feeder energization specification.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Feeder.NamingSecondarySubstation`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Substation.adoc[`Substation`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.NamingSecondarySubstation,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#NormalEnergizedSubstation]
+=== `NormalEnergizedSubstation`
++++The substations that are normally energized by the feeder.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Feeder.NormalEnergizedSubstation`
+| Cardinality
+| 0..*
+| Type
+| xref::class/Substation.adoc[`Substation`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.NormalEnergizedSubstation,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#NormalEnergizingSubstation]
+=== `NormalEnergizingSubstation`
++++The substation that nominally energizes the feeder.  Also used for naming purposes.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Feeder.NormalEnergizingSubstation`
+| Cardinality
+| 0..1
+| Type
+| xref::class/Substation.adoc[`Substation`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.NormalEnergizingSubstation,&#10548;>>
+--
+////
+
+
+//[discrete]
+[#NormalHeadTerminal]
+=== `NormalHeadTerminal`
++++The normal head terminal or terminals of the feeder.+++
+
+
+[cols="h,4",width=65%]
+|===
+| URI
+| `cim:Feeder.NormalHeadTerminal`
+| Cardinality
+| 1..*
+| Type
+| xref::class/Terminal.adoc[`Terminal`]
+
+
+|===
+
+////
+[.text-left]
+--
+<<slots_table.NormalHeadTerminal,&#10548;>>
+--
+////
+
+
+//[discrete]
 [#PSRType]
 === `PSRType`
 +++Custom classification for this power system resource.+++
@@ -334,6 +611,9 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 | 0..1
 | Type
 | xref::class/PSRType.adoc[`PSRType`]
+
+| Inherited from
+| xref::class/PowerSystemResource.adoc[`PowerSystemResource`]
 
 
 |===
@@ -358,7 +638,11 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
 
 
 
-| xref::class/PSRType.adoc[`PSRType`] | xref::class/PSRType.adoc#PowerSystemResources[`PowerSystemResources`]
+| xref::class/Substation.adoc[`Substation`] | xref::class/Substation.adoc#NormalEnergizingFeeder[`NormalEnergizingFeeder`]
+
+
+
+| xref::class/Terminal.adoc[`Terminal`] | xref::class/Terminal.adoc#NormalHeadFeeder[`NormalHeadFeeder`]
 
 
 |===
