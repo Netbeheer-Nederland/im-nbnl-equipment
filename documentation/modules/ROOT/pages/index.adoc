@@ -81,29 +81,57 @@ legend: "" {
   }
 }
 
-direction: up
+direction: down
 
+ActivePower.class: grid
+ActivePowerLimit.class: grid
 BaseVoltage.class: grid
+Bay.class: grid
 BoundaryPoint.class: grid
 ConnectivityNode.class: grid
+EnergyConsumer.class: grid
+Feeder.class: grid
 GeographicalRegion.class: grid
+OperationalLimitSet.class: grid
+PowerTransformer.class: grid
+PowerTransformerEnd.class: grid
 SubGeographicalRegion.class: grid
 Substation.class: grid
+Switch.class: grid
+Terminal.class: grid
+TransformerEnd.class: grid
 Voltage.class: grid
 VoltageLevel.class: grid
 
-GeographicalRegion -> SubGeographicalRegion: "GeographicalRegion.Regions"
-SubGeographicalRegion -> Substation: "SubGeographicalRegion.Substations"
-SubGeographicalRegion -> GeographicalRegion: "SubGeographicalRegion.Region"
-Substation -> VoltageLevel: "Substation.VoltageLevels"
-Substation -> SubGeographicalRegion: "Substation.Region"
-VoltageLevel -> BaseVoltage: "VoltageLevel.BaseVoltage"
-VoltageLevel -> Substation: "VoltageLevel.Substation"
-VoltageLevel -> ConnectivityNode: "ConnectivityNodeContainer.ConnectivityNodes"
-BaseVoltage -> Voltage: "BaseVoltage.nominalVoltage"
-BaseVoltage -> VoltageLevel: "BaseVoltage.VoltageLevel"
-ConnectivityNode -> BoundaryPoint: "ConnectivityNode.BoundaryPoint"
-BoundaryPoint -> ConnectivityNode: "BoundaryPoint.ConnectivityNode"
+GeographicalRegion -- SubGeographicalRegion
+SubGeographicalRegion -- Substation
+Substation -- VoltageLevel
+Substation -- Bay
+Substation -- Feeder
+VoltageLevel -- BaseVoltage
+VoltageLevel -- Bay
+VoltageLevel -- ConnectivityNode
+BaseVoltage -- Voltage
+BaseVoltage -- TransformerEnd
+ConnectivityNode -- BoundaryPoint
+ConnectivityNode -- Terminal
+Terminal -- TransformerEnd
+Terminal -- Feeder
+Terminal -- OperationalLimitSet
+Bay -- ConnectivityNode
+PowerTransformer -- PowerTransformerEnd
+PowerTransformer -- BaseVoltage
+PowerTransformer -- OperationalLimitSet
+PowerTransformerEnd -- BaseVoltage
+PowerTransformerEnd -- Terminal
+EnergyConsumer -- BaseVoltage
+EnergyConsumer -- Terminal
+EnergyConsumer -- OperationalLimitSet
+Switch -- BaseVoltage
+Switch -- Terminal
+Switch -- OperationalLimitSet
+ActivePowerLimit -- ActivePower
+ActivePowerLimit -- OperationalLimitSet
 ----
 
 The Equipment profile primarily defines the existence of equipment in the
