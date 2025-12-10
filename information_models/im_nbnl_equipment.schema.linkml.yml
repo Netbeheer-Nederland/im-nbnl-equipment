@@ -901,10 +901,11 @@ classes:
         multivalued: true
     class_uri: cim:PSRType
   PowerTransformer:
-    description: An electrical device consisting of  two or more coupled
-      windings, with or without a magnetic core, for introducing mutual
-      coupling between electric circuits. Transformers can be used to control
-      voltage and phase shift (active power flow).
+    description: |-
+      An electrical device consisting of  two or more coupled windings, with or
+      without a magnetic core, for introducing mutual coupling between electric
+      circuits. Transformers can be used to control voltage and phase shift
+      (active power flow).
 
       * A power transformer may be composed of separate transformer tanks that
       need not be identical.
@@ -927,7 +928,8 @@ classes:
         multivalued: true
     class_uri: cim:PowerTransformer
   PowerTransformerEnd:
-    description: A PowerTransformerEnd is associated with each Terminal of a
+    description: |-
+      A PowerTransformerEnd is associated with each Terminal of a
       PowerTransformer. The impedance values r, r0, x, and x0 of a
       PowerTransformerEnd represents a star equivalent as follows.
 
