@@ -325,7 +325,7 @@ classes:
         multivalued: false
       europeanArticleNumberEAN:
         description: The attribute is used for an exchange of the EAN code (European
-          Article Number). The length of the string is 16 characters as defined by
+          Article Number). The length of the string is 18 characters as defined by
           the EAN code.
         slot_uri: nl:IdentifiedObject.europeanArticleNumberEAN
         range: string

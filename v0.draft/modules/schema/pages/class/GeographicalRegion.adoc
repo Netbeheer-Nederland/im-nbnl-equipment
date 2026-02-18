@@ -167,7 +167,7 @@ https://w3id.org/linkml/String[`string`]
 //| [[slots_table.europeanArticleNumberEAN]]<<europeanArticleNumberEAN,`europeanArticleNumberEAN`>>
 | 0..1 +
 https://w3id.org/linkml/String[`string`]
-| +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters...+++
+| +++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 18 characters...+++
 | xref::class/IdentifiedObject.adoc[`IdentifiedObject`]
 
 | <<mRID,`mRID`>>
@@ -220,7 +220,7 @@ https://w3id.org/linkml/String[`string`]
 //[discrete]
 [#europeanArticleNumberEAN]
 === `europeanArticleNumberEAN`
-+++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 16 characters as defined by the EAN code.+++
++++The attribute is used for an exchange of the EAN code (European Article Number). The length of the string is 18 characters as defined by the EAN code.+++
 
 
 [cols="h,4",width=65%]
