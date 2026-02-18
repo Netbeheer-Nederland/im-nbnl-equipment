@@ -1,3 +1,0 @@
-# NBNL Equipment Profile
-
-...
